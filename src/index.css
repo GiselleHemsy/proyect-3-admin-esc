@@ -1,0 +1,12 @@
+.App {
+    background-color: #9c9c9c;
+    height: 100vh;
+}
+
+.container {
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    min-width: 768;
+
+}
