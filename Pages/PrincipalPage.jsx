@@ -1,26 +1,52 @@
-// import Container from 'react-bootstrap/Container';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
+
 import React from 'react';
 import IdCard from '../src/Components/IdCard/IdCard'
 
 
 
-const PrincipalPage = () => {
 
+const PrincipalPage = () => {
+    //array de usuarios
+const perADmin = [
+    {   "nombre": "gabriel",
+        "fechadeingreso": "20/08/99",
+        "telefono": "381544755" ,
+        "correo": "carlos@gmail.com" ,
+        "Id": "1234asdASD",
+        "direccion": "chacabuco103",
+        "cursosACargo": "matematica,fisica",
+        "estado": "habilitado", 
+    },
+
+    {   "nombre": "agostina",
+        "fechadeingreso": "20/08/99",
+        "telefono": "381544755" ,
+        "correo": "carlos@gmail.com" ,
+        "Id": "1234asdASD",
+        "direccion": "san lorenzo200",
+        "cursosACargo": "matematica,fisica",
+        "estado": "habilitado", 
+    },
+
+    { "nombre": "gisel",
+        "fechadeingreso": "20/08/99",
+        "telefono": "381544755" ,
+        "correo": "carlos@gmail.com" ,
+        "Id": "1234asdASD",
+        "direccion": "gral1500",
+        "cursosACargo": "matematica,fisica",
+        "estado": "habilitado", 
+    },
+]
     
-    return(
+    return(  
         <>
-        <div className='container'>
-            <div className='row'>
+        <div className='PPcontainer py-5'>
+            <div className='row mt-5'>
                 <div className='col-md-4'>
-                    <IdCard/>
-                </div>
-                <div className='col-md-4'>
-                    <IdCard/>
-                </div>
-                <div className='col-md-4'>
-                    <IdCard/>
+                    {
+                    perADmin.map((per,index) => <IdCard name={per.nombre} direccion={per.direccion} key={index}/>)
+                    }
                 </div>
             </div>
         </div>

@@ -13,11 +13,12 @@ function BurguerButton (props) {
         </div>
         </Burguer>
     );
-}
+  }
+  
+  export default BurguerButton
+  
+  const Burguer = styled.div`
 
-export default BurguerButton
-
-const Burguer = styled.div`
 .nav-icon-8{
   width: 35px;
   height: 30px;
@@ -25,6 +26,7 @@ const Burguer = styled.div`
   position: relative;
   cursor: pointer;
   display: inline-block;
+  z-index:30;
 }
 .nav-icon-8 span{
   background-color:#FFF;
@@ -64,5 +66,4 @@ const Burguer = styled.div`
 .nav-icon-8.open span:nth-child(3){
   top: 13px;
 }
-
 `
