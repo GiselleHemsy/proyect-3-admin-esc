@@ -6,8 +6,8 @@ import PrincipalPage from '../Pages/PrincipalPage'
 import StudentsPage from '../Pages/StudentsPage';
 import Footer from './Components/Footer/Footer';
 import NavBar from './Components/NavBar/NavBar';
-import UserDetailPage from '../Pages/UserDetailPage';
 import './index.css'
+import CoursesDetail from '../Pages/CoursesDetail';
 
 
 
@@ -15,15 +15,15 @@ import './index.css'
 function App() {
   return(
         <Router>
-          {/* <NavBar/> */}
+          <NavBar/>
             <Routes>
-            <Route path='/UserDetailPage' element={<UserDetailPage/>}/>
+            <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
             <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/StudentsPage' element={<StudentsPage/>}/>
           </Routes>
-            {/* <Footer/> */}
+            <Footer/>
         </Router>
       )
     }
