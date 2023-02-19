@@ -1,18 +1,22 @@
-import DetalleCursado from /pages/DetalleCursado
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import CursoPage from "./pages/CursoPage"
+import DetallePage from "./pages/DetallePage"
 
 
 
 function App() {
  
-
   return (
-    return(
-      <Router>
-        <MainNavbar/>
-        <Routes>
-          <Route path='/cursos' element={<DetalleCursado/>}/>
-        </Routes>
-      </Router>
+
+<>
+<h1>hola</h1>
+  <BrowserRouter>
+    <Routes>
+      <Route path='/detalle' element={<DetallePage/>}/>
+      <Route path='/curso' element={<CursoPage/>}/>
+    </Routes>
+  </BrowserRouter>
+</>
   )
 }
 
