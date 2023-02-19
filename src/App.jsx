@@ -15,7 +15,7 @@ import './index.css'
 function App() {
   return(
         <Router>
-          <NavBar/>
+          {/* <NavBar/> */}
             <Routes>
             <Route path='/UserDetailPage' element={<UserDetailPage/>}/>
             <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
@@ -23,7 +23,7 @@ function App() {
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/StudentsPage' element={<StudentsPage/>}/>
           </Routes>
-            <Footer/>
+            {/* <Footer/> */}
         </Router>
       )
     }
