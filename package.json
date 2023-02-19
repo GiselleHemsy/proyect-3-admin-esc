@@ -4,16 +4,27 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "axios": "^1.3.3",
+    "boostrap": "^2.0.0",
+>>>>>>> 8596fa24ba9e08915a44b3f40d3159b3a2896c0f
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-router-dom": "^6.8.1"
+=======
+    "react-router-dom": "^6.8.1",
+    "react-toastify": "^9.1.1",
+    "styled-components": "^5.3.6"
+>>>>>>> 8596fa24ba9e08915a44b3f40d3159b3a2896c0f
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
