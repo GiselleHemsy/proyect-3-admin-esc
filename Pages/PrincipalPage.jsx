@@ -42,10 +42,18 @@ const perADmin = [
     return(  
         <>
         <div className='PPcontainer py-5'>
-            <div className='row mt-5'>
+            <div className='row mt-4'>
                 <div className='col-md-4'>
                     {
-                    perADmin.map((per,index) => <IdCard name={per.nombre} direccion={per.direccion} key={index}/>)
+                    perADmin.map((per,index) =><IdCard     
+                                name={per.nombre} 
+                                fechadeingreso={per.fechadeingreso} 
+                                telefono={per.telefono} 
+                                correo={per.correo} 
+                                direccion={per.direccion} 
+                                cursosACargo={per.cursosACargo} 
+                                estado={per.estado} 
+                                key={index}/>)
                     }
                 </div>
             </div>
