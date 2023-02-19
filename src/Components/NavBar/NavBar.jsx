@@ -48,6 +48,7 @@ background-color: #4897b1;
 display: flex;
 align-items: center;
 justify-content: space-between;
+width: 100vw;
 a{
     color: white;
     text-decoration: none;

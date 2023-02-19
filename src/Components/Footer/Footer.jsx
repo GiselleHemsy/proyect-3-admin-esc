@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Footer = () => {
     const FooterContainer = styled.div`
         background-color: #4897b1;
+        width: 100vw;
         .text{
             color: white ;
         }
