@@ -1,65 +1,49 @@
 
-import React from 'react';
-import IdCard from '../src/Components/IdCard/IdCard'
+import { useEffect, useState } from 'react';
+import IdCard from '../src/Components/IdCard/IdCard';
+import axiosBack from "../src/config/axios"
 
 
 
 
 const PrincipalPage = () => {
-    //array de usuarios
-const perADmin = [
-    {   "nombre": "gabriel",
-        "fechadeingreso": "20/08/99",
-        "telefono": "381544755" ,
-        "correo": "carlos@gmail.com" ,
-        "Id": "1234asdASD",
-        "direccion": "chacabuco103",
-        "cursosACargo": "matematica,fisica",
-        "estado": "habilitado", 
-    },
 
-    {   "nombre": "agostina",
-        "fechadeingreso": "20/08/99",
-        "telefono": "381544755" ,
-        "correo": "carlos@gmail.com" ,
-        "Id": "1234asdASD",
-        "direccion": "san lorenzo200",
-        "cursosACargo": "matematica,fisica",
-        "estado": "habilitado", 
-    },
+const [state, setState] = useState([]);
+const getData = async()=>{
+    try {
+        const {data}= await axiosBack.get("/users");
+        console.log(data.users);
+        setState(data.users);  
+    } catch (error) {
+        toast.error(error.message)
+    
+    }
+}
 
-    { "nombre": "gisel",
-        "fechadeingreso": "20/08/99",
-        "telefono": "381544755" ,
-        "correo": "carlos@gmail.com" ,
-        "Id": "1234asdASD",
-        "direccion": "gral1500",
-        "cursosACargo": "matematica,fisica",
-        "estado": "habilitado", 
-    },
-]
+    useEffect(()=>{
+    getData();
+    },[])
+
     
     return(  
         <>
-        <div className='PPcontainer py-5'>
-            <div className='row mt-4'>
-                <div className='col-md-4'>
+        <div className='PPcontainer'>
+            <div className='row g-3'>
                     {
-                    perADmin.map((per,index) =><IdCard     
-                                name={per.nombre} 
-                                fechadeingreso={per.fechadeingreso} 
-                                telefono={per.telefono} 
-                                correo={per.correo} 
-                                direccion={per.direccion} 
-                                cursosACargo={per.cursosACargo} 
-                                estado={per.estado} 
-                                key={index}/>)
+                    state.map((per,index) =><IdCard     
+                                key={index}
+                                name={per.name} 
+                                cel={per.cel} 
+                                dni={per.dni} 
+                                _id={per._id} 
+                                
+                    />)
                     }
                 </div>
             </div>
-        </div>
-</>
-);
+        
+</>                         
+);                                                                                                                 
 }
 
-export default PrincipalPage
+export default PrincipalPage                                                                                                                                              

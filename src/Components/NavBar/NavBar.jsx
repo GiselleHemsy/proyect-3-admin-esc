@@ -14,7 +14,7 @@ function NavBar () {
     <>
         <NavContainer>
             <div className="logo d-flex">
-            <img src={image02}/>
+            <img src={image02} className="image02"/>
             <h2> AdminClick</h2>
             </div>
             <div className={`links ${clicked ? 'active' : ''}`}>
@@ -35,7 +35,7 @@ function NavBar () {
 export default NavBar; 
 
 const NavContainer = styled.nav`
-h2{ margin-top: 50px;
+h2{ margin-top: 30px;
     justify-content: center;
     align-items: center;
     color: white;
@@ -62,7 +62,7 @@ a{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    z-index:30;
+    z-index:40;
     a{
         color: white;
         font-size: 2rem;
@@ -101,9 +101,9 @@ a{
         display: none;
     }
 }
-img{
-    width: 120px;
-    height: 120px;
+.image02{
+    width: 180px;
+    height: 90px;
 }
 `
 const BgDiv = styled.div`
@@ -122,7 +122,7 @@ const BgDiv = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 10;
+        z-index: 20;
     
     
     
