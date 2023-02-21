@@ -8,6 +8,7 @@
 .card-body{
     background-color: #96b3ee;
     z-index: 10;
+    border-radius: 25px;
 }
 
 img{
@@ -15,4 +16,7 @@ img{
     width: 250px;
     max-width: 30%;
     min-width: 20%;
+}
+.button{
+    margin-top: auto;
 }
