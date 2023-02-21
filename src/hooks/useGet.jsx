@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { toast } from "react-toastify";
 
 
-const useGet=(url, axios)=>{
+const useGet=(url, axios, info)=>{
   //Estado generico
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ const useGet=(url, axios)=>{
 
     try {
       const {data} = await axios.get(url);
-      setState(data.data || data);  
+      setState(data.info);  
       //* El codigo de arriba || indica que si hay data.data que guarde, sino que guarde solo data
       setLoading(false);
     } catch (error) {

@@ -6,13 +6,13 @@ import './IdCard.css'
 
 
 
-function IdCard({name,direccion}){
+function IdCard({name,lastname}){
     return (
         <div className="card">
             <img src={image1}/>
             <div className="card-body">
                 <h4 className="card-text">{name}</h4>
-                <p className="card-text text-secondary">{direccion}</p>
+                <p className="card-text text-secondary">{lastname}</p>
                 <Button variant="primary">ver mas</Button>{' '}
             </div>
         </div>
