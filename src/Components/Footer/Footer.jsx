@@ -6,6 +6,7 @@ import {BsFacebook,BsInstagram,BsGoogle} from 'react-icons/bs'
 
 const Footer = () => {
     const FooterContainer = styled.div`
+    
         background-color: #4897b1;
         width: 100vw;
         .text{
@@ -22,7 +23,7 @@ const Footer = () => {
     `
     return ( 
         <>
-        <footer className='foot'>
+        <footer className='foot fixed-bottom'>
             <FooterContainer>
             <div className='footer'>
                 <nav className="row justify-content-center align-items-center">

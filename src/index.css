@@ -18,5 +18,10 @@
     height: 100vh;
     width: 100vw;
 }
-
+.rowSelected{
+    background-color: darkcyan;
+    }
+    tr:hover{
+    cursor: pointer;
+    }
 
