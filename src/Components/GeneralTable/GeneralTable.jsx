@@ -13,7 +13,7 @@ const GeneralTable = ({headings, items, setSelected, selected}) => {
       <tbody>
         {
         items.map((item, index)=> 
-          <tr key={index} onClick={()=>setSelected(item.id)} className={selected==item.id? "rowSelected" :""}>
+          <tr key={index} onClick={()=>setSelected(item.dni)} className={selected==item.dni? "rowSelected" :""}>
             {
               Object.values(item)?.map((value, index)=><td key={index} >{value}</td>)
               // Uso Optional Chaning para que haga el map solo si estan los items, sino no.
