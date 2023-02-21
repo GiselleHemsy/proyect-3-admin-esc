@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import {Container,Row,Col, Button} from 'react-bootstrap';
+import {Container,Row,Col} from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import ButtonDetail from '../src/components/buttonDetail';
+import GeneralModal from '../src/Components/GeneralModal/GeneralModal';
 import axiosBack from "../src/config/axios";
-
+import InfoCourses from "../src/components/InfoCourses";
 
 const CoursesDetail = () => {
   const [courses, setCourses] = useState([]);
@@ -23,16 +23,12 @@ const CoursesDetail = () => {
   return (
     <>
     <h1>CURSOS</h1>
-    <div className='d-flex justify-content-end mx-5'>
-    <Button variant="outline-primary" size="sm" >Agregar</Button>
-    <Button variant="outline-warning" size="sm">Modificar</Button>
-    <Button variant="outline-danger" size="sm">Eliminar</Button>
-    </div>
     <Container>
       <Row>
         <Col>
           {
-            courses?.map((course)=> <ButtonDetail title={course.name}/>
+            courses?.map((course)=> 
+            <GeneralModal buttonText={course.name} modalTitle={course.name} modalBody={<InfoCourses></InfoCourses>} variant="primary"/>
           )
           }
         </Col>
