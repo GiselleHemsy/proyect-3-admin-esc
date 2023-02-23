@@ -86,7 +86,7 @@ return(
     //     else{
     //     toast.error("Error, intente nuevamente mas tarde")
     //   }}
-     }
+}
 
 
 export default StudentsPage;

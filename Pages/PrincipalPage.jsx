@@ -30,13 +30,7 @@ const getData = async()=>{
         <div className='PPcontainer'>
             <div className='row g-3'>
                     {
-                    state.map((per,index) =><IdCard     
-                                key={index}
-                                name={per.name} 
-                                cel={per.cel} 
-                                dni={per.dni} 
-                                _id={per._id} 
-                                
+                    state.map((per,index) =><IdCard key={index} name={per.name} cel={per.cel} dni={per.dni} _id={per._id} 
                     />)
                     }
                 </div>

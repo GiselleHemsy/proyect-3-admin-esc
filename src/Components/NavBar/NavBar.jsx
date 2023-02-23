@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import styled from "styled-components";
 import BurguerButton from "../BurguerButton/BurguerButton";
 import image02 from "../img/click.png"
- 
+
 
 
 function NavBar () {
@@ -18,9 +18,14 @@ function NavBar () {
             <h2> AdminClick</h2>
             </div>
             <div className={`links ${clicked ? 'active' : ''}`}>
-                <a onClick={handleClick} href="/">admin</a>
-                <a onClick={handleClick} href="/">pagina inicio</a>
-                <a onClick={handleClick} href="/">log</a>
+                <a href="/Admin" onClick={handleClick}>ADMIN</a>
+                <a href="" onClick={handleClick}>HABILITAR</a>
+                <a href="/PrincipalPage" onClick={handleClick}>PAGINA PRINCIPAL</a>
+                <a href="/StudentsPage" onClick={handleClick}>ALUMNOS</a>
+                <a href="/TeachersPage" onClick={handleClick}>PROFESORES</a>
+                <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a>
+                <a href="/CoursePage" onClick={handleClick}>CURSOS</a>
+                <a href="/LoginPage" onClick={handleClick}>LOGIN</a>
             </div>
             <div className='burguer'>
                 <BurguerButton clicked={clicked} handleClick={handleClick}/>
