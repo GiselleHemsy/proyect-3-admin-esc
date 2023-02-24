@@ -84,15 +84,7 @@ return(
   
     const deleteUser=async()=>{
       console.log("soy la funcion deleteUser")
-    //   try {
-    //     await axiosBack.delete("/users/"+selected);
-    //     getUsers();
-    //   } catch (error) {
-    //     if(!selected){
-    //     toast.error("Para continuar selecciona un usuario")}
-    //     else{
-    //     toast.error("Error, intente nuevamente mas tarde")
-    //   }}
+    
 }
 
 export default TeachersPage;

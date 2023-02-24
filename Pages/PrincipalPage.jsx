@@ -1,7 +1,9 @@
 
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import IdCard from '../src/Components/IdCard/IdCard';
-import axiosBack from "../src/config/axios"
+import axiosBack from "../src/config/axios";
+
 
 
 
@@ -27,17 +29,20 @@ const getData = async()=>{
     
     return(  
         <>
-        <div className='PPcontainer'>
-            <div className='row g-3'>
+            
+        <div className='PPcontainer d-flex justify-content-center align-items-center h-100'>
+            <div className='row'>
+                    <div className='col-md-6 g-2'>
                     {
-                    state.map((per,index) =><IdCard key={index} name={per.name} cel={per.cel} dni={per.dni} _id={per._id} 
-                    />)
+                        state.map((per,index) =><IdCard key={index} name={per.name} cel={per.cel} dni={per.dni} _id={per._id} />)
                     }
-                </div>
+                    </div>
             </div>
-        
+        </div>
 </>                         
 );                                                                                                                 
 }
 
 export default PrincipalPage                                                                                                                                              
+            
+            

@@ -25,7 +25,6 @@ function NavBar () {
                 <a href="/TeachersPage" onClick={handleClick}>PROFESORES</a>
                 <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a>
                 <a href="/CoursePage" onClick={handleClick}>CURSOS</a>
-                <a href="/LoginPage" onClick={handleClick}>LOGIN</a>
             </div>
             <div className='burguer'>
                 <BurguerButton clicked={clicked} handleClick={handleClick}/>
@@ -37,7 +36,6 @@ function NavBar () {
 }
 
 
-export default NavBar; 
 
 const NavContainer = styled.nav`
 h2{ margin-top: 30px;
@@ -82,7 +80,7 @@ a{
             display: inline;
         }
     }
-
+    
 }
 .links.active{
     width: 100%;
@@ -107,7 +105,7 @@ a{
     }
 }
 .image02{
-    width: 180px;
+    width: 100px;
     height: 90px;
 }
 `
@@ -128,9 +126,10 @@ const BgDiv = styled.div`
         width: 100%;
         height: 100%;
         z-index: 20;
+        
+        
+        
+    }
     
-    
-    
-}
-
-`
+    `
+    export default NavBar; 

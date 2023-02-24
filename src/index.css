@@ -1,12 +1,8 @@
-
+.App{
+    height: 100vh;
+}
 .PPcontainer{
     background-color: #f8f8f8;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 10;
 }
 
@@ -18,10 +14,15 @@
     height: 100vh;
     width: 100vw;
 }
-.rowSelected{
-    background-color: darkcyan;
+/* .rowSelected{
+    background-color: rgb(237, 237, 237);
     }
     tr:hover{
     cursor: pointer;
     }
+
+.body-container{
+    width: 100vw;
+    height: 100vh;
+} */
 
