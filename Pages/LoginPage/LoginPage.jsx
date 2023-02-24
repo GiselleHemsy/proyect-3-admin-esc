@@ -26,11 +26,11 @@ const LoginPage = () => {
   }
   return (
     <>
-    <h1 className="text-center my-5">AlUMNCLICK <br /> Sofware de Gestion Escolar </h1>
-    <Container className="style-form-login" > 
-      <Row>
-        <Col  xs={12} className=" d-flex flex-column" >
-            <Form className="border my-3" onSubmit={handleSubmit}>
+    <h1 className="text-center">AlUMNCLICK <br /> Sofware de Gestion Escolar </h1>
+    <Container className="" > 
+      <Row className="d-flex justify-content-center mx-2 px-2 ">
+        <Col   md={6} xs={12} className="formCotainer style-form-login mx-2 px-2" >
+            <Form className="" onSubmit={handleSubmit}>
                   <Form.Group className=" bg-fondo-principal "  controlId="userEmail">
                     <Form.Label>Ingresa tu Email</Form.Label>
                     <Form.Control type="email" placeholder="xxxxx@xxxx.xx"  name="email" value={values.email} onChange={handleChanges}/>
