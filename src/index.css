@@ -21,6 +21,15 @@
     cursor: pointer;
     }
 
+body{
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.styleStudentPage{
+    padding-bottom: 250px !important;
+    margin-bottom: 250px !important;
+}
 .body-container{
     width: 100vw;
     height: 100vh;
