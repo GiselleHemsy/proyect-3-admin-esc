@@ -4,11 +4,10 @@ import ErrorPage from '../Pages/ErrorPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import PrincipalPage from '../Pages/PrincipalPage'
 import StudentsPage from '../Pages/StudentsPage';
-import Footer from './Components/Footer/Footer';
 import NavBar from './Components/NavBar/NavBar';
 import UserDetailPage from '../Pages/UserDetailPage';
 import './index.css'
-
+import Footer from './Components/Footer/Footer';
 
 
 
@@ -22,8 +21,8 @@ function App() {
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/StudentsPage' element={<StudentsPage/>}/>
-          </Routes>
-            <Footer/>
+            </Routes>
+          <Footer/>
         </Router>
       )
     }
