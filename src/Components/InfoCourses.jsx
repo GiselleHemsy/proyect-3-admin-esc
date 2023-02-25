@@ -2,47 +2,48 @@ import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import axiosBack from '../config/axios';
 
-const InfoCourses = () => {
-  const [students, setStudents] = useState([]);
-  const [subjects, setSubjects] = useState([]);
-  const [teachers, setTeachers] = useState([]);
+const InfoCourses = ({students}) => {
+  console.log(students)
+  // const [students, setStudents] = useState([]);
+//   const [subjects, setSubjects] = useState([]);
+  // const [teachers, setTeachers] = useState([]);
   
-  const getStudents =async()=>{
-    try {
-      const {data}= await axiosBack.get("/students");
-      setStudents(data.students);  
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
-  const getSubjects =async()=>{
-    try {
-      const {data}= await axiosBack.get("/subject");
-      console.log(data.subject);
-      setSubjects(data.subject);  
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
-  const getTeachers =async()=>{
-    try {
-      const {data}= await axiosBack.get("/teachers");
-      console.log(data.teacher);
-      setTeachers(data.teacher); 
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
+  // const getStudents =async()=>{
+  //   try {
+  //     const {data}= await axiosBack.get("/students");
+  //     setStudents(data.students);  
+  //   } catch (error) {
+  //     toast.error(error.message)
+  //   }
+  // }
+//   const getSubjects =async()=>{
+//     try {
+//       const {data}= await axiosBack.get("/subject");
+//       console.log(data.subject);
+//       setSubjects(data.subject);  
+//     } catch (error) {
+//       toast.error(error.message)
+//     }
+//   }
+//   const getTeachers =async()=>{
+//     try {
+//       const {data}= await axiosBack.get("/teachers");
+//       console.log(data.teacher);
+//       setTeachers(data.teacher); 
+//     } catch (error) {
+//       toast.error(error.message)
+//     }
+//   }
 
-  useEffect(()=>{
-    getStudents();
-  },[])
-useEffect(()=>{
-  getSubjects();
-},[])
-useEffect(()=>{
-  geTeachers();
-},[])
+//   useEffect(()=>{
+//     getStudents();
+//   },[])
+// useEffect(()=>{
+//   getSubjects();
+// },[])
+// useEffect(()=>{
+//   getTeachers();
+// },[])
   
   return (
     <>
@@ -57,10 +58,10 @@ useEffect(()=>{
         </tr>
       </thead>
       <tbody>
-        {students.map((student) =>
-        <tr>
+        {students.map((student, index) =>
+        <tr key={index}>
           <td>{student.name}</td>
-          <td>{student.lastname}</td>
+          <td>{student.lastname}</td> 
         </tr>
         )}
       </tbody>
@@ -75,11 +76,11 @@ useEffect(()=>{
     </tr>
   </thead>
   <tbody>
-    {subjects.map((subject) =>
+    {/* {subjects.map((subject) =>
     <tr>
       <td>{subject.name}</td>
-    </tr>
-    )}
+    </tr> */}
+    {/* )} */}
   </tbody>
 </Table> 
 <Table striped bordered hover>
@@ -93,12 +94,12 @@ useEffect(()=>{
     </tr>
   </thead>
   <tbody>
-    {teachers.map((teacher) =>
+    {/* {teachers.map((teacher) =>
     <tr>
       <td>{teacher.name}</td>
       <td>{teacher.lastname}</td>
     </tr>
-    )}
+     )} */}
   </tbody>
 </Table> 
 </>

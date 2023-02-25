@@ -8,6 +8,8 @@ import Footer from './Components/Footer/Footer';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
 import CoursesDetail from '../Pages/CoursesDetail';
+import AuthorizPage from '../Pages/AuthorizPage';
+
 
 
 
@@ -17,6 +19,7 @@ function App() {
         <Router>
           <NavBar/>
             <Routes>
+            <Route path="/AuthorizPage" element={<AuthorizPage/>}/>
             <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
             <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
