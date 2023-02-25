@@ -16,21 +16,6 @@ const StudentsPage = () => {
   const [state, setState] = useState([]);
   const [courses, setCourses] = useState([]);
 
-  const getCourses = async()=>{
-    try {
-      const {data }= await axiosBack.get("/course");
-      setCourses(data.courses); 
-      console.log(data.courses)
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
-
-  useEffect(()=>{
-    getCourses();
-  },[])
-  
-
 
 
   const getStudents =async()=>{
@@ -42,11 +27,32 @@ const StudentsPage = () => {
     }
   }
 
+  const getCourses = async()=>{
+    try {
+      const {data }= await axiosBack.get("/course");
+      setCourses(data.courses); 
+      console.log(data.courses)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
   useEffect(()=>{
     getStudents();
     getCourses();
   },[])
 
+  const deleteUser=async({})=>{
+    try {
+      await axiosBack.delete("/users",{data:{selected}});
+      getStudents();
+    } catch (error) {
+      if(!selected){
+      toast.error("Para continuar selecciona un usuario")}
+      else{
+      toast.error("Error, intente nuevamente mas tarde")
+    }}
+    } 
 return(
   <>
     <Container className=" pb-4 mb-4">
@@ -100,18 +106,7 @@ return(
 
 }
   
-    const deleteUser=async()=>{
-      console.log("soy la funcion deleteUser")
-    //   try {
-    //     await axiosBack.delete("/users/"+selected);
-    //     getUsers();
-    //   } catch (error) {
-    //     if(!selected){
-    //     toast.error("Para continuar selecciona un usuario")}
-    //     else{
-    //     toast.error("Error, intente nuevamente mas tarde")
-    //   }}
-     }
+  
 
 
 export default StudentsPage;

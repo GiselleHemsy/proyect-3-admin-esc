@@ -12,13 +12,13 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     {
       name:"",
       lastname:"",
-      expediente:0,
-      dni:0,
-      age:0,
+      expediente: "",
+      dni:"",
+      age:"",
       email:"",
-      cel:0,
-      course:"",
-      cuota:"",
+      cel:"",
+      course:"63f23fbcac8c527feb7e9bed",
+      cuota:""
     }
   );
   const handleChange =(e)=>{
@@ -33,7 +33,7 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     e.preventDefault();
     try {
       console.log(values)
-      const userCreated = await axiosBack.post("/students", {values});
+      const userCreated = await axiosBack.post("/students", values);
       getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
       if(userCreated){
@@ -43,13 +43,13 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       toast.error("Error, intente nuevamente mas tarde")
     }
   }
-
+  console.log("values:",values);
   return (
     <>
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="userName">
         <Form.Label>Ingrese el nombre</Form.Label>
-        <Form.Control type="text" placeholder="Pepe" name="name" value={values.name} onChange={handleChange}/>
+        <Form.Control type="text"  name="name" value={values.name} onChange={handleChange}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="userLastname">
         <Form.Label>Ingrese el Apellido</Form.Label>
@@ -57,7 +57,7 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="userId">
         <Form.Label>Id/Expediente</Form.Label>
-        <Form.Control type="number" placeholder="Ingresa tu ID" name="expediente" value={values.expendiente} onChange={handleChange} />
+        <Form.Control type="number" placeholder="Ingresa tu ID" name="expediente" value={values.expediente} onChange={handleChange} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="userdni">
         <Form.Label>Ingrese el dni</Form.Label>
@@ -65,7 +65,7 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="userAge">
         <Form.Label>Ingrese la edad</Form.Label>
-        <Form.Control type="number"  name="age" value={values.age} onChange={handleChange}/>
+        <Form.Control type="number"  name="age" value={parseInt(values.age)} onChange={handleChange}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="userEmail">
         <Form.Label>Ingrese el Email</Form.Label>
@@ -79,7 +79,7 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       
       <Form.Group className="mb-3" controlId="userCourse">
         <Form.Label>Ingrese el Año de Cursado</Form.Label>
-        <Form.Control type="text"  name="course" value={values.course._id} onChange={handleChange}/>
+        <Form.Control type="text"  name="course" value={values.course} onChange={handleChange}/>
       </Form.Group>
       {/* <Form.Select className="my-2" aria-label="Default select example"  value={values.course._id} onChange={handleChange} name="course"  >
       <option>Seleccione el Año de Cursado</option>
