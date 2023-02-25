@@ -47,7 +47,8 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-      await axiosBack.put("/students/"+selected,{values });
+      // '/coins/' + selected ,{update:values}
+      await axiosBack.put("/students/"+selected,{fields:values});
       getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
     } catch (error) {
@@ -72,8 +73,17 @@ const handleChangeCheckBox =(e)=>{
   });
 }
 
+const handleChangeSelected =(e)=>{
+  const selectedCourse = courses.find(x=>x._id===e.target.value)
+  console.log("e.target.value::::::::", e.target.value);
+  setValues({
+    ...values,
+    course: selectedCourse
+  })};
+// handleChangeSelected
 
 console.log("values:",values);
+console.log(courses);
   return (
     <>
     <Form onSubmit={handleSubmit}>
@@ -105,8 +115,8 @@ console.log("values:",values);
         <Form.Label>Ingrese el celular</Form.Label>
         <Form.Control type="number"  name="cel" value={values.cel} onChange={handleChange}/>
       </Form.Group>
-      <Form.Select aria-label="Default select example" name="course" onChange={handleChange}  >
-      <option>Seleccione el Año de Cursado</option> 
+      <Form.Select value={values.course._id} aria-label="Default select example" name="course" onChange={handleChangeSelected}  >
+      <Form.Label>Seleccione el Año de Cursado</Form.Label> 
       {
         courses.map((course)=>
         <option key={course._id}   value={course._id}>{course.name}</option>
@@ -121,7 +131,7 @@ console.log("values:",values);
         <Form.Check name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} type="checkbox" label="Cuota al dia" />
       </Form.Group>
       <Button variant="success" type="submit" onClick={handleClose}>
-        Editar usuario
+        Confirmar
       </Button>
     </Form>
     <ToastContainer/>
