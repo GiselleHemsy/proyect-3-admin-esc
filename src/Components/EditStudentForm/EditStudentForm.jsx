@@ -56,6 +56,15 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
 useEffect(()=>{
   getUserInfo();
 },[])
+const handleChangeCheckBox =(e)=>{
+  setValues({
+    ...values,
+    cuota: e.target.checked
+  });
+}
+
+
+console.log("values:",values);
   return (
     <>
     <Form onSubmit={()=>{handleSubmit}}>
@@ -89,7 +98,7 @@ useEffect(()=>{
         <Form.Control type="boolean" name="cuota" value={values.cuota} onChange={handleChange}/>
       </Form.Group> */}
       <Form.Group className="mb-3" controlId="formCuota">
-        <Form.Check name="cuota" checked={!values.cuota} onChange={handleChange} type="checkbox" label="Adeuda Cuota" />
+        <Form.Check name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} type="checkbox" label="Cuota al dia" />
       </Form.Group>
       <Button variant="success" type="submit" onClick={handleClose}>
         Editar usuario

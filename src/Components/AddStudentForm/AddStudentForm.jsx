@@ -17,8 +17,8 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       age:"",
       email:"",
       cel:"",
-      course:"63f23fbcac8c527feb7e9bed",
-      cuota:""
+      course:"",
+      cuota: false
     }
   );
   const handleChange =(e)=>{
@@ -28,7 +28,12 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     });
   }
   
-
+  const handleChangeCheckBox =(e)=>{
+    setValues({
+      ...values,
+      cuota: e.target.checked
+    });
+  }
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
@@ -77,25 +82,25 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
         <Form.Control type="number"  name="cel" value={values.cel} onChange={handleChange}/>
       </Form.Group>
       
-      <Form.Group className="mb-3" controlId="userCourse">
+      {/* <Form.Group className="mb-3" controlId="userCourse">
         <Form.Label>Ingrese el Año de Cursado</Form.Label>
         <Form.Control type="text"  name="course" value={values.course} onChange={handleChange}/>
-      </Form.Group>
-      {/* <Form.Select className="my-2" aria-label="Default select example"  value={values.course._id} onChange={handleChange} name="course"  >
+      </Form.Group> */}
+      <Form.Select className="my-2" aria-label="Default select example"  value={values.course._id} onChange={handleChange} name="course"  >
       <option>Seleccione el Año de Cursado</option>
       {
         courses.map((course)=>
-        <option key={course._id} value={values.course._id}>{course.name}</option>
+        <option key={course._id} value={course._id}>{course.name}</option>
         )
       }
-    </Form.Select> */}
-      <Form.Group className="mb-3" controlId="userCuota">
+    </Form.Select>
+      {/* <Form.Group className="mb-3" controlId="userCuota">
         <Form.Label>Estado de Cuota</Form.Label>
         <Form.Control type="boolean" name="cuota" value={values.cuota} onChange={handleChange}/>
-      </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formCuota">
-        <Form.Check name="cuota" checked={values.cuota} onChange={handleChange} type="checkbox" label="Adeuda Cuota" />
       </Form.Group> */}
+      <Form.Group className="mb-3" controlId="formCuota">
+        <Form.Check name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} type="checkbox" label="Cuota al dia" />
+      </Form.Group>
       <Button variant="success" type="submit" onClick={handleClose}>
         Crear usuario
       </Button>
