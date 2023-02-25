@@ -4,7 +4,7 @@ import axiosBack from '../config/axios';
 
 const InfoCourses = ({students}) => {
   console.log(students)
-  // const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState([]);
 //   const [subjects, setSubjects] = useState([]);
   // const [teachers, setTeachers] = useState([]);
   

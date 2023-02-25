@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import {Container,Row,Col, Table} from 'react-bootstrap';
+import {Container,Row,Col, Table, Button} from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import AddStudentForm from '../src/Components/AddStudentForm/AddStudentForm';
 import axiosBack from "../src/config/axios";
-import InfoCourses from "../src/components/InfoCourses";
+import AddCourseForm from "../src/Components/AddCourseForm";
 
 const CoursesDetail = () => {
   const [courses, setCourses] = useState([]);
   const [students, setStudents] = useState([]);
   // const [subjects, setSubjects] = useState([]);
-  const [teachers, setTeachers] = useState([]);
- 
+  // const [teachers, setTeachers] = useState([]);
+  // const [users, setUsers] = useState([]);
+  const [addCourse, setAddCourse] = useState(false);
+
   const getCourses =async()=>{
     try {
       const {data}= await axiosBack.get("/course");
@@ -34,37 +37,47 @@ const CoursesDetail = () => {
   //     toast.error(error.message)
   //   }
   // }
+
+  // const getUsers =async()=>{
+  //     try {
+  //       const {data}= await axiosBack.get("/users");
+  //       setUsers(data.users);  
+  //     } catch (error) {
+  //       toast.error(error.message)
+  //     }
+  //   }
   
   const handleClick = async (course)=>{
     try {
       const {data}= await axiosBack.get(`/students/course?course=${course}`);
       setStudents(data.students);  
-      const {data2}= await axiosBack.get(`/teachers/course?course=${course}`);
-      setTeachers(data2.teachers);  
-} catch (error) {
+      // const {data}= await axiosBack.get(`/teachers/course?course=${course}`);
+      // setTeachers(data.teachers); 
+    } catch (error) {
       toast.error(error.message)
     }
   }
-
+  const handleAddCourse = ()=>{
+    setAddCourse(true);
+  }
+  
   useEffect(()=>{
     getCourses();
-    getTeachersByCourse();
+    // getUsers();
   },[])
-
+  
+   
   return (
     <>
-      <Container>
-              {
-                user.role==='ADMIN'?
-                <Button variant="outline-success">Agregar</Button>
-                <Button variant="outline-warning">Editar</Button>
-                <Button variant="outline-danger">Eliminar</Button>
-                :
-                null
-              }       
-      </Container>
     <h1>CURSOS</h1>
     <Container>
+      <Row>
+        <Col>
+            <Button variant="outline-success" onClick={handleAddCourse}>Agregar</Button>
+            <Button variant="outline-warning">Editar</Button>
+            <Button variant="outline-danger">Eliminar</Button>
+        </Col>
+      </Row>
       <Row>
         <Col>
           {courses?.map((course, index)=> 
@@ -73,10 +86,28 @@ const CoursesDetail = () => {
         </Col>
       </Row>
     </Container> 
+     {/* { users?.admin==='true'? */}
+       
+          
+     {
+          addCourse && <Container>
+              <Row>
+                <Col>
+                 <AddCourseForm/> 
+                </Col>
+              </Row>
+            </Container>
+          }  
+              {/* :
+              null
+            } */}
+    
     <Table striped bordered hover>
       <thead>
         <tr>
+          <th>
           ALUMNOS
+          </th>
         </tr>
         <tr>
           <th>Nombre</th>
@@ -92,6 +123,7 @@ const CoursesDetail = () => {
         )}
       </tbody>
     </Table>
+       
   <Table striped bordered hover>
   <thead>
     <tr>
@@ -119,11 +151,11 @@ const CoursesDetail = () => {
     </tr>
   </thead>
   <tbody>
-      {teachers.map((teacher, index) =>
+      {/* {teachers.map((teacher, index) =>
     <tr key = {index}>
       <td>{teacher?.name}</td>
       <td>{teacher?.lastname}</td>
-    </tr>)} 
+    </tr>)}  */}
   </tbody>
 </Table> 
  </>

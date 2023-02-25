@@ -8,6 +8,7 @@ import NavBar from './Components/NavBar/NavBar';
 import './index.css'
 import Footer from './Components/Footer/Footer';
 import CoursesDetail from '../Pages/CoursesDetail';
+import AuthorizPage from "../Pages/AuthorizPage";
 
 
 
