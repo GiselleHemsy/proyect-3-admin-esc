@@ -3,24 +3,32 @@ import { Button, Form} from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify'
 import axiosBack  from "../../config/axios";
 
-const EditStudentForm = ({selected, handleClose, getData}) => {
+const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
+  console.log(selected)    //!Recibe correctamente
 
   const [values, setValues] = useState(
     {
       expediente:"",
       name:"",
       lastname:"",
+      email:"",
       course:"",
-      cuota:""
+      cuota:"",
     }
   );
 
-
+  const handleChange =(e)=>{
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value
+    });
+  }
 
   const getUserInfo=async()=>{
     try {
-      const {data} = await axiosBack.get("/users/", {selected});
-      setValues(data.users);
+      const {data} = await axiosBack.get(`/students/${selected}`); 
+      console.log(data)
+      setValues(data.student);
     } catch (error) {
       toast.error("Error intente nuevamente mas tarde")
     }
@@ -28,18 +36,13 @@ const EditStudentForm = ({selected, handleClose, getData}) => {
   
   //query "/students?course=7"
   //PARAMS /students/7
-  const handleChange =(e)=>{
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value
-    });
-  }
+  
   
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-      await axiosBack.put("/users/",{selected,values} );
-      getData();
+      await axiosBack.put("/students/",{selected,values} );
+      getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
     } catch (error) {
       if(!selected){
@@ -55,8 +58,8 @@ useEffect(()=>{
 },[])
   return (
     <>
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="userId">
+    <Form onSubmit={()=>{handleSubmit}}>
+      <Form.Group className="mb-3" controlId="userExpediente">
         <Form.Label>Id/Expediente</Form.Label>
         <Form.Control type="text"  name="expendiente" value={values.expediente} onChange={handleChange} />
       </Form.Group>
@@ -69,19 +72,30 @@ useEffect(()=>{
         <Form.Label>Ingrese el apellido</Form.Label>
         <Form.Control type="text"  name="lastname" value={values.lastname} onChange={handleChange}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="userCourse">
-        <Form.Label>Ingrese el Año de Cursado</Form.Label>
-        <Form.Control type="text"  name="course" value={values.course} onChange={handleChange}/>
+      <Form.Group className="mb-3" controlId="userEmail">
+        <Form.Label>Ingrese el Email</Form.Label>
+        <Form.Control type="email"  name="email" value={values.email} onChange={handleChange}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="userRole">
+      <Form.Select aria-label="Default select example" name="course" onChange={handleChange}  >
+      <option>Seleccione el Año de Cursado</option> 
+      {
+        courses.map((course)=>
+        <option key={course._id}   value={course._id}>{course.name}</option>
+        )
+      }
+    </Form.Select>
+      {/* <Form.Group className="mb-3" controlId="userCuota">
         <Form.Label>Estado de Cuota</Form.Label>
         <Form.Control type="boolean" name="cuota" value={values.cuota} onChange={handleChange}/>
+      </Form.Group> */}
+      <Form.Group className="mb-3" controlId="formCuota">
+        <Form.Check name="cuota" checked={!values.cuota} onChange={handleChange} type="checkbox" label="Adeuda Cuota" />
       </Form.Group>
       <Button variant="success" type="submit" onClick={handleClose}>
         Editar usuario
       </Button>
-    </Form>
     <ToastContainer/>
+    </Form>
     </>
   );
 }
