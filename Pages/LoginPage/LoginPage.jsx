@@ -25,6 +25,7 @@ const LoginPage = () => {
     try {
       e.preventDefault();
       const {data}= await axiosBack.post("users/login", values);
+      
       console.log(data);
     } catch (error) {
       toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");

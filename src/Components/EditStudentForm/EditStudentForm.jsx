@@ -52,9 +52,7 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
       getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
     } catch (error) {
-      if(!selected){
-      toast.error("Para continuar selecciona un usuario")}
-      else{
+      {
       toast.error("Error, intente nuevamente mas tarde")
     }}
   }
