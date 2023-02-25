@@ -22,9 +22,10 @@ function NavBar () {
                 <a href="" onClick={handleClick}>HABILITAR</a>
                 <a href="/PrincipalPage" onClick={handleClick}>PAGINA PRINCIPAL</a>
                 <a href="/StudentsPage" onClick={handleClick}>ALUMNOS</a>
-                <a href="/TeachersPage" onClick={handleClick}>PROFESORES</a>
+                {/* <a href="/TeachersPage" onClick={handleClick}>PROFESORES</a> */}
                 <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a>
                 <a href="/CoursePage" onClick={handleClick}>CURSOS</a>
+                <a href="/LoginPage" onClick={handleClick}>LOGIN</a>
             </div>
             <div className='burguer'>
                 <BurguerButton clicked={clicked} handleClick={handleClick}/>

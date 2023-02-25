@@ -2,8 +2,9 @@ import React from "react"
 import image01 from '../img/image01.png'
 import './IdCard.css'
 import GeneralModal from "../GeneralModal/GeneralModal"
-import PrincipalPageForm from "../PrincipalPageForm/PrincipalPageForm"
-
+import EditTeacherForm from "../TeacherForm/EditTeacherform"
+import AddTeacherForm from "../TeacherForm/AddTeacherForm"
+import TeacherDeleteConfirmation from "../TeacherForm/TeachaerDeleteConfirmation"
 
 
 
@@ -27,7 +28,7 @@ function IdCard({name,cel,email,dni,_id}){
 
 
         
-            <div className="card">
+            <div className="card ">
                 <div className="image-content">
                     <span className="overlay"></span>
 
@@ -43,17 +44,12 @@ function IdCard({name,cel,email,dni,_id}){
                     <h2 className="rest">{dni}</h2>
                     <h2 className="rest">{_id}</h2>
                     <div className="button">
-                        {<GeneralModal buttonText="Editar" modalTitle="Edicion de Usuario"  modalBody={<PrincipalPageForm/>} variant="primary"/>}
+                    <GeneralModal buttonText="Agregar" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="primary"/>
+                    <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditTeacherForm/>} variant="primary"/>
+                    <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<TeacherDeleteConfirmation/>} variant="primary"/>
                     </div>
-
                 </div>
-
-
         </div>
-
-    
-
-
 )
 }
 export default IdCard

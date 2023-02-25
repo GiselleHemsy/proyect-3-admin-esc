@@ -11,10 +11,10 @@ import axiosBack from "../src/config/axios";
 const PrincipalPage = () => {
 
 const [state, setState] = useState([]);
-const getData = async()=>{
+const getUsers = async()=>{
     try {
         const {data}= await axiosBack.get("/users");
-        console.log(data.users);
+        
         setState(data.users);  
     } catch (error) {
         toast.error(error.message)
@@ -23,18 +23,18 @@ const getData = async()=>{
 }
 
     useEffect(()=>{
-    getData();
+    getUsers();
     },[])
 
     
     return(  
         <>
             
-        <div className='PPcontainer d-flex justify-content-center align-items-center h-100'>
+        <div className='PPcontainer'>
             <div className='row'>
-                    <div className='col-md-6 g-2'>
+                    <div className='col-12 d-md-flex d-lg-flex my-5 '>
                     {
-                        state.map((per,index) =><IdCard key={index} name={per.name} cel={per.cel} dni={per.dni} _id={per._id} />)
+                        state.map((per,index) =><IdCard className="mx-5 my-5  g-3" key={index} name={per.name} cel={per.cel} dni={per.dni} _id={per._id} />)
                     }
                     </div>
             </div>
@@ -44,5 +44,3 @@ const getData = async()=>{
 }
 
 export default PrincipalPage                                                                                                                                              
-            
-            

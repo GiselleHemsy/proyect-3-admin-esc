@@ -6,7 +6,8 @@ import PrincipalPage from '../Pages/PrincipalPage'
 import StudentsPage from '../Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
-import Footer from './Components/Footer/Footer';import AdminPage from '../Pages/AdminPage';
+// import Footer from './Components/Footer/Footer';
+import AdminPage from '../Pages/AdminPage';
 import CoursePage from '../Pages/CoursePage';
 import TeachersPage from '../Pages/TeachersPage';
 import SubjectPage from '../Pages/SubjectPage';
@@ -28,7 +29,7 @@ function App() {
             <Route path='/subjectPage' element={<SubjectPage/>}/>
             <Route path='/*' element={<ErrorPage/>}/>
           </Routes>
-          <Footer/>
+         {/* <Footer/> */}
         </Router>
       )
     }

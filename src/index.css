@@ -1,9 +1,11 @@
-.App{
-    height: 100vh;
-}
+
+
+
 .PPcontainer{
+    
     background-color: #f8f8f8;
     z-index: 10;
+    
 }
 
 .h1Container{

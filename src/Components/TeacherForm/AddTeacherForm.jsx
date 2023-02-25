@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { ADD_TEACH_USER_VALUES } from '../../Constants';
 
 
-const AddTeacherForm = ({handleClose, getTeachers}) => {
+const AddTeacherForm = ({handleClose, getUsers}) => {
     
         const [values, setValues] = useState(ADD_TEACH_USER_VALUES);
       const handleChange =(e)=>{
@@ -19,8 +19,8 @@ const AddTeacherForm = ({handleClose, getTeachers}) => {
         console.log("funcion agregando usuario")
         e.preventDefault();
         try {
-          const userCreated = await axiosBack.post("/teachers", {values});
-          getTeachers();
+          const userCreated = await axiosBack.post("/users", values);
+          getUsers();
 
           if(userCreated){
             toast.done("Usuario Creado")
@@ -48,26 +48,34 @@ const AddTeacherForm = ({handleClose, getTeachers}) => {
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" name="email" value={values.email} onChange={handleChange}/>
           </Form.Group>
+          <Form.Group className="mb-3" controlId="userpassword">
+            <Form.Label>password</Form.Label>
+            <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
+          </Form.Group>
           <Form.Group className="mb-3" controlId="usercel">
             <Form.Label>cel</Form.Label>
             <Form.Control type="number" name="cel" value={values.cel} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="userCuota">
+          <Form.Group className="mb-3" controlId="usercel">
+            <Form.Label>admin</Form.Label>
+            <Form.Control type="text" name="admin" value={values.admin} onChange={handleChange}/>
+          </Form.Group>
+          {/* <Form.Group className="mb-3" controlId="userCuota">
             <Form.Label>adress</Form.Label>
             <Form.Control type="text" name="adress" value={values.adress} onChange={handleChange}/>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="state">
+          </Form.Group> */}
+          {/* <Form.Group className="mb-3" controlId="state">
             <Form.Label>estado</Form.Label>
             <Form.Control type="bolean" name="state" value={values.state} onChange={handleChange}/>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3" controlId="state">
             <Form.Label>course</Form.Label>
             <Form.Control type="text" name="course" value={values.course} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="state">
+          {/* <Form.Group className="mb-3" controlId="state">
             <Form.Label>income</Form.Label>
             <Form.Control type="incio" name="income" value={values.income} onChange={handleChange}/>
-          </Form.Group>
+          </Form.Group>  */}
           <Button variant="success" type="submit" onClick={handleClose}>
             Crear usuario
           </Button>
