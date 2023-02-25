@@ -48,6 +48,16 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       toast.error("Error, intente nuevamente mas tarde")
     }
   }
+
+
+  // catch (error) {
+  //   if(!selected){
+  //   toast.error("Para continuar selecciona un usuario")}
+  //   else{
+  //   toast.error("Error, intente nuevamente mas tarde")
+  // }}
+
+  
   console.log("values:",values);
   return (
     <>
@@ -105,7 +115,6 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
         Crear usuario
       </Button>
     </Form>
-      <ToastContainer/>
     
       </>
     

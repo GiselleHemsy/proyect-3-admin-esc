@@ -8,6 +8,7 @@ import NavBar from './Components/NavBar/NavBar';
 import UserDetailPage from '../Pages/UserDetailPage';
 import './index.css'
 import Footer from './Components/Footer/Footer';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -22,6 +23,7 @@ function App() {
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/StudentsPage' element={<StudentsPage/>}/>
             </Routes>
+            <ToastContainer/>
           <Footer/>
         </Router>
       )

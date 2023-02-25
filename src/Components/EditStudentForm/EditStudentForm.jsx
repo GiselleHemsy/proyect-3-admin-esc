@@ -8,14 +8,19 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
 
   const [values, setValues] = useState(
     {
-      expediente:"",
       name:"",
       lastname:"",
+      expediente: "",
+      dni:"",
+      age:"",
       email:"",
+      cel:"",
       course:"",
-      cuota:"",
+      cuota: ""
     }
   );
+
+
 
   const handleChange =(e)=>{
     setValues({
@@ -36,12 +41,13 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
   
   //query "/students?course=7"
   //PARAMS /students/7
-  
+        // "/users/"+selected, values
+
   
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-      await axiosBack.put("/students/",{selected,values} );
+      await axiosBack.put("/students/"+selected,{values });
       getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
     } catch (error) {
@@ -51,6 +57,9 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
       toast.error("Error, intente nuevamente mas tarde")
     }}
   }
+
+
+
 
 
 useEffect(()=>{
@@ -67,13 +76,8 @@ const handleChangeCheckBox =(e)=>{
 console.log("values:",values);
   return (
     <>
-    <Form onSubmit={()=>{handleSubmit}}>
-      <Form.Group className="mb-3" controlId="userExpediente">
-        <Form.Label>Id/Expediente</Form.Label>
-        <Form.Control type="text"  name="expendiente" value={values.expediente} onChange={handleChange} />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="userName">
+    <Form onSubmit={handleSubmit}>
+    <Form.Group className="mb-3" controlId="userName">
         <Form.Label>Ingrese el nombre</Form.Label>
         <Form.Control type="text"  name="name" value={values.name} onChange={handleChange}/>
       </Form.Group>
@@ -81,9 +85,25 @@ console.log("values:",values);
         <Form.Label>Ingrese el apellido</Form.Label>
         <Form.Control type="text"  name="lastname" value={values.lastname} onChange={handleChange}/>
       </Form.Group>
+      <Form.Group className="mb-3" controlId="userExpediente">
+        <Form.Label>Id/Expediente</Form.Label>
+        <Form.Control type="number"  name="expediente" value={values.expediente} onChange={handleChange} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="userdni">
+        <Form.Label>Ingrese el dni</Form.Label>
+        <Form.Control type="number"  name="dni" value={values.dni} onChange={handleChange}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="userAge">
+        <Form.Label>Ingrese la edad</Form.Label>
+        <Form.Control type="number"  name="age" value={values.age} onChange={handleChange}/>
+      </Form.Group>
       <Form.Group className="mb-3" controlId="userEmail">
         <Form.Label>Ingrese el Email</Form.Label>
         <Form.Control type="email"  name="email" value={values.email} onChange={handleChange}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="usercel">
+        <Form.Label>Ingrese el celular</Form.Label>
+        <Form.Control type="number"  name="cel" value={values.cel} onChange={handleChange}/>
       </Form.Group>
       <Form.Select aria-label="Default select example" name="course" onChange={handleChange}  >
       <option>Seleccione el Año de Cursado</option> 
@@ -103,8 +123,8 @@ console.log("values:",values);
       <Button variant="success" type="submit" onClick={handleClose}>
         Editar usuario
       </Button>
-    <ToastContainer/>
     </Form>
+    <ToastContainer/>
     </>
   );
 }

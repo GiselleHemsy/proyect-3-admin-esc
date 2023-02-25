@@ -25,7 +25,7 @@ const Footer = () => {
     `
     return ( 
         <>
-        <footer className='foot fixed-bottom'>
+        <footer className='foot fixed-bottom mt-5'>
             <FooterContainer>
             <div className='footer'>
                 <nav className="row">

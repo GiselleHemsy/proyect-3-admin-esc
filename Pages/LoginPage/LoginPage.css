@@ -13,10 +13,10 @@ body{
 .bg-fondo-secundario{
   background-color: #96b3ee!important;
 }
-.style-form-login{
+/* .style-form-login{
   border: 0.9px solid #24758e !important;
   border-radius: 1% !important;
-}
+} */
 .style-contenedorForm{
   padding-top: 10px !important;
   margin-top: 10px !important;
