@@ -1,7 +1,9 @@
 import React,{useState} from "react";
 import styled from "styled-components";
 import BurguerButton from "../BurguerButton/BurguerButton";
-import image02 from "../img/click.png"
+import GeneralModal from "../GeneralModal/GeneralModal";
+import image02 from "../img/click.png";
+import AddTeacherForm from "../TeacherForm/AddTeacherForm"
 
 
 
@@ -19,6 +21,7 @@ function NavBar () {
             </div>
             <div className={`links ${clicked ? 'active' : ''}`}>
                 <a href="/Admin" onClick={handleClick}>ADMIN</a>
+                <GeneralModal buttonText="AGREGAR" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="primary"/>
                 <a href="" onClick={handleClick}>HABILITAR</a>
                 <a href="/PrincipalPage" onClick={handleClick}>PAGINA PRINCIPAL</a>
                 <a href="/StudentsPage" onClick={handleClick}>ALUMNOS</a>

@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import IdCard from '../src/Components/IdCard/IdCard';
-import axiosBack from "../src/config/axios";
+import IdCard from '../../src/Components/IdCard/IdCard';
+import axiosBack from "../../src/config/axios";
 
 
 
@@ -22,23 +22,25 @@ const getUsers = async()=>{
     }
 }
 
-    useEffect(()=>{
-    getUsers();
-    },[])
-
+useEffect(()=>{
+getUsers();
+},[])
     
-    return(  
-        <>
-            
-        <div className='PPcontainer'>
-            <div className='row'>
-                    <div className='col-12 d-md-flex d-lg-flex my-5 '>
-                    {
-                        state.map((per,index) =><IdCard className="mx-5 my-5  g-3" key={index} name={per.name} cel={per.cel} dni={per.dni} _id={per._id} />)
-                    }
+return(  
+    <>
+        <body className='bodyPP'>
+            <main className='mainPP'>
+                <div className='PPcontainer'>
+                    <div className='PProw'>
+                        <div className='cardPP col-12 d-md-flex d-lg-flex my-5 '>
+                        {
+                            state.map((per,index) =><IdCard className="idcard" key={index} name={per.name} lastname={per.lastname} dni={per.dni} _id={per.cel} />)
+                        }
+                        </div>
                     </div>
-            </div>
-        </div>
+                </div>
+            </main>
+        </body>
 </>                         
 );                                                                                                                 
 }

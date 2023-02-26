@@ -2,11 +2,11 @@
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import ErrorPage from '../Pages/ErrorPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
-import PrincipalPage from '../Pages/PrincipalPage'
+import PrincipalPage from '../Pages/PrincipalPage/PrincipalPage'
 import StudentsPage from '../Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
-// import Footer from './Components/Footer/Footer';
+import Footer from './Components/Footer/Footer';
 import AdminPage from '../Pages/AdminPage';
 import CoursePage from '../Pages/CoursePage';
 import TeachersPage from '../Pages/TeachersPage';
@@ -29,7 +29,7 @@ function App() {
             <Route path='/subjectPage' element={<SubjectPage/>}/>
             <Route path='/*' element={<ErrorPage/>}/>
           </Routes>
-         {/* <Footer/> */}
+        <Footer/>
         </Router>
       )
     }

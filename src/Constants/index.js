@@ -3,9 +3,9 @@ export const ADD_TEACH_USER_VALUES = {
         lastname:"",
         dni:"",
         email:"",
-        password:"",
         cel:"",
-        admin:"",
+        adress:"",
+        state:"",
         course:"",
-        // income:""
+        income:"",
 }

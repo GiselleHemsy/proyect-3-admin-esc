@@ -26,7 +26,7 @@ const Footer = () => {
             <FooterContainer>
             <div className='footer'>
                 <nav className="row justify-content-center aling-items-center">
-                    <ul className="col-2 justify-content-center align-items-center"> 
+                    <ul className=" col-2 justify-content-center align-items-center"> 
                         <h4 className="text">AdminClick</h4>
                         <li className="text">Màs Info</li> 
                         <li className="text">Seguinos en Redes

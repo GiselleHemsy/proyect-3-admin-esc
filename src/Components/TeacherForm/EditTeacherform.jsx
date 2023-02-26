@@ -73,19 +73,19 @@ useEffect(()=>{
           {/* <Form.Group className="mb-3" controlId="userCuota">
             <Form.Label>adress</Form.Label>
             <Form.Control type="text" name="adress" value={values.adress} onChange={handleChange}/>
-          </Form.Group> */}
-          {/* <Form.Group className="mb-3" controlId="state">
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="state">
             <Form.Label>estado</Form.Label>
             <Form.Control type="bolean" name="state" value={values.state} onChange={handleChange}/>
-          </Form.Group> */}
+          </Form.Group>
           <Form.Group className="mb-3" controlId="state">
             <Form.Label>course</Form.Label>
             <Form.Control type="text" name="course" value={values.course} onChange={handleChange}/>
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="state">
+          <Form.Group className="mb-3" controlId="state">
             <Form.Label>income</Form.Label>
             <Form.Control type="incio" name="income" value={values.income} onChange={handleChange}/>
-          </Form.Group>  */}
+          </Form.Group> */}
           <Button variant="success" type="submit" onClick={handleClose}>
             Editar Usuario
           </Button>

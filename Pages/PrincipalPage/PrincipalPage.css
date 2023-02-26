@@ -1,0 +1,21 @@
+.PPcontainer{
+    
+    background-color: #f8f8f8;
+    z-index: 10;
+    
+}
+.cardPP{
+
+    width: 100%;
+    height: 100%;
+
+}
+.bodyPP{
+    height: 1500px;
+    margin: 0%;
+    padding: 1px;
+}
+
+.mainPP{
+    height: 1500px;
+}
