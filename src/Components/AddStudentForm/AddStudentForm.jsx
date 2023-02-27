@@ -12,13 +12,13 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     {
       name:"",
       lastname:"",
-      expediente:0,
-      dni:0,
-      age:0,
+      expediente: "",
+      dni:"",
+      age:"",
       email:"",
-      cel:0,
+      cel:"",
       course:"",
-      cuota:"",
+      cuota: false
     }
   );
   const handleChange =(e)=>{
@@ -28,12 +28,17 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     });
   }
   
-
+  const handleChangeCheckBox =(e)=>{
+    setValues({
+      ...values,
+      cuota: e.target.checked
+    });
+  }
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
       console.log(values)
-      const userCreated = await axiosBack.post("/students", {values});
+      const userCreated = await axiosBack.post("/students", values);
       getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
       if(userCreated){
@@ -44,12 +49,22 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     }
   }
 
+
+  // catch (error) {
+  //   if(!selected){
+  //   toast.error("Para continuar selecciona un usuario")}
+  //   else{
+  //   toast.error("Error, intente nuevamente mas tarde")
+  // }}
+
+  
+  console.log("values:",values);
   return (
     <>
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="userName">
         <Form.Label>Ingrese el nombre</Form.Label>
-        <Form.Control type="text" placeholder="Pepe" name="name" value={values.name} onChange={handleChange}/>
+        <Form.Control type="text"  name="name" value={values.name} onChange={handleChange}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="userLastname">
         <Form.Label>Ingrese el Apellido</Form.Label>
@@ -57,7 +72,7 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="userId">
         <Form.Label>Id/Expediente</Form.Label>
-        <Form.Control type="number" placeholder="Ingresa tu ID" name="expediente" value={values.expendiente} onChange={handleChange} />
+        <Form.Control type="number" placeholder="Ingresa tu ID" name="expediente" value={values.expediente} onChange={handleChange} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="userdni">
         <Form.Label>Ingrese el dni</Form.Label>
@@ -65,7 +80,7 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="userAge">
         <Form.Label>Ingrese la edad</Form.Label>
-        <Form.Control type="number"  name="age" value={values.age} onChange={handleChange}/>
+        <Form.Control type="number"  name="age" value={parseInt(values.age)} onChange={handleChange}/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="userEmail">
         <Form.Label>Ingrese el Email</Form.Label>
@@ -77,30 +92,29 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
         <Form.Control type="number"  name="cel" value={values.cel} onChange={handleChange}/>
       </Form.Group>
       
-      <Form.Group className="mb-3" controlId="userCourse">
+      {/* <Form.Group className="mb-3" controlId="userCourse">
         <Form.Label>Ingrese el Año de Cursado</Form.Label>
-        <Form.Control type="text"  name="course" value={values.course._id} onChange={handleChange}/>
-      </Form.Group>
-      {/* <Form.Select className="my-2" aria-label="Default select example"  value={values.course._id} onChange={handleChange} name="course"  >
+        <Form.Control type="text"  name="course" value={values.course} onChange={handleChange}/>
+      </Form.Group> */}
+      <Form.Select className="my-2" aria-label="Default select example"  value={values.course._id} onChange={handleChange} name="course"  >
       <option>Seleccione el Año de Cursado</option>
       {
         courses.map((course)=>
-        <option key={course._id} value={values.course._id}>{course.name}</option>
+        <option key={course._id} value={course._id}>{course.name}</option>
         )
       }
-    </Form.Select> */}
-      <Form.Group className="mb-3" controlId="userCuota">
+    </Form.Select>
+      {/* <Form.Group className="mb-3" controlId="userCuota">
         <Form.Label>Estado de Cuota</Form.Label>
         <Form.Control type="boolean" name="cuota" value={values.cuota} onChange={handleChange}/>
-      </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formCuota">
-        <Form.Check name="cuota" checked={values.cuota} onChange={handleChange} type="checkbox" label="Adeuda Cuota" />
       </Form.Group> */}
+      <Form.Group className="mb-3" controlId="formCuota">
+        <Form.Check name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} type="checkbox" label="Cuota al dia" />
+      </Form.Group>
       <Button variant="success" type="submit" onClick={handleClose}>
         Crear usuario
       </Button>
     </Form>
-      <ToastContainer/>
     
       </>
     
