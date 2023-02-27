@@ -7,8 +7,10 @@ import GeneralModal from "../../src/Components/GeneralModal/GeneralModal";
 import FormRegister from "../../src/Components/FormRegister/FormRegister";
 import axiosBack from "../../src/config/axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [backErrors, setBackErrors] = useState(false);
   const [values, setValues] = useState({
     email: "",
@@ -25,7 +27,8 @@ const LoginPage = () => {
     try {
       e.preventDefault();
       const {data}= await axiosBack.post("users/login", values);
-      
+      localStorage.setItem("token", data.token);
+      navigate("/home")
       console.log(data);
     } catch (error) {
       toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");
