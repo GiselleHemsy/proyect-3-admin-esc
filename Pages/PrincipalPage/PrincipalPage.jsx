@@ -25,9 +25,9 @@ getUsers();
 return(  
     <>
         <body className='bodyPP'>
-            <main className='mainPP'>
-                <div className='PPcontainer '>
-                    <div className='PProw '>
+            
+                <div className='PPcontainer d-flex justify-content-center align-items-center'>
+                    <div className='PProw'>
                         <div className='cardPP d-sm-flex col-12 d-md-flex d-lg-flex '>
                         {
                             state.map((per,index) =><IdCard getUsers={getUsers} className="idcard" key={index} name={per.name} lastname={per.lastname} dni={per.dni} cel={per.cel} adress={per.adress} courses={per.courses} state={per.state} id={per._id}/>)
@@ -35,7 +35,7 @@ return(
                         </div>
                     </div>
                 </div>
-            </main>
+            
         </body>
 </>                         
 );                                                                                                                 
