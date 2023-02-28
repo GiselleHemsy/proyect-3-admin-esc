@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [userLogged, setUserLogged] = useState(false);
   const [backErrors, setBackErrors] = useState(false);
   const [values, setValues] = useState({
     email: "",
@@ -27,6 +28,8 @@ const LoginPage = () => {
     try {
       e.preventDefault();
       const {data}= await axiosBack.post("/users/login", values);
+      setUserLogged(data.user);
+      console.log("::::::::::",data.user);
       localStorage.setItem("token", data.token);
       navigate("/home")
       console.log(data);

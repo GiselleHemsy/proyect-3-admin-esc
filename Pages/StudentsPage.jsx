@@ -59,13 +59,17 @@ const StudentsPage = () => {
 return(
   <>
     <Container className=" styleContainer pb-4 mb-4">
-      <Row>
+      {/* {
+        userLogged.admin?
+        <Row>
         <Col className="d-flex justify-content-end py-2">
             <GeneralModal buttonText="Agregar" modalTitle="Agregar un usuario"  modalBody={<AddStudentForm  getStudents={getStudents} courses={courses} />} variant="primary" />
             <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditStudentForm getStudents={getStudents} selected={selected} courses={courses}  />} variant="warning" selected={selected}/>
             <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<DeleteConfirmation deleteUser={deleteUser}/>} variant="danger" selected={selected} />
         </Col>
       </Row>
+      : null
+      } */}
       <Row>
         <Col className="styleContainer">
         {state.length!==0?

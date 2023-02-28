@@ -10,6 +10,7 @@ const PrivateRoute = ({children}) => {
   const getAuth = async()=>{
     try {
       const token = localStorage.getItem("token");
+      console.log(token);
       if(!token){
         setLoading(false)
         return setUser(false);
@@ -18,7 +19,7 @@ const PrivateRoute = ({children}) => {
       // axiosInstance.defaults.headers.common['authorization'] = token;
       const {data}=await axiosBack.get("/users/authStatus")
       setUser(data.user)
-      console.log(data.users);
+      console.log(data.user);
       setLoading(false)
     } catch (error) {
       toast.error("error")
