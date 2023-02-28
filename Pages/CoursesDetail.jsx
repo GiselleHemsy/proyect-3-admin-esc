@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {Container,Row,Col, Table, Button} from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import AddCourseForm from '../src/components/AddCourseForm/AddCourseForm';
+import DeleteCourseForm from '../src/components/DeleteCourseForm/DeleteCoursesForm';
 import EditCourseForm from '../src/components/EditCourseForm/EditCourseForm';
 import axiosBack from "../src/config/axios";
 
@@ -14,6 +15,7 @@ const CoursesDetail = () => {
   const [teachers, setTeachers] = useState([]);
   const [addCourse, setAddCourse] = useState(false);
   const [editCourse, setEditCourse] = useState(false);
+  const [deleteCourse, setDeleteCourse] = useState(false);
 
   const getCourses =async()=>{
     try {
@@ -51,14 +53,14 @@ const CoursesDetail = () => {
       }
     }
   const handleAddCourse = ()=>{
-    setAddCourse(true);
+    setAddCourse(!addCourse);
   }
   const handleEditCourse = ()=>{
-    setEditCourse(true);
+    setEditCourse(!editCourse);
   }
   
   const handleDeleteCourse = ()=>{
-    setDeleteCourse(true);
+    setDeleteCourse(!deleteCourse);
   }
 
   useEffect(()=>{
@@ -74,7 +76,7 @@ const CoursesDetail = () => {
   console.log(teachers)
    
   return (
-    <>
+    <Container>
     <Container>
       <Row>
         <Col>
@@ -94,30 +96,39 @@ const CoursesDetail = () => {
         </Col>
       </Row>
     </Container> 
-     {/* { users?.admin==='true'? */}
+     { users?.admin==='true'?
        
           
            {
               addCourse && <Container>
               <Row>
                 <Col>
-                 <AddCourseForm/> 
+                 <AddCourseForm handleAddCourse={handleAddCourse} getCourses={getCourses}/> 
                 </Col>
               </Row>
             </Container>
-          }  
+          }
            {
               editCourse && <Container>
               <Row>
                 <Col>
-                 <EditCourseForm/>
+                 <EditCourseForm handleEditCourse={handleEditCourse} getCourses={getCourses} courses={courses}/>
+                </Col>
+              </Row>
+            </Container>
+          }
+          {
+              deleteCourse && <Container>
+              <Row>
+                <Col>
+                 <DeleteCourseForm handleDeleteCourse={handleDeleteCourse} getCourses={getCourses} courses={courses}/>
                 </Col>
               </Row>
             </Container>
           } 
-              {/* :
+              :
               null
-            } */}
+            }
     
     <Table striped bordered hover>
       <thead>
@@ -175,7 +186,7 @@ const CoursesDetail = () => {
     </tr>)} 
   </tbody>
 </Table> 
- </>
+ </Container>
   );        
       }
     

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import  axiosBack  from '../../config/axios';
 
 
-const AddCourseForm = () =>{
+const AddCourseForm = ({getCourses, handleAddCourse}) =>{
 const [courses, setCourses] = useState([]);
 const [values, setValues] = useState(
   {
@@ -18,19 +18,12 @@ const handleChange =(e)=>{
   });
 }
 
-const getCourses =async()=>{
-  try {
-    const {data}= await axiosBack.get("/course");
-    setCourses(data.courses);  
-  } catch (error) {
-    toast.error(error.message)
-  }
-}
 const handleSubmit =async(e)=>{
   e.preventDefault();
   try {
     const courseCreated = await axiosBack.post("/course", values);
     getCourses();
+    handleAddCourse();
     if(courseCreated){
       toast.done("Curso creado")
     }
@@ -39,9 +32,7 @@ const handleSubmit =async(e)=>{
   }
 }
 
-useEffect(()=>{
-  getCourses();
-},[courses])
+
 
     return (
     <Form onSubmit={handleSubmit}>   

@@ -1,30 +1,23 @@
 import { useEffect, useState } from "react";
-import { Button, Form} from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify'
 import axiosBack  from "../../config/axios";
 
 
 
 
-const EditCourseForm = ({handleClose,selected}) => {
-    const [courses, setCourses] = useState([]);
+const EditCourseForm = ({getCourses, courses}) => {
     const [values, setValues] = useState(
         {
-          name:""
+          name:"",
+          course:""
         }
       );
 
-      const getCourses =async()=>{
-        try {
-          const {data}= await axiosBack.get("/course");
-          setCourses(data.courses);  
-        } catch (error) {
-          toast.error(error.message)
-        }
-      }
 
       const handleChange =(e)=>{
         setValues({
+            ...values,
           [e.target.name]: e.target.value
         });
       }
@@ -32,23 +25,21 @@ const EditCourseForm = ({handleClose,selected}) => {
       const handleSubmit =async(e)=>{
         e.preventDefault();
         try {
-          await axiosBack.put("/course/",{selected,values} );
+          await axiosBack.put("/course/",{courseId: values.course, fields:{name: values.name}} );
           getCourses();
         } catch (error) {
           toast.error("Error, intente nuevamente mas tarde")
         }}
-      
-    
-    
+
     useEffect(()=>{
       getCourses();
     },[])
-    
+    console.log(values)
     return ( 
         <>
-    <Form onSubmit={()=>{handleSubmit}}>
+    <Form onSubmit={handleSubmit}>
     <Form.Select aria-label="Default select example" name="course" onChange={handleChange}  >
-      <option>Seleccione el Año de Cursado</option> 
+      <option>Seleccione el Curso</option> 
       {
         courses?.map((course, index)=>
         <option key={index}  value={course._id}>{course.name}</option>
@@ -59,7 +50,7 @@ const EditCourseForm = ({handleClose,selected}) => {
         <Form.Label>Ingrese el nuevo nombre</Form.Label>
         <Form.Control type="text"  name="name" value={values.name} onChange={handleChange}/>
       </Form.Group>
-      <Button variant="success" type="submit" onClick={handleClose}>
+      <Button  variant="success" type="submit" >
         Editar curso
       </Button>
     <ToastContainer/>
