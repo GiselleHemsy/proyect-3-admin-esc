@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import {Container,Row,Col, Table, Button} from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import AddStudentForm from '../src/Components/AddStudentForm/AddStudentForm';
+import AddCourseForm from '../src/components/AddCourseForm/AddCourseForm';
+import EditCourseForm from '../src/components/EditCourseForm/EditCourseForm';
 import axiosBack from "../src/config/axios";
-import AddCourseForm from "../src/Components/AddCourseForm";
+
 
 const CoursesDetail = () => {
   const [courses, setCourses] = useState([]);
+  const [selected, setSelected] = useState("");
   const [students, setStudents] = useState([]);
-  // const [subjects, setSubjects] = useState([]);
-  // const [teachers, setTeachers] = useState([]);
-  // const [users, setUsers] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   const [addCourse, setAddCourse] = useState(false);
+  const [editCourse, setEditCourse] = useState(false);
 
   const getCourses =async()=>{
     try {
@@ -21,67 +23,69 @@ const CoursesDetail = () => {
       toast.error(error.message)
     }
   }
-
-  // const getSubjects =async()=>{
-  //   try {
-  //     const {data}= await axiosBack.get("/subject");
-  //     setSubjects(data.subjects);  
-  //   } catch (error) {
-  //     toast.error(error.message)
-  //   }
-  // }
-
-  // const getTeachersByCourse =async(course)=>{
-  //   try {
-  //   } catch (error) {
-  //     toast.error(error.message)
-  //   }
-  // }
-
-  // const getUsers =async()=>{
-  //     try {
-  //       const {data}= await axiosBack.get("/users");
-  //       setUsers(data.users);  
-  //     } catch (error) {
-  //       toast.error(error.message)
-  //     }
-  //   }
   
-  const handleClick = async (course)=>{
+  const getStudentsForCourse = async ()=>{
     try {
-      const {data}= await axiosBack.get(`/students/course?course=${course}`);
+      const {data}= await axiosBack.get(`/students/course?course=${selected}`);
       setStudents(data.students);  
-      // const {data}= await axiosBack.get(`/teachers/course?course=${course}`);
-      // setTeachers(data.teachers); 
     } catch (error) {
       toast.error(error.message)
     }
   }
+
+  const getSubjectsByCourse =async()=>{
+      try {
+        const {data}= await axiosBack.get(`/subject/course?course=${selected}`);
+        setSubjects(data.subject);  
+      } catch (error) {
+        toast.error(error.message)
+      }
+    }
+  
+  const getTeacherByCourse =async()=>{
+      try {
+      const {data}= await axiosBack.get(`/teachers/course?course=${selected}`);
+      setTeachers(data.teacher); 
+      } catch (error) {
+        toast.error(error.message)
+      }
+    }
   const handleAddCourse = ()=>{
     setAddCourse(true);
+  }
+  const handleEditCourse = ()=>{
+    setEditCourse(true);
   }
   
   useEffect(()=>{
     getCourses();
-    // getUsers();
   },[])
   
+  useEffect(()=>{
+    getStudentsForCourse();
+    getSubjectsByCourse();
+    getTeacherByCourse();
+    
+  },[selected])
+  console.log(teachers)
    
   return (
     <>
-    <h1>CURSOS</h1>
     <Container>
       <Row>
         <Col>
+            <h1>CURSOS</h1>
+        </Col>
+        <Col>
             <Button variant="outline-success" onClick={handleAddCourse}>Agregar</Button>
-            <Button variant="outline-warning">Editar</Button>
+            <Button variant="outline-warning" onClick={handleEditCourse}>Editar</Button>
             <Button variant="outline-danger">Eliminar</Button>
         </Col>
       </Row>
       <Row>
         <Col>
           {courses?.map((course, index)=> 
-              <button key={index} onClick={()=>{handleClick(course._id)}}> {course.name}</button>
+              <button key={index} onClick={()=>{setSelected(course._id)}}> {course.name}</button>
               )}
         </Col>
       </Row>
@@ -89,8 +93,8 @@ const CoursesDetail = () => {
      {/* { users?.admin==='true'? */}
        
           
-     {
-          addCourse && <Container>
+           {
+              addCourse && <Container>
               <Row>
                 <Col>
                  <AddCourseForm/> 
@@ -98,6 +102,15 @@ const CoursesDetail = () => {
               </Row>
             </Container>
           }  
+           {
+              editCourse && <Container>
+              <Row>
+                <Col>
+                 <EditCourseForm/>
+                </Col>
+              </Row>
+            </Container>
+          } 
               {/* :
               null
             } */}
@@ -134,10 +147,10 @@ const CoursesDetail = () => {
     </tr>
   </thead>
   <tbody>
-      {/* {subjects?.map((subject, index) =>
-    <tr>
+      {subjects?.map((subject, index) =>
+    <tr key={index}>
       <td>{subject?.name}</td>
-    </tr> )} */}
+    </tr> )}
   </tbody>
 </Table> 
 <Table striped bordered hover>
@@ -151,11 +164,11 @@ const CoursesDetail = () => {
     </tr>
   </thead>
   <tbody>
-      {/* {teachers.map((teacher, index) =>
+      {teachers.map((teacher, index) =>
     <tr key = {index}>
       <td>{teacher?.name}</td>
       <td>{teacher?.lastname}</td>
-    </tr>)}  */}
+    </tr>)} 
   </tbody>
 </Table> 
  </>
