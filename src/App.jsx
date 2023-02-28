@@ -12,12 +12,14 @@ import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
 import AdminPage from '/pages/adminPage'
 import CoursePage from '/pages/CoursePage'
+import UserProvider from './context/UserContext';
 
 
 
 function App() {
   return(
         <Router>
+          <UserProvider>
           <NavBar/>
             <Routes>
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
@@ -25,11 +27,12 @@ function App() {
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/CoursePage' element={<CoursePage/>}/>
-            <Route path='/StudentsPage' element={<StudentsPage/>}/>
+            <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
-            <ToastContainer/>
           <Footer/>
+          </UserProvider>
+            <ToastContainer/>
         </Router>
       )
     }

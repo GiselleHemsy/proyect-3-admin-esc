@@ -48,12 +48,13 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
     e.preventDefault();
     try {
       // '/coins/' + selected ,{update:values}
-      await axiosBack.put("/students/"+selected,{fields:values});
+      console.log(selected);
+      await axiosBack.put('/students/',{email: selected, fields:values});
       getStudents();
       //Uso los datos que devuelve el back para mostrar una confirmacion
     } catch (error) {
       {
-      toast.error("Error, intente nuevamente mas tarde")
+      toast.error("Error al intentar actualizar los datos, reintente mas tarde")
     }}
   }
 
@@ -81,7 +82,7 @@ const handleChangeSelected =(e)=>{
 // handleChangeSelected
 
 console.log("values:",values);
-console.log(courses);
+// console.log(courses);
   return (
     <>
     <Form onSubmit={handleSubmit}>

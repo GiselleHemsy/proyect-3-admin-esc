@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import styled from "styled-components";
 import {BsFacebook,BsInstagram,BsGoogle} from 'react-icons/bs'
 
@@ -24,7 +24,7 @@ const Footer = () => {
         `
     return ( 
         <>
-        <footer className='foot fixed-bottom mt-5'>
+        <footer className='foot mt-5'>
             <FooterContainer>
             <div className='footer'>
                 <nav className="row justify-content-center aling-items-center">
