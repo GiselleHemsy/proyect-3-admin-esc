@@ -35,7 +35,7 @@ function App() {
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
-          <Footer/>
+          {/* <Footer/> */}
           </UserProvider>
             <ToastContainer/>
         </Router>

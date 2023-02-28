@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState} from 'react';
 import {Container,Row,Col, Table, Button} from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import AddCourseForm from '../src/components/AddCourseForm/AddCourseForm';
 import DeleteCourseForm from '../src/components/DeleteCourseForm/DeleteCoursesForm';
 import EditCourseForm from '../src/components/EditCourseForm/EditCourseForm';
 import axiosBack from "../src/config/axios";
+import { UserContext } from "../src/context/UserContext";
 
 
 const CoursesDetail = () => {
@@ -16,6 +17,9 @@ const CoursesDetail = () => {
   const [addCourse, setAddCourse] = useState(false);
   const [editCourse, setEditCourse] = useState(false);
   const [deleteCourse, setDeleteCourse] = useState(false);
+  const [isDeleted,setIsDeleted] = useState(false);
+  const {user} = useContext(UserContext);
+
 
   const getCourses =async()=>{
     try {
@@ -65,7 +69,7 @@ const CoursesDetail = () => {
 
   useEffect(()=>{
     getCourses();
-  },[])
+  },[isDeleted])
   
   useEffect(()=>{
     getStudentsForCourse();
@@ -73,11 +77,13 @@ const CoursesDetail = () => {
     getTeacherByCourse();
     
   },[selected])
-  console.log(teachers)
+
    
   return (
     <Container>
     <Container>
+    {/* {
+        user.admin? */}
       <Row>
         <Col>
             <h1>CURSOS</h1>
@@ -88,6 +94,8 @@ const CoursesDetail = () => {
             <Button variant="outline-danger" onClick={handleDeleteCourse}>Eliminar</Button>
         </Col>
       </Row>
+       {/* : null
+      } */}
       <Row>
         <Col>
           {courses?.map((course, index)=> 
@@ -96,9 +104,6 @@ const CoursesDetail = () => {
         </Col>
       </Row>
     </Container> 
-     { users?.admin==='true'?
-       
-          
            {
               addCourse && <Container>
               <Row>
@@ -121,15 +126,12 @@ const CoursesDetail = () => {
               deleteCourse && <Container>
               <Row>
                 <Col>
-                 <DeleteCourseForm handleDeleteCourse={handleDeleteCourse} getCourses={getCourses} courses={courses}/>
+                 <DeleteCourseForm handleDeleteCourse={handleDeleteCourse} isDeleted={isDeleted} setIsDeleted={setIsDeleted} getCourses={getCourses} courses={courses}/>
                 </Col>
               </Row>
             </Container>
           } 
-              :
-              null
-            }
-    
+      
     <Table striped bordered hover>
       <thead>
         <tr>

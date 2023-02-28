@@ -53,7 +53,7 @@ const EditCourseForm = ({getCourses, courses}) => {
       <Button  variant="success" type="submit" >
         Editar curso
       </Button>
-    <ToastContainer/>
+    {/* <ToastContainer/> */}
     </Form>
     </>
      );

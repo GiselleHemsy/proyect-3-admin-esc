@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { useEffect, useState } from "react";
 
 
-const DeleteCourseForm = ({getCourses, courses}) => {
+const DeleteCourseForm = ({getCourses, courses, isDeleted, setIsDeleted}) => {
   const [values, setValues] = useState(
     {
       name:"",
@@ -22,7 +22,12 @@ const DeleteCourseForm = ({getCourses, courses}) => {
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-      await axiosBack.delete("/course/",{courseId: values.course, fields:{name: values.name}} );
+      console.log(values.course)
+      await axiosBack.delete("/course/",{headers:{courseId: values.course}
+
+        // fields:{name: values.name}
+      } );
+      setIsDeleted(!isDeleted)
       getCourses();
     } catch (error) {
       toast.error("Error, intente nuevamente mas tarde")
@@ -46,7 +51,7 @@ const DeleteCourseForm = ({getCourses, courses}) => {
       <Button  variant="success" type="submit" >
         Eliminar curso
       </Button>
-    <ToastContainer/>
+    {/* <ToastContainer/> */}
     </Form>
     </>
   );
