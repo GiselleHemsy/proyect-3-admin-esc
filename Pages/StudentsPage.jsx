@@ -4,10 +4,11 @@ import EditStudentForm from "../src/Components/EditStudentForm/EditStudentForm";
 import DeleteConfirmation from "../src/Components/DeleteConfirmation/DeleteConfirmation";
 import GeneralModal from "../src/Components/GeneralModal/GeneralModal";
 import axiosBack from "../src/config/axios";
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import "../src/index.css"
+import { UserContext } from "../src/context/UserContext";
 
 
 
@@ -16,7 +17,7 @@ const StudentsPage = () => {
   const [selected, setSelected] = useState("");
   const [state, setState] = useState([]);
   const [courses, setCourses] = useState([]);
-
+  const {user} = useContext(UserContext);
 
 
   const getStudents =async()=>{
@@ -32,7 +33,6 @@ const StudentsPage = () => {
     try {
       const {data }= await axiosBack.get("/course");
       setCourses(data.courses); 
-      console.log(data.courses)
     } catch (error) {
       toast.error(error.message)
     }
@@ -55,12 +55,12 @@ const StudentsPage = () => {
       toast.error("Error, intente nuevamente mas tarde")
     }}
     } 
-    console.log(selected);
+
 return(
   <>
     <Container className=" styleContainer pb-4 mb-4">
-      {/* {
-        userLogged.admin?
+      {
+        user.admin?
         <Row>
         <Col className="d-flex justify-content-end py-2">
             <GeneralModal buttonText="Agregar" modalTitle="Agregar un usuario"  modalBody={<AddStudentForm  getStudents={getStudents} courses={courses} />} variant="primary" />
@@ -69,7 +69,7 @@ return(
         </Col>
       </Row>
       : null
-      } */}
+      }
       <Row>
         <Col className="styleContainer">
         {state.length!==0?

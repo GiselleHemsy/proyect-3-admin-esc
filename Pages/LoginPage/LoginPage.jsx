@@ -2,17 +2,17 @@ import "../../src/index.css"
 import "../LoginPage/LoginPage.css"
 import {Container, Row, Col, Form, Alert} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import GeneralModal from "../../src/Components/GeneralModal/GeneralModal";
 import FormRegister from "../../src/Components/FormRegister/FormRegister";
-import axiosBack from "../../src/config/axios";
-import { toast } from "react-toastify";
+// import axiosBack from "../../src/config/axios";
+import { UserContext } from "../../src/context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const {login, authenticated} = useContext(UserContext)
   const navigate = useNavigate();
-  const [userLogged, setUserLogged] = useState(false);
-  const [backErrors, setBackErrors] = useState(false);
+  // const [backErrors, setBackErrors] = useState(false);
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -24,27 +24,22 @@ const LoginPage = () => {
     }
       )
   }
-  const handleSubmit =async (e) =>{
-    try {
+  const handleSubmit =(e) =>{
       e.preventDefault();
-      const {data}= await axiosBack.post("/users/login", values);
-      setUserLogged(data.user);
-      console.log("::::::::::",data.user);
-      localStorage.setItem("token", data.token);
-      navigate("/home")
-      console.log(data);
-    } catch (error) {
-      toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");
-      setBackErrors(true)
-    }
+      login(values);
   }
+  // useEffect(()=>{
+  //   if(backErrors){
+  //     setTimeout(()=>{
+  //       setBackErrors(false)
+  //     }, 3000)
+  //   }
+  // }, [backErrors])
   useEffect(()=>{
-    if(backErrors){
-      setTimeout(()=>{
-        setBackErrors(false)
-      }, 3000)
+    if(authenticated){
+      navigate("/home")
     }
-  }, [backErrors])
+  }, [authenticated])
   return (
     <>
     <h1 className="text-center mt-5">AlUMNCLICK <br /> Sofware de Gestion Escolar </h1>
@@ -68,7 +63,7 @@ const LoginPage = () => {
                   </Button>
                   <GeneralModal buttonText="Crear una cuenta" modalTitle="Formulario de Alta" modalBody={<FormRegister/>} variant="secondary" /> 
                 {
-                  backErrors && <Alert variant="danger">Los datos enviados son incorrectos</Alert>
+                  false && <Alert variant="danger">Los datos enviados son incorrectos</Alert>
                 }
                   
             </Form>  <br /><br /><br /><br /><br />  

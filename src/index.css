@@ -1,15 +1,4 @@
 
-.PPcontainer{
-    background-color: #f8f8f8;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-
-}
 
 .h1Container{
     justify-content: center;
@@ -20,7 +9,7 @@
     width: 100vw;
 }
 .rowSelected{
-    background-color: darkcyan;
+    background-color: rgb(120, 182, 211);
     }
     tr:hover{
     cursor: pointer;
@@ -39,3 +28,4 @@ body{
     margin-bottom:  200px;
     
 } */
+
