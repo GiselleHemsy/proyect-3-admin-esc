@@ -26,7 +26,7 @@ const LoginPage = () => {
   const handleSubmit =async (e) =>{
     try {
       e.preventDefault();
-      const {data}= await axiosBack.post("users/login", values);
+      const {data}= await axiosBack.post("/users/login", values);
       localStorage.setItem("token", data.token);
       navigate("/home")
       console.log(data);
