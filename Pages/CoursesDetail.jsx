@@ -57,6 +57,10 @@ const CoursesDetail = () => {
     setEditCourse(true);
   }
   
+  const handleDeleteCourse = ()=>{
+    setDeleteCourse(true);
+  }
+
   useEffect(()=>{
     getCourses();
   },[])
@@ -79,7 +83,7 @@ const CoursesDetail = () => {
         <Col>
             <Button variant="outline-success" onClick={handleAddCourse}>Agregar</Button>
             <Button variant="outline-warning" onClick={handleEditCourse}>Editar</Button>
-            <Button variant="outline-danger">Eliminar</Button>
+            <Button variant="outline-danger" onClick={handleDeleteCourse}>Eliminar</Button>
         </Col>
       </Row>
       <Row>

@@ -1,16 +1,37 @@
 import { Button } from "react-bootstrap";
 
 const DeleteCourse = () => {
-  const handleDelete = ()=>{
-    handleClose();
-    deleteUser();
-  }
+
+    const deleteCourse=async()=>{
+        try {
+          await axiosBack.delete(`/course}`);
+          getStudents();
+        } catch (error) {
+          if(!selected){
+          toast.error("Para continuar selecciona un usuario")}
+          else{
+          toast.error("Error, intente nuevamente mas tarde")
+        }}
+        }  
+
+  
+
 
   return ( 
     <>
-    <h5>Estas seguro que deseas eliminar este elemento?</h5>
-    <Button className="mx-1" variant="danger" onClick={handleDelete} >Eliminar</Button>
-    <Button variant="secondary"  >Cancelar</Button>
+    <Form onSubmit={()=>{handleSubmit}}>
+    <Form.Select aria-label="Default select example" name="course" onChange={handleChange}  >
+      <option>Seleccione el Año de Cursado</option> 
+      {
+        courses?.map((course, index)=>
+        <option key={index}  value={course._id}>{course.name}</option>
+        )
+      }
+    </Form.Select>
+    </Form>
+    <Button variant="success" type="submit" onClick={handleClose}>
+        Eliminar curso
+      </Button>
     </>
   );
 }

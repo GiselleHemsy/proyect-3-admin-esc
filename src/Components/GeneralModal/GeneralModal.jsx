@@ -2,7 +2,7 @@ import React, { cloneElement, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const GeneralModal = ({buttonText, modalTitle, modalBody, variant}) => {
+const GeneralModal = ({buttonText, modalTitle, modalBody, variant, selected=true}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -10,7 +10,7 @@ const GeneralModal = ({buttonText, modalTitle, modalBody, variant}) => {
  
   return (
     <>
-      <Button className="mx-1" variant={variant} onClick={handleShow}>
+      <Button disabled={!!!selected} className="mx-1" variant={variant} onClick={handleShow}>
         {buttonText}
       </Button>
 

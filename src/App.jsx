@@ -7,9 +7,11 @@ import StudentsPage from '../Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
 import Footer from './Components/Footer/Footer';
-import CoursesDetail from '../Pages/CoursesDetail';
+import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './routes/PrivateRoutes';
+import Home from '../Pages/Home';
 import AuthorizPage from "../Pages/AuthorizPage";
-
+import CoursesDetail from '../Pages/CoursesDetail';
 
 
 function App() {
@@ -23,7 +25,9 @@ function App() {
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/StudentsPage' element={<StudentsPage/>}/>
+            <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
+            <ToastContainer/>
           <Footer/>
         </Router>
       )
