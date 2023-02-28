@@ -11,11 +11,24 @@
 
 }
 .bodyPP{
-    height: 1500px;
-    margin: 0%;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 3rem;
     padding: 1px;
+    position: relative;
+  
 }
 
 .mainPP{
     height: 1500px;
+}
+
+@media(max-width: 1030px)
+{.cardPP{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
 }

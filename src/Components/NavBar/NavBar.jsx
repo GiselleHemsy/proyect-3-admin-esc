@@ -4,14 +4,58 @@ import BurguerButton from "../BurguerButton/BurguerButton";
 import GeneralModal from "../GeneralModal/GeneralModal";
 import image02 from "../img/click.png";
 import AddTeacherForm from "../TeacherForm/AddTeacherForm"
+// import './Navbar.css'
 
 
 
 function NavBar () {
+    // const [collapsed, setCollapsed] = useState(true)
     const [clicked, setClicked] = useState(false)
     const handleClick = ()=>{
         setClicked(!clicked)
     }
+    // return (
+      //   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      //     <div class="container">
+      //     <div className="logo d-flex">
+      //        <img src={image02} className="image02"/>
+      //        <h2> AdminClick</h2>
+      //       </div>
+      //       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onClick={() => setCollapsed(!collapsed)}>
+      //         {collapsed ? (<svg xmlns="http://www.w3.org/2000/svg" height="2rem" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" >
+      //           <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      //         </svg>) : (<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="2rem" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      //           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+      //         </svg>
+      //         )}
+      //       </button>
+      //       <div class="collapse navbar-collapse" id="navbarNav">
+      //         <ul class="navbar-nav">
+      //           <li class="nav-item">
+      //           <a href="/PrincipalPage" onClick={handleClick}>PAGINA PRINCIPAL</a>
+      //           </li>
+      //           <li class="nav-item">
+      //           <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a>
+      //           </li>
+      //           <li class="nav-item">
+      //           <a href="/CoursePage" onClick={handleClick}>CURSOS</a>
+      //           </li>
+      //           <li class="nav-item">
+      //           <a href="/LoginPage" onClick={handleClick}>LOGIN</a>
+      //           </li>
+      //           <li class="nav-item">
+      //           <GeneralModal buttonText="AGREGAR" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="light"/>
+      //           </li>
+      //         </ul>
+      //         </div>
+      //       </div>
+      //   </nav>
+      // );
+
+
+
+
+    
     return ( 
     <>
         <NavContainer>
@@ -20,13 +64,14 @@ function NavBar () {
             <h2> AdminClick</h2>
             </div>
             <div className={`links ${clicked ? 'active' : ''}`}>
+                <GeneralModal buttonText="AGREGAR" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="light"/>
                 <a href="/Admin" onClick={handleClick}>ADMIN</a>
-                <GeneralModal buttonText="AGREGAR" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="primary"/>
+                {/* <a href="/D:\Program_Full_stack\TP-3 Admin Escolar\TP03\proyect-3-admin-esc\src\Components\TeacherForm\AddTeacherForm.jsx" onClick={handleClick}>AGREGAR</a> */}
                 <a href="" onClick={handleClick}>HABILITAR</a>
                 <a href="/PrincipalPage" onClick={handleClick}>PAGINA PRINCIPAL</a>
                 <a href="/StudentsPage" onClick={handleClick}>ALUMNOS</a>
                 {/* <a href="/TeachersPage" onClick={handleClick}>PROFESORES</a> */}
-                <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a>
+                {/* <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a> */}
                 <a href="/CoursePage" onClick={handleClick}>CURSOS</a>
                 <a href="/LoginPage" onClick={handleClick}>LOGIN</a>
             </div>
@@ -56,7 +101,7 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 width: 100vw;
-a{
+a{   
     color: white;
     text-decoration: none;
     margin-right: 1rem;
@@ -72,7 +117,7 @@ a{
     z-index:40;
     a{
         color: white;
-        font-size: 2rem;
+        font-size: 1rem;
         display: block;
     }
     @media(min-width: 768px){
@@ -87,18 +132,19 @@ a{
     
 }
 .links.active{
+    font-size: medium;
     width: 100%;
     display: block;
     position: absolute;
     margin-left: auto;
     margin-right: auto;
-    top: 30%;
+    top: 10%;
     left: 0;
     right: 0;
     text-align: center;
     transition: 1s;
     a{
-        font-size: 2rem;
+        font-size: 1rem;
         margin-top: 1rem;
         color: white;
     }
@@ -114,21 +160,22 @@ a{
 }
 `
 const BgDiv = styled.div`
-    max-width: 1000px;
+    max-width: 900px;
     background-color: #4897b1;
     position: absolute;
     top:-700px;
-    left: -1000px;
-    width: 100%;
-    height: 100%;
+    left: -500px;
+    width: 50%;
+    height: 50%;
     z-index: -1;
     transition: all .6s ease;
     &.active{
-        border-radius: 0 0 80% 0;
+        border-radius: 0 0 60% 0;
         top: 0;
-        left: 0;
+        bottom: 10%;
+        left:0%;
         width: 100%;
-        height: 100%;
+        height: 70%;
         z-index: 20;
         
         

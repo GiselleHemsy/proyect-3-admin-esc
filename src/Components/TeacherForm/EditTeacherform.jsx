@@ -4,14 +4,15 @@ import { ToastContainer, toast } from 'react-toastify'
 import axiosBack  from "../../config/axios";
 import { ADD_TEACH_USER_VALUES } from "../../Constants";
 
-const EditTeacherForm = ({selected, handleClose, getTeachers}) => {
+const EditTeachersForm = ({handleClose, getUsers,id}) => {
 
     const [values, setValues] = useState(ADD_TEACH_USER_VALUES);
 
     const getUserInfo=async()=>{
     try {
-    const {data} = await axiosBack.get("/users", {selected});
-    setValues(data.users);
+    const {data} = await axiosBack.get(`/users?single=true&id=${id}`);
+    console.log(data)
+    setValues(data.user);
     } catch (error) {
     toast.error("Error intente nuevamente mas tarde")
     }
@@ -26,10 +27,11 @@ const EditTeacherForm = ({selected, handleClose, getTeachers}) => {
     const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-        await axiosBack.put("/users",{selected,values} );
-        getTeachers();
+        console.log(values)
+        await axiosBack.put("/users",{id,fields:values} );
+        getUsers();
     } catch (error) {
-        if(!selected){
+        if(!id){
         toast.error("Para continuar selecciona un usuario")}
         else{
         toast.error("Error, intente nuevamente mas tarde")
@@ -58,7 +60,7 @@ useEffect(()=>{
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" name="email" value={values.email} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="usercel">
+          <Form.Group className="mb-3" controlId="userpassword">
             <Form.Label>password</Form.Label>
             <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
           </Form.Group>
@@ -66,10 +68,10 @@ useEffect(()=>{
             <Form.Label>cel</Form.Label>
             <Form.Control type="number" name="cel" value={values.cel} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="usercel">
-            <Form.Label>admin</Form.Label>
+          {/* <Form.Group className="mb-3" controlId="usercel">
+          <Form.Label>admin</Form.Label>
             <Form.Control type="text" name="admin" value={values.admin} onChange={handleChange}/>
-          </Form.Group>
+          </Form.Group> */}
           {/* <Form.Group className="mb-3" controlId="userCuota">
             <Form.Label>adress</Form.Label>
             <Form.Control type="text" name="adress" value={values.adress} onChange={handleChange}/>
@@ -95,4 +97,4 @@ useEffect(()=>{
   );
 }
 
-export default EditTeacherForm;
+export default EditTeachersForm;
