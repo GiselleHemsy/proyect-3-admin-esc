@@ -10,6 +10,8 @@ import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
+import AuthorizPage from "../Pages/AuthorizPage";
+import CoursesDetail from '../Pages/CoursesDetail';
 import AdminPage from '/pages/adminPage'
 import CoursePage from '/pages/CoursePage'
 import UserProvider from './context/UserContext';
@@ -22,6 +24,9 @@ function App() {
           <UserProvider>
           <NavBar/>
             <Routes>
+            <Route path="/AuthorizPage" element={<AuthorizPage/>}/>
+            <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
+            <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
             <Route path='/Admin' element={<AdminPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
@@ -30,7 +35,7 @@ function App() {
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
-          <Footer/>
+          {/* <Footer/> */}
           </UserProvider>
             <ToastContainer/>
         </Router>
