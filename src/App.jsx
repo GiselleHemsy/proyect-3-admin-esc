@@ -7,11 +7,11 @@ import StudentsPage from '../Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
 import Footer from './Components/Footer/Footer';
-import AdminPage from '../Pages/AdminPage';
-import CoursePage from '../Pages/CoursePage';
-import TeachersPage from '../Pages/TeachersPage';
-import SubjectPage from '../Pages/SubjectPage';
-
+import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './routes/PrivateRoutes';
+import Home from '../Pages/Home';
+import AdminPage from '/pages/adminPage'
+import CoursePage from '/pages/CoursePage'
 
 
 
@@ -20,19 +20,20 @@ function App() {
         <Router>
           <NavBar/>
             <Routes>
+            <Route path='/ErrorPage' element={<ErrorPage/>}/>
             <Route path='/Admin' element={<AdminPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/CoursePage' element={<CoursePage/>}/>
             <Route path='/StudentsPage' element={<StudentsPage/>}/>
-              <Route path='/TeachersPage' element={<TeachersPage/>}/>
-            <Route path='/subjectPage' element={<SubjectPage/>}/>
-            <Route path='/*' element={<ErrorPage/>}/>
-          </Routes>
-        <Footer/>
+            <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
+            </Routes>
+            <ToastContainer/>
+          <Footer/>
         </Router>
       )
     }
     
     export default App
+
 
