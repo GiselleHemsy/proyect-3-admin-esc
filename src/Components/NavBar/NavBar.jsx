@@ -5,6 +5,7 @@ import BurguerButton from "../BurguerButton/BurguerButton";
 import GeneralModal from "../GeneralModal/GeneralModal";
 import image02 from "../img/click.png";
 import AddTeacherForm from "../TeacherForm/AddTeacherForm"
+import Button from '@mui/material/Button'
 // import './Navbar.css'
 
 
@@ -71,7 +72,8 @@ function NavBar () {
                 {/* <a href="/D:\Program_Full_stack\TP-3 Admin Escolar\TP03\proyect-3-admin-esc\src\Components\TeacherForm\AddTeacherForm.jsx" onClick={handleClick}>AGREGAR</a> */}
                 <a href="" onClick={handleClick}>HABILITAR</a>
                 <a href="/PrincipalPage" onClick={handleClick}>PAGINA PRINCIPAL</a>
-                <button onClick={logout}>Logout</button>
+                {/* <button onClick={logout}>Logout</button> */}
+                <Button variant="text" className="text-light" onClick={logout}>Logout</Button>
                 <a href="/StudentsPage" onClick={handleClick}>ALUMNOS</a>
                 {/* <a href="/TeachersPage" onClick={handleClick}>PROFESORES</a> */}
                 {/* <a href="/SubjectPage" onClick={handleClick}>MATERIAS</a> */}

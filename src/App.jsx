@@ -29,6 +29,8 @@ function App() {
             <Route path='/CoursePage' element={<CoursePage/>}/>
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
+            <Route path='/habilitacion' element={<Home/>}/>
+
             </Routes>
           <Footer/>
           </UserProvider>

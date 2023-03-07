@@ -66,7 +66,7 @@ const LoginPage = () => {
                   false && <Alert variant="danger">Los datos enviados son incorrectos</Alert>
                 }
                   
-            </Form>  <br /><br /><br /><br /><br />  
+            </Form>  
         </Col>      
       </Row> 
     </Container>

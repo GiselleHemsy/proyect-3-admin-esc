@@ -73,7 +73,7 @@ return(
       <Row>
         <Col className="styleContainer">
         {state.length!==0?
-          <Table striped bordered hover className="styleContainer">
+          <Table striped bordered hover responsive className="styleContainer">
           <thead>
             <tr>
               <th>ID</th>

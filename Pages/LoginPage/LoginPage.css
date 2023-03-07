@@ -1,6 +1,6 @@
 body{
-  margin-bottom: 200px;
-  padding-bottom: 200px;
+  /* margin-bottom: 200px;
+  padding-bottom: 200px; */
   width :100vw;
   height:100vh;
   background-color: #e0e7eb !important;
@@ -17,10 +17,10 @@ body{
   border: 0.9px solid #24758e !important;
   border-radius: 1% !important;
 } */
-.style-contenedorForm{
+/* .style-contenedorForm{
   padding-top: 10px !important;
   margin-top: 10px !important;
-}
+} */
 /* .formCotainer{
   width: 30vw;
 } */
