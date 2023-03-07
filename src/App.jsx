@@ -10,6 +10,8 @@ import './index.css'
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
+import AuthorizPage from "../Pages/AuthorizPage";
+import CoursesDetail from '../Pages/CoursesDetail';
 import CoursePage from '/pages/CoursePage'
 import UserProvider from './context/UserContext';
 
@@ -21,6 +23,9 @@ function App() {
           <UserProvider>
           <NavBar/>
             <Routes>
+            <Route path="/AuthorizPage" element={<AuthorizPage/>}/>
+            <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
+            <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
@@ -28,7 +33,7 @@ function App() {
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
-            {/* <Footer/> */}
+            <Footer/>
           </UserProvider>
             <ToastContainer/>
         </Router>
