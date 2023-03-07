@@ -31,7 +31,7 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
 
   const getUserInfo=async()=>{
     try {
-      const {data} = await axiosBack.get(`/students/${selected}`); 
+      const {data} = await axiosBack.get(`/students/email/${selected}`); 
       console.log(data)
       setValues(data.student);
     } catch (error) {
