@@ -27,12 +27,16 @@ const TeachersPage = () => {
   },[])
 return(
   <>
+  <body>
+  <GeneralModal buttonText="AGREGAR" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="secondary"/>
+    
     <Container className="my-2 py-2">
       <Row>
         <Col className="d-flex justify-content-end">
             <GeneralModal buttonText="Agregar" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="primary"/>
             <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditTeacherForm getTeachers={getTeachers} selected={selected}  />} variant="warning"/>
             <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<TeacherDeleteConfirmation deleteUser={deleteUser}/>} variant="danger"/>
+            <GeneralModal buttonText="AGREGAR" modalTitle="Agregar un usuario"  modalBody={<AddTeacherForm/>} variant="secondary"/>
         </Col>
       </Row>
       <Row>
@@ -66,11 +70,11 @@ return(
                 <td>{teacher.FechadeIngreso}</td>
               </tr>
             )
-            }
+          }
           </tbody>
           </Table>
         :
-          <div>
+        <div>
             <Spinner animation="border"/>
           </div>
       }
@@ -78,13 +82,14 @@ return(
         </Col>
       </Row>
     </Container>
+</body>
     </>
 )
 }
   
     const deleteUser=async()=>{
       console.log("soy la funcion deleteUser")
-    
+      
 }
 
 export default TeachersPage;

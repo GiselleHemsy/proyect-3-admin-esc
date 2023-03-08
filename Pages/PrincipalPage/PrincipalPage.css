@@ -1,11 +1,14 @@
-.PPcontainer{
+.containerPP{
+    margin-bottom: 50px;
+    min-width: 50%;
+    max-width: 50%;
+    background-color: #E0E7EC
     
-    background-color: #f8f8f8;
-    z-index: 10;
     
 }
 .cardPP{
-
+    
+    margin-top: 10px;
     width: 100%;
     height: 100%;
 
@@ -13,7 +16,8 @@
 .bodyPP{
     width: 100vw;
     height: 100vh;
-    margin-top: 3rem;
+   
+    margin-bottom: 3rem;
     padding: 1px;
     position: relative;
   
@@ -23,12 +27,18 @@
     height: 1500px;
 }
 
-@media(max-width: 1030px)
+@media(max-width: 900px)
 {.cardPP{
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: auto;
 }
+
+}
+.buttonCreate{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
 
 }

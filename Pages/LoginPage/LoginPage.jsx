@@ -8,6 +8,7 @@ import FormRegister from "../../src/Components/FormRegister/FormRegister";
 // import axiosBack from "../../src/config/axios";
 import { UserContext } from "../../src/context/UserContext";
 import { useNavigate } from "react-router-dom";
+import './LoginPage.css'
 
 const LoginPage = () => {
   const {login, authenticated} = useContext(UserContext)
@@ -44,9 +45,9 @@ const LoginPage = () => {
     <>
     <h1 className="text-center mt-5">AlUMNCLICK <br /> Sofware de Gestion Escolar </h1>
     <Container className="" > 
-      <Row className="d-flex justify-content-center mx-2 px-2 mb-5 ">
+      <Row className="table d-flex justify-content-center mx-2 px-2 mb-5 ">
         <Col   md={6} xs={12} className="formCotainer style-form-login mx-2 px-2 mb-5" >
-            <Form className="" onSubmit={handleSubmit}>
+            <Form className="table " onSubmit={handleSubmit}>
                   <Form.Group className=" bg-fondo-principal "  controlId="userEmail">
                     <Form.Label>Ingresa tu Email</Form.Label>
                     <Form.Control type="email" placeholder="xxxxx@xxxx.xx"  name="email" value={values.email} onChange={handleChanges}/>
