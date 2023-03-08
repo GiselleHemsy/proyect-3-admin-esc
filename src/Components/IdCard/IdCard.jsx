@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import image01 from '../img/image01.png'
-import './IdCard.css'
+import "./IdCard.css"
 import GeneralModal from "../GeneralModal/GeneralModal"
 import TeacherDeleteConfirmation from "../TeacherForm/TeachaerDeleteConfirmation"
 import EditTeachersForm from "../TeacherForm/EditTeacherform"

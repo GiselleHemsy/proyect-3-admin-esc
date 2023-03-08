@@ -6,7 +6,7 @@ import PrincipalPage from '../Pages/PrincipalPage/PrincipalPage'
 import StudentsPage from '../Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
-// import Footer from './Components/Footer/Footer';
+import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
@@ -23,9 +23,9 @@ function App() {
           <UserProvider>
           <NavBar/>
             <Routes>
-            <Route path="/AuthorizPage" element={<AuthorizPage/>}/>
-            <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
-            <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
+            <Route path="/AuthorizPage" element={<PrivateRoute><AuthorizPage/></PrivateRoute>}/>
+            <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
+            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
