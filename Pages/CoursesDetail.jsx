@@ -18,7 +18,7 @@ const CoursesDetail = () => {
   const [editCourse, setEditCourse] = useState(false);
   const [deleteCourse, setDeleteCourse] = useState(false);
   const [isDeleted,setIsDeleted] = useState(false);
-  const {user} = useContext(UserContext);
+  // const {user} = useContext(UserContext);
 
 
   const getCourses =async()=>{

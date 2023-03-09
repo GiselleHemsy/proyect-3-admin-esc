@@ -24,8 +24,6 @@ const DeleteCourseForm = ({getCourses, courses, isDeleted, setIsDeleted}) => {
     try {
       console.log(values.course)
       await axiosBack.delete("/course/",{headers:{courseId: values.course}
-
-        // fields:{name: values.name}
       } );
       setIsDeleted(!isDeleted)
       getCourses();

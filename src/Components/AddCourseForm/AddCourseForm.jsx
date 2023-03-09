@@ -32,8 +32,6 @@ const handleSubmit =async(e)=>{
   }
 }
 
-
-
     return (
     <Form onSubmit={handleSubmit}>   
        <Form.Group className="mb-3" controlId="courseName">
