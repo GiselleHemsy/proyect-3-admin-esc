@@ -48,12 +48,10 @@ const StudentsPage = () => {
     try {
       await axiosBack.delete(`/students/${selected}`);
       getStudents();
+      toast.error("Se ha eliminado un usuario")
     } catch (error) {
-      if(!selected){
-      toast.error("Para continuar selecciona un usuario")}
-      else{
       toast.error("Error, intente nuevamente mas tarde")
-    }}
+    }
     } 
 
 return(
@@ -71,9 +69,9 @@ return(
       : null
       }
       <Row>
-        <Col className="styleContainer">
+        <Col className="styleContainer mt-3">
         {state.length!==0?
-          <Table striped bordered hover responsive className="styleContainer">
+          <Table  responsive className="">
           <thead>
             <tr>
               <th>ID</th>

@@ -15,6 +15,7 @@ import CoursesDetail from '../Pages/CoursesDetail';
 import AdminPage from '/pages/adminPage'
 import CoursePage from '/pages/CoursePage'
 import UserProvider from './context/UserContext';
+import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
 
 
 
@@ -24,7 +25,7 @@ function App() {
           <UserProvider>
           <NavBar/>
             <Routes>
-            <Route path="/AuthorizPage" element={<AuthorizPage/>}/>
+            <Route path="/habilitacion" element={<PrivateRoute><AuthorizationPage/></PrivateRoute>}/>
             <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
             <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/ErrorPage' element={<ErrorPage/>}/>

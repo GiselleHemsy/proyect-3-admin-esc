@@ -3,16 +3,18 @@ import "../LoginPage/LoginPage.css"
 import {Container, Row, Col, Form, Alert} from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import {  useContext, useEffect, useState } from "react";
-import GeneralModal from "../../src/Components/GeneralModal/GeneralModal";
-import FormRegister from "../../src/Components/FormRegister/FormRegister";
+// import GeneralModal from "../../src/Components/GeneralModal/GeneralModal";
+// import FormRegister from "../../src/Components/FormRegister/FormRegister";
 // import axiosBack from "../../src/config/axios";
 import { UserContext } from "../../src/context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { validationLogin } from "../../src/helpers/validations";
 
 const LoginPage = () => {
   const {login, authenticated} = useContext(UserContext)
   const navigate = useNavigate();
-  // const [backErrors, setBackErrors] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false)
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -26,15 +28,21 @@ const LoginPage = () => {
   }
   const handleSubmit =(e) =>{
       e.preventDefault();
-      login(values);
-  }
-  // useEffect(()=>{
-  //   if(backErrors){
-  //     setTimeout(()=>{
-  //       setBackErrors(false)
-  //     }, 3000)
-  //   }
-  // }, [backErrors])
+      setErrors(validationLogin(values));
+      setSubmitting(true)
+    }
+    useEffect(()=>{
+      if (submitting){
+        if (Object.keys(errors).length === 0) {
+        login(values);
+      }
+      setSubmitting(false);
+      setTimeout(()=>{
+        setErrors({});
+      },3000)
+      }
+    }, [errors])
+
   useEffect(()=>{
     if(authenticated){
       navigate("/home")
@@ -61,9 +69,13 @@ const LoginPage = () => {
                   <Button className="my-1"variant="primary" type="submit">
                     Ingresar
                   </Button>
-                  <GeneralModal buttonText="Crear una cuenta" modalTitle="Formulario de Alta" modalBody={<FormRegister/>} variant="secondary" /> 
+                
                 {
-                  false && <Alert variant="danger">Los datos enviados son incorrectos</Alert>
+                  Object.keys(errors).length!==0 && (
+                    Object.values(errors).map(error=>
+                      <Alert variant="danger">{error}</Alert>
+                      )
+                  )
                 }
                   
             </Form>  
