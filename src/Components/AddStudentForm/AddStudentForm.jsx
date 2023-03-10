@@ -3,11 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast, ToastContainer } from 'react-toastify';
 import  axiosBack  from '../../config/axios';
+import 'react-toastify/dist/ReactToastify.css'
+import { validationAddForm } from '../../helpers/validations';
+import { Alert } from 'react-bootstrap';
+
 
 const AddStudentForm = ({handleClose, getStudents, courses}) => {
-  
-
-
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
   const [values, setValues] = useState(
     {
       name:"",
@@ -34,31 +37,35 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
       cuota: e.target.checked
     });
   }
-  const handleSubmit =async(e)=>{
-    e.preventDefault();
+  const addStudent =async()=>{
+    
     try {
-      console.log(values)
       const userCreated = await axiosBack.post("/students", values);
       getStudents();
-      //Uso los datos que devuelve el back para mostrar una confirmacion
-      if(userCreated){
-        toast.done("Usuario Creado")
-      }
+      toast.success(`Estudiante agregado con éxito. Bievenido ${values.name}`);
     } catch (error) {
       toast.error("Error, intente nuevamente mas tarde")
     }
   }
 
-
-  // catch (error) {
-  //   if(!selected){
-  //   toast.error("Para continuar selecciona un usuario")}
-  //   else{
-  //   toast.error("Error, intente nuevamente mas tarde")
-  // }}
-
-  
-  console.log("values:",values);
+  const handleSubmit =(e) =>{
+    e.preventDefault();
+    setErrors(validationAddForm(values));
+    setSubmitting(true)
+  }
+  useEffect(()=>{
+    if (submitting){
+      if (Object.keys(errors).length === 0) {
+        addStudent();
+        handleClose();
+    }
+    setSubmitting(false);
+    setTimeout(()=>{
+      setErrors({});
+    },3000)
+    }
+  }, [errors])
+console.log(errors);
   return (
     <>
     <Form onSubmit={handleSubmit}>
@@ -91,11 +98,6 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
         <Form.Label>Ingrese el celular</Form.Label>
         <Form.Control type="number"  name="cel" value={values.cel} onChange={handleChange}/>
       </Form.Group>
-      
-      {/* <Form.Group className="mb-3" controlId="userCourse">
-        <Form.Label>Ingrese el Año de Cursado</Form.Label>
-        <Form.Control type="text"  name="course" value={values.course} onChange={handleChange}/>
-      </Form.Group> */}
       <Form.Select className="my-2" aria-label="Default select example"  value={values.course._id} onChange={handleChange} name="course"  >
       <option>Seleccione el Año de Cursado</option>
       {
@@ -104,18 +106,21 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
         )
       }
     </Form.Select>
-      {/* <Form.Group className="mb-3" controlId="userCuota">
-        <Form.Label>Estado de Cuota</Form.Label>
-        <Form.Control type="boolean" name="cuota" value={values.cuota} onChange={handleChange}/>
-      </Form.Group> */}
       <Form.Group className="mb-3" controlId="formCuota">
         <Form.Check name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} type="checkbox" label="Cuota al dia" />
       </Form.Group>
-      <Button variant="success" type="submit" onClick={handleClose}>
+      <Button variant="success" type="submit" >
         Crear usuario
       </Button>
+      {
+                  Object.keys(errors).length!==0 && (
+                    Object.values(errors).map(error=>
+                      <Alert variant="danger">{error}</Alert>
+                      )
+                  )
+                }
     </Form>
-    
+    <ToastContainer/>
       </>
     
   );

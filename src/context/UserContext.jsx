@@ -16,10 +16,13 @@ const UserProvider = ({children}) => {
   const login= async(values)=>{
     try {
       // e.preventDefault();
-      const {data}= await axiosBack.post("/users/login", values);
-      setAuthenticated(!!data.user);
-      setUser(data.user);
-      localStorage.setItem("token", data.token);
+      // if(values.habilitado){ //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
+
+        const {data}= await axiosBack.post("/users/login", values);
+        setAuthenticated(!!data.user);
+        setUser(data.user);
+        localStorage.setItem("token", data.token);
+      // } //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
    
     } catch (error) {
       toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");
@@ -45,8 +48,11 @@ const UserProvider = ({children}) => {
     setLoading(false)
   }
   const logout=()=>{
+    console.log("hola")
     setUser(null);
+    console.log("hola2")
     localStorage.removeItem("token");
+    console.log("hola3")
     navigate("/LoginPage")
   }
     return(
