@@ -9,6 +9,7 @@ import image02 from "../img/click.png";
 
 const Footer = () => {
     const FooterContainer = styled.div`
+    width: 100% !important;
 *{
     margin: 0;
     padding: 0;
@@ -18,7 +19,7 @@ const Footer = () => {
 
 #footer-page{
     height: 35vh;
-    width: 100%;
+    width: 100vw;
     background-color: #4897b1;
 }
 
@@ -135,8 +136,8 @@ height: 2px;
 `
     return(
         <>
-                    <FooterContainer>
-        <footer id="footer-page" className="container-fluid bg-page-primary">
+                    <FooterContainer fixed="bottom" >
+        <footer fixed="bottom"id="footer-page" className="container-fluid bg-page-primary">
                         <div className="row d-lg-flex justify-content-around align-items-center bg-page-primary py-4">
                             <div className="col-md-5 col-lg-3 order-0 d-flex justify-content-center">
                                 <img src={image02} className="image02"/>
@@ -150,11 +151,11 @@ height: 2px;
                             </div>
                             <div className=" w-100 order-5 bg-page-persianRed mt-4 mb-2 d-lg-none"></div>
                             <div className="text01 col-md-5 col-lg-3 order-2 order-lg-3 flex-column">
-                                <p className="text-general-page fs-5 text-center text-lg-end"><Link to="/*">CONTÀCTANOS</Link></p>
+                                <p className="text-general-page fs-5 text-center text-lg-end"><Link to="/*">CONTÁCTANOS</Link></p>
                             </div>
                         </div>
                         <div className="container-copyright">
-                                <p>Copyright 2022 - Todos los derechos reservados ADMINLINK.</p>
+                                <p>Copyright 2022 - Todos los derechos reservados ADMINCLICK.</p>
                     </div>
                 </footer>
                     </FooterContainer>

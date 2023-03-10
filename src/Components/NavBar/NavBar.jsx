@@ -1,9 +1,11 @@
-import React,{useContext, useState} from "react";
+import {useContext, useState} from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../../context/UserContext";
 import image02 from "../img/click.png";
+import Buttonmu from '@mui/material/Button';
+import { UserContext } from "../../context/UserContext";
+
 
 
 
@@ -12,6 +14,7 @@ function NavBar () {
     // const handleClick = ()=>{
     // setClicked(!clicked)
     // }
+    const { user} = useContext(UserContext)
     const {logout} = useContext(UserContext)
     const { pathname } = useLocation();
     console.log(pathname)
@@ -19,31 +22,37 @@ function NavBar () {
 return ( 
 
 <NavContainer>
-        <Navbar className="navbar" expand="lg">
+        <Navbar className="navbar text-light styleNuevonav" expand="lg">
             <Container>
                 {pathname === '/LoginPage' ?
 (
             <Navbar.Brand>
-                <div className="logo d-flex">
+                <div className="logo d-flex text-light">
                     <img src={image02} className="image02"/>
-                    <h2>AdminClick</h2>
+                    <h2 className="text-light">AdminClick</h2>
                 </div>
             </Navbar.Brand>
 ) : ( 
     <>
             <Navbar.Brand>
-                <div className="logo d-flex">
+                <div className="logo d-flex text-light">
                     <img src={image02} className="image02"/>
-                    <h2> AdminClick</h2>
+                    <h2 className="text-light"> AdminClick</h2>
                 </div>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-                <Nav.Link href="/PrincipalPage">PAGINA PRINCIPAL</Nav.Link>
-                <Nav.Link href="/StudentsPage">ALUMNOS</Nav.Link>
-                <Nav.Link href="/CoursePage">CURSOS</Nav.Link>
-                <Button className="buttonlogout" onClick={logout} variant="light">Logout</Button>
+            <Nav className="ms-auto text-light">
+                {
+                    user?.admin?
+                <Nav.Link href="/habilitacion" className="text-light" >HABILITACION</Nav.Link>
+                :null
+                }
+                <Nav.Link href="/PrincipalPage" className="text-light" >PAGINA PRINCIPAL</Nav.Link>
+                <Nav.Link href="/StudentsPage" className="text-light" >ALUMNOS</Nav.Link>
+                <Nav.Link href="/CoursePage" className="text-light" >CURSOS</Nav.Link>
+                
+                <Buttonmu onClick={logout} className="text-light" variant="text"  >LOGOUT</Buttonmu>
             </Nav>
             </Navbar.Collapse>
     </>
@@ -98,11 +107,13 @@ return (
 
 
 const NavContainer = styled.nav`
+width: 100vw;
 .font{
     color: #f8f8f8;
 }
 .navbar{
     background-color: #4897b1;
+    width: 100vw;
 }
 .logo{
     margin-right: 5rem;
