@@ -1,8 +1,8 @@
 body{
   /* margin-bottom: 200px;
   padding-bottom: 200px; */
-  width :100vw;
-  height:100vh;
+  width :100%;
+  height:100%;
   background-color: #e0e7eb !important;
   display: flex;
   justify-content: center;
@@ -24,3 +24,14 @@ body{
 /* .formCotainer{
   width: 30vw;
 } */
+.styleForm{
+  width: 30vw;
+}
+.styleTitle{
+  font-size: 2rem;
+}
+@media screen and (max-width: 992px){
+  .styleForm{
+    width: 70vw;
+  }
+}

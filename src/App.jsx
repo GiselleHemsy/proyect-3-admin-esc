@@ -12,7 +12,6 @@ import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
 import AuthorizPage from "../Pages/AuthorizPage";
 import CoursesDetail from '../Pages/CoursesDetail';
-import AdminPage from '/pages/adminPage'
 import CoursePage from '/pages/CoursePage'
 import UserProvider from './context/UserContext';
 import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
@@ -26,19 +25,17 @@ function App() {
           <NavBar/>
             <Routes>
             <Route path="/habilitacion" element={<PrivateRoute><AuthorizationPage/></PrivateRoute>}/>
-            <Route path='/CoursesDetail' element={<CoursesDetail/>}/>
-            <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
-            <Route path='/Admin' element={<AdminPage/>}/>
+            <Route path="/AuthorizPage" element={<PrivateRoute><AuthorizPage/></PrivateRoute>}/>
+            <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
+            <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
-            <Route path='/PrincipalPage' element={<PrincipalPage/>}/>
-            <Route path='/CoursePage' element={<CoursePage/>}/>
+            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
+            <Route path='/CoursePage' element={<PrivateRoute><CoursePage/></PrivateRoute>}/>
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
-            <Route path='/habilitacion' element={<Home/>}/>
-
             </Routes>
-          {/* <Footer/> */}
+            <Footer/>
           </UserProvider>
             <ToastContainer/>
         </Router>

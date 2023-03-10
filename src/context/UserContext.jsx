@@ -48,8 +48,11 @@ const UserProvider = ({children}) => {
     setLoading(false)
   }
   const logout=()=>{
+    console.log("hola")
     setUser(null);
+    console.log("hola2")
     localStorage.removeItem("token");
+    console.log("hola3")
     navigate("/LoginPage")
   }
     return(

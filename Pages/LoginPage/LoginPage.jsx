@@ -9,6 +9,8 @@ import {  useContext, useEffect, useState } from "react";
 import { UserContext } from "../../src/context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { validationLogin } from "../../src/helpers/validations";
+import Buttonmu from '@mui/material/Button';
+
 
 const LoginPage = () => {
   const {login, authenticated} = useContext(UserContext)
@@ -50,11 +52,11 @@ const LoginPage = () => {
   }, [authenticated])
   return (
     <>
-    <h1 className="text-center mt-5">AlUMNCLICK <br /> Sofware de Gestion Escolar </h1>
+    <h1 className="text-center mt-5 styleTitle">AlUMNCLICK <br /> Gestión Escolar </h1>
     <Container className="" > 
-      <Row className="d-flex justify-content-center mx-2 px-2 mb-5 ">
-        <Col   md={6} xs={12} className="formCotainer style-form-login mx-2 px-2 mb-5" >
-            <Form className="" onSubmit={handleSubmit}>
+      <Row className="table d-flex justify-content-center mx-2 px-2 mb-5 ">
+        <Col   md={6} xs={12} className="formCotainer style-form-login mx-2 mb-5 d-flex justify-content-center" >
+            <Form className="styleForm" onSubmit={handleSubmit}>
                   <Form.Group className=" bg-fondo-principal "  controlId="userEmail">
                     <Form.Label>Ingresa tu Email</Form.Label>
                     <Form.Control type="email" placeholder="xxxxx@xxxx.xx"  name="email" value={values.email} onChange={handleChanges}/>
@@ -66,9 +68,9 @@ const LoginPage = () => {
                   <Form.Group className="mb-3" controlId="check-guardarUsuario">
                     <Form.Check type="checkbox" label="Recordar" />
                   </Form.Group>
-                  <Button className="my-1"variant="primary" type="submit">
+                  <Buttonmu className="my-1"variant="outlined" type="submit">
                     Ingresar
-                  </Button>
+                  </Buttonmu>
                 
                 {
                   Object.keys(errors).length!==0 && (

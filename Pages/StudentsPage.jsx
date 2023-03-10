@@ -9,6 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import "../src/index.css"
 import { UserContext } from "../src/context/UserContext";
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 
 
 
@@ -56,11 +57,12 @@ const StudentsPage = () => {
 
 return(
   <>
-    <Container className=" styleContainer pb-4 mb-4">
+    <Container className=" styleContainer pb-4 mb-4 d-flex flex-column align-content-center justify-content-center">
+      <h4 className="text-center mt-3" >ADMINISTRACIÓN DE ESTUDIANTES</h4>
       {
         user.admin?
         <Row>
-        <Col className="d-flex justify-content-end py-2">
+        <Col className=" stylebloquebuttons d-flex justify-content-center py-2">
             <GeneralModal buttonText="Agregar" modalTitle="Agregar un usuario"  modalBody={<AddStudentForm  getStudents={getStudents} courses={courses} />} variant="primary" />
             <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditStudentForm getStudents={getStudents} selected={selected} courses={courses}  />} variant="warning" selected={selected}/>
             <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<DeleteConfirmation deleteUser={deleteUser}/>} variant="danger" selected={selected} />
@@ -71,8 +73,8 @@ return(
       <Row>
         <Col className="styleContainer mt-3">
         {state.length!==0?
-          <Table  responsive className="">
-          <thead>
+          <MDBTable  responsive className="styleTabla">
+          <MDBTableHead>
             <tr>
               <th>ID</th>
               <th>Nombre</th>
@@ -81,8 +83,8 @@ return(
               <th>Estado de Cuota</th>
               <th>Email</th>
             </tr>
-          </thead>
-          <tbody>
+          </MDBTableHead>
+          <MDBTableBody >
             {state?.map((student, index) => 
               <tr key={index} onClick={()=>setSelected(student.email)} className={selected==student.email? "rowSelected" :""}> 
                 <td>{student.expediente}</td>
@@ -94,8 +96,8 @@ return(
               </tr>
             )
             }
-          </tbody>
-          </Table>
+          </MDBTableBody>
+          </MDBTable>
         :
           <div>
             <Spinner animation="border"/>

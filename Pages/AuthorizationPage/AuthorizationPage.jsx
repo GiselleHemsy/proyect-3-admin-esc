@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Col, Container, Form, Row, Spinner, Table } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosBack from "../../src/config/axios";
 import { UserContext } from "../../src/context/UserContext";
@@ -23,14 +23,20 @@ const AuthorizationPage = () => {
   }, []);
   console.log(selected);
 
+  const handleChangeCheckBox =(e)=>{
+    setValues({
+      ...values,
+      state: e.target.checked
+    });
+  }
+
+
   const handleCheck =()=>{
     console.log("funcion para habilitar o deshabilitar");
   }
 
   return (
     <Container>
-    {
-      user.admin?
       <Row>
         <Col className="styleContainer">
           {state.length !== 0 ? (
@@ -54,9 +60,12 @@ const AuthorizationPage = () => {
                     <td>{x.lastname}</td>
                     <td>{x.dni}</td>
                     <td>
-                      <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicCheckbox">
+                    <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
+                      <Form.Check name="state" checked={x.state}  type="checkbox"  />
+                    </Form.Group>
+                      {/* <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" onClick={()=>handleCheck()} />
-                      </Form.Group>
+                      </Form.Group> */}
                     </td>
                   </tr>
                 ))}
@@ -69,8 +78,6 @@ const AuthorizationPage = () => {
           )}
         </Col>
       </Row>
-      :navigate("/PrincipalPage")
-    }
     </Container>
   );
 };

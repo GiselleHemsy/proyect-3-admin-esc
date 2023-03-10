@@ -15,17 +15,40 @@
     cursor: pointer;
     }
 
+*{
+    box-sizing: border-box; 
+}
 body{
     height: 100vh;
-    box-sizing: border-box;
+    width: 100vw;
+    box-sizing: border-box !important;
 }
 
-/* .styleStudentPage{
-    padding-bottom: 200px !important;
-    margin-bottom: 200px !important;
+.styleTabla{
+    width: 70vw !important;
 }
 .styleContainer{
-    margin-bottom:  200px;
-    
-} */
+    width: 100vw !important;
+    box-sizing: border-box !important; 
+    margin: 0;
+    padding: 0;
 
+}
+
+@media screen and (max-width: 992px){
+    .styleTabla{
+        max-width: 60% !important;
+        /* overflow-x: scroll;
+        white-space: nowrap;
+        text-overflow: clip; */
+    }
+    }
+    @media screen and (max-width: 992px){
+        .stylebloquebuttons{
+            width: 50vw !important;
+
+            /* overflow-x: scroll;
+            white-space: nowrap;
+            text-overflow: clip; */
+        }
+        }
