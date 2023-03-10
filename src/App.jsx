@@ -6,7 +6,7 @@ import PrincipalPage from '../Pages/PrincipalPage/PrincipalPage'
 import StudentsPage from '../Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
-import Footer from './Components/Footer/Footer';
+// import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
@@ -33,7 +33,7 @@ function App() {
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
-            <Footer/>
+            {/* <Footer/> */}
           </UserProvider>
             <ToastContainer/>
         </Router>
