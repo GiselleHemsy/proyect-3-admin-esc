@@ -5,8 +5,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import  axiosBack  from '../../config/axios';
 import 'react-toastify/dist/ReactToastify.css'
 import { validationAddForm } from '../../helpers/validations';
-import { Alert } from 'react-bootstrap';
-
+import { FaExclamationTriangle } from "react-icons/fa";
+import "../../index.css"
 
 const AddStudentForm = ({handleClose, getStudents, courses}) => {
   const [errors, setErrors] = useState({});
@@ -115,7 +115,7 @@ console.log(errors);
       {
                   Object.keys(errors).length!==0 && (
                     Object.values(errors).map(error=>
-                      <Alert variant="danger">{error}</Alert>
+                      <p className="errorStyle mx-1 px-1 "><FaExclamationTriangle /> {error}</p>
                       )
                   )
                 }

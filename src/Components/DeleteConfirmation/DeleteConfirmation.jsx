@@ -8,7 +8,7 @@ const DeleteConfirmation = ({handleClose, deleteUser}) => {
 
   return ( 
     <>
-    <h5>Estas seguro que deseas eliminar este elemento?</h5>
+    <h5>Estas seguro? Esto no se puede deshacer</h5>
     <Button className="mx-1" variant="danger" onClick={handleDelete} >Eliminar</Button>
     <Button variant="secondary" onClick={handleClose} >Cancelar</Button>
     </>
