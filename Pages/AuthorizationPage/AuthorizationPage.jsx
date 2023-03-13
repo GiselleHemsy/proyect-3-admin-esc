@@ -44,7 +44,7 @@ const AuthorizationPage = () => {
       <Row>
         <Col className="styleContainer">
           {state.length !== 0 ? (
-            <MDBTable  responsive className="mt-3 pt-1">
+            <MDBTable  responsive className="">
               <MDBTableHead>
                 <tr>
                   <th className="stylecelda text-center p-1">Nombre</th>
@@ -63,13 +63,14 @@ const AuthorizationPage = () => {
                     <td className="stylecelda text-center p-1">{x.name}</td>
                     <td className="stylecelda text-center p-1">{x.lastname}</td>
                     <td className="stylecelda text-center p-1">{x.dni}</td>
-                    <td className="stylecelda text-center p-1">
-                      <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
+                    <td className="stylecelda text-center">{x.state?
+                    <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
                       <Form.Check name="state" checked={x.state}  type="checkbox"  />
                     </Form.Group>
-                      {/* <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" onClick={()=>handleCheck()} />
-                      </Form.Group> */}
+                    :
+                    <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
+                      <Form.Check name="state" checked={x.state}  type="checkbox"  />
+                    </Form.Group>}
                     </td>
                   </tr>
                 ))}
