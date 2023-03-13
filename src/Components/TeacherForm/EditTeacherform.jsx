@@ -1,33 +1,58 @@
 import { useEffect, useState } from "react";
 import { Button, Form} from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify';
 import axiosBack  from "../../config/axios";
-import { ADD_TEACH_USER_VALUES } from "../../Constants";
+import { EDIT_TEACH_USER_VALUES } from "../../Constants";
 
-const EditTeachersForm = ({handleClose, getUsers,id}) => {
+const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
+  console.log(cursos)
 
-    const [values, setValues] = useState(ADD_TEACH_USER_VALUES);
-
-    const getUserInfo=async()=>{
-    try {
-    const {data} = await axiosBack.get(`/users?single=true&id=${id}`);
-    console.log(data)
-    setValues(data.user);
-    } catch (error) {
-    toast.error("Error intente nuevamente mas tarde")
+    const [values, setValues] = useState(EDIT_TEACH_USER_VALUES);
+    // const [cursos, setCursos] = useState([])
+    
+    const handleChangeCheckBox =(e)=>{
+      setValues({
+        ...values,
+        admin: e.target.checked
+      });
     }
-}
+    const getUserInfo=async()=>{
+      try {
+        const {data} = await axiosBack.get(`/users?single=true&id=${id}`);
+        console.log(data)
+        setValues(data.user);
+      } catch (error) {
+        toast.error("Error intente nuevamente mas tarde")
+      }
+    }
+  //   const getCourses = async()=>{
+  //     try {
+  //         const {data }= await axiosBack.get("/course");
+  //         setCursos(data.courses); 
+  //     } catch (error) {
+  //         toast.error("error al traer los cursos")
+  //     }
+  // }
     const handleChange =(e)=>{
     setValues({
         ...values,
         [e.target.name]: e.target.value
     });
 }
+const handleChangeSelected =(e)=>{
+  // console.log("cambiando el selected")
+}
+//   const selectedCourse = cursos.find(x=>x._id===e.target.value)
+//   console.log("e.target.value::::::::", e.target.value);
+//   setValues({
+//     ...values,
+//     course: selectedCourse
+  // })};
 
     const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-        console.log(values)
+        // console.log(values)
         await axiosBack.put("/users",{id,fields:values} );
         getUsers();
     } catch (error) {
@@ -40,56 +65,64 @@ const EditTeachersForm = ({handleClose, getUsers,id}) => {
 
 useEffect(()=>{
   getUserInfo();
+  // getCourses();
 },[])
+// console.log(cursos)
   return (
     <>
-    <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="userName">
+      <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formName">
             <Form.Label>Ingrese el nombre</Form.Label>
-            <Form.Control type="text" placeholder="" name="name" value={values.name} onChange={handleChange}/>
+            <Form.Control type="text" name="name" value={values.name} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="userLastname">
+          <Form.Group className="mb-3" controlId="formLastname">
             <Form.Label>Ingrese el Apellido</Form.Label>
-            <Form.Control type="text"  placeholder="" name="lastname" value={values.lastname} onChange={handleChange}/>
+            <Form.Control type="text" name="lastname" value={values.lastname} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="dniUser">
+          <Form.Group className="mb-3" controlId="formDni">
             <Form.Label>Ingrese el dni</Form.Label>
-            <Form.Control type="number"  name="dni" value={values.dni} onChange={handleChange}/>
+            <Form.Control type="number" name="dni" value={values.dni} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="useremail">
+          <Form.Group className="mb-3" controlId="formEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control type="text" name="email" value={values.email} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="userpassword">
-            <Form.Label>password</Form.Label>
-            <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="usercel">
+          <Form.Group className="mb-3" controlId="formCel">
             <Form.Label>cel</Form.Label>
             <Form.Control type="number" name="cel" value={values.cel} onChange={handleChange}/>
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="usercel">
-          <Form.Label>admin</Form.Label>
-            <Form.Control type="text" name="admin" value={values.admin} onChange={handleChange}/>
-          </Form.Group> */}
-          {/* <Form.Group className="mb-3" controlId="userCuota">
-            <Form.Label>adress</Form.Label>
+          <Form.Group className="mb-3" controlId="formAdress">
+            <Form.Label>direccion</Form.Label>
             <Form.Control type="text" name="adress" value={values.adress} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="state">
+          <Form.Group className="mb-3" controlId="formState">
             <Form.Label>estado</Form.Label>
-            <Form.Control type="bolean" name="state" value={values.state} onChange={handleChange}/>
+            <Form.Control type="text" name="state" value={values.state} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="state">
-            <Form.Label>course</Form.Label>
-            <Form.Control type="text" name="course" value={values.course} onChange={handleChange}/>
+          <Form.Group className="mb-3" controlId="formIcome">
+            <Form.Label>fecha de ingreso</Form.Label>
+            <Form.Control type="date" name="income" value={values.income} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="state">
-            <Form.Label>income</Form.Label>
-            <Form.Control type="incio" name="income" value={values.income} onChange={handleChange}/>
-          </Form.Group> */}
+          <Form.Select className="my-2" aria-label="Default select example"  value={"1"} onChange={handleChangeSelected} name="course"  >
+      <option>Seleccione el Año de Cursado</option>
+      {
+        cursos.map((course)=>
+        
+        <option key={course._id} value={course._id}>{course.name}</option>
+
+        )
+      }
+      
+    </Form.Select>
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label>password</Form.Label>
+            <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formAdmin">
+        <Form.Check name="admin" checked={values.admin} onChange={handleChangeCheckBox} type="checkbox" label="admin" />
+      </Form.Group>
           <Button variant="success" type="submit" onClick={handleClose}>
-            Editar Usuario
+            Crear usuario
           </Button>
         </Form>
     <ToastContainer/>
@@ -98,3 +131,6 @@ useEffect(()=>{
 }
 
 export default EditTeachersForm;
+
+
+// name, lastname, dni, email, cel, admin, password
