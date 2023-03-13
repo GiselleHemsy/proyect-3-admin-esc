@@ -46,9 +46,31 @@ body{
     @media screen and (max-width: 992px){
         .stylebloquebuttons{
             width: 50vw !important;
-
-            /* overflow-x: scroll;
-            white-space: nowrap;
-            text-overflow: clip; */
         }
         }
+        .errorStyle{
+            font-size: 0.8rem;
+            color: red;
+            margin-left: 0.5rem;
+            padding-top: 5px !important;
+            padding-bottom: 0px !important;
+            margin-top: 5px !important;
+            margin-bottom: 0px !important;
+        }
+        .styleicon{
+            color: white !important;
+            font-size: 1.2rem !important;
+        }
+        .stylecelda{
+            padding:0.1 rem !important;
+        }
+        .autorizcontainer{
+            margin-bottom: 1rem;
+            
+        }
+    @media screen and (max-width: 900px){
+            .autorizcontainer{
+                margin-bottom: 7rem !important;
+                margin-top: 2rem !important;
+            }
+            } 
