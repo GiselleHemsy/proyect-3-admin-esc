@@ -22,6 +22,7 @@ const UserProvider = ({children}) => {
         setAuthenticated(!!data.user);
         setUser(data.user);
         localStorage.setItem("token", data.token);
+        toast.success("Ingreso correcto");  
       // } //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
    
     } catch (error) {
@@ -48,11 +49,8 @@ const UserProvider = ({children}) => {
     setLoading(false)
   }
   const logout=()=>{
-    console.log("hola")
     setUser(null);
-    console.log("hola2")
     localStorage.removeItem("token");
-    console.log("hola3")
     navigate("/LoginPage")
   }
     return(

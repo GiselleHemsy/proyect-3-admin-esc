@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Alert, Button, Form} from "react-bootstrap";
+import {  Button, Form} from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify'
 import axiosBack  from "../../config/axios";
 import { validationAddForm } from "../../helpers/validations";
+import { FaExclamationTriangle } from "react-icons/fa";
+import "../../index.css"
 
 const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
   console.log(selected)    //!Recibe correctamente
@@ -154,7 +156,7 @@ const handleChangeSelected =(e)=>{
       {
                   Object.keys(errors).length!==0 && (
                     Object.values(errors).map(error=>
-                      <Alert variant="danger">{error}</Alert>
+                      <p className="errorStyle mx-1 px-1 "><FaExclamationTriangle /> {error}</p>
                       )
                   )
                 }

@@ -4,6 +4,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosBack from "../../src/config/axios";
 import { UserContext } from "../../src/context/UserContext";
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import "../../src/index.css"
 
 const AuthorizationPage = () => {
   const [state, setState] = useState([]);
@@ -36,31 +38,33 @@ const AuthorizationPage = () => {
   }
 
   return (
-    <Container>
+    <>
+
+    <Container className=" autorizcontainer ">
       <Row>
         <Col className="styleContainer">
           {state.length !== 0 ? (
-            <Table responsive className="mt-3">
-              <thead>
+            <MDBTable  responsive className="mt-3 pt-1">
+              <MDBTableHead>
                 <tr>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Dni</th>
-                  <th className="text-center">Habilitado</th>
+                  <th className="stylecelda text-center p-1">Nombre</th>
+                  <th className="stylecelda text-center p-1">Apellido</th>
+                  <th className="stylecelda text-center p-1">Dni</th>
+                  <th className="text-center stylecelda p-1">Habilitado</th>
                 </tr>
-              </thead>
-              <tbody>
+              </MDBTableHead>
+              <MDBTableBody>
                 {state?.map((x, index) => (
                   <tr
                     key={index}
                     onClick={()=>setSelected(x.dni)}
                     className={selected==x.dni? "rowSelected" :""}
                   >
-                    <td>{x.name}</td>
-                    <td>{x.lastname}</td>
-                    <td>{x.dni}</td>
-                    <td>
-                    <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
+                    <td className="stylecelda text-center p-1">{x.name}</td>
+                    <td className="stylecelda text-center p-1">{x.lastname}</td>
+                    <td className="stylecelda text-center p-1">{x.dni}</td>
+                    <td className="stylecelda text-center p-1">
+                      <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
                       <Form.Check name="state" checked={x.state}  type="checkbox"  />
                     </Form.Group>
                       {/* <Form.Group className="mb-3 d-flex justify-content-center" controlId="formBasicCheckbox">
@@ -69,8 +73,8 @@ const AuthorizationPage = () => {
                     </td>
                   </tr>
                 ))}
-              </tbody>
-            </Table>
+              </MDBTableBody>
+            </MDBTable>
           ) : (
             <div>
               <Spinner animation="border" />
@@ -79,6 +83,7 @@ const AuthorizationPage = () => {
         </Col>
       </Row>
     </Container>
+                      </>
   );
 };
 
