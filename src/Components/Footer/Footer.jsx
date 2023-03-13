@@ -9,6 +9,10 @@ import image02 from "../img/click.png";
 
 const Footer = () => {
     const FooterContainer = styled.div`
+    .stylemedia{
+        font-size: 1.6rem;
+    }
+    width: 100% !important;
 *{
     margin: 0;
     padding: 0;
@@ -18,7 +22,7 @@ const Footer = () => {
 
 #footer-page{
     height: 35vh;
-    width: 100%;
+    width: 100vw;
     background-color: #4897b1;
 }
 
@@ -99,8 +103,8 @@ height: 2px;
 `
     return(
         <>
-                    <FooterContainer>
-        <footer id="footer-page" className="container-fluid bg-page-primary">
+                    <FooterContainer fixed="bottom" >
+        <footer fixed="bottom"id="footer-page" className="container-fluid bg-page-primary">
                         <div className="row d-lg-flex justify-content-around align-items-center bg-page-primary py-4">
                             <div className="col-md-5 col-lg-3 order-0 d-flex justify-content-center">
                                 <img src={image02} className="image02"/>
@@ -108,17 +112,23 @@ height: 2px;
                             <div className="logo01 w-100 order-1 bg-page-persianRed my-4 d-md-none"></div>
                             <div className="logo02 w-100 order-3 bg-page-persianRed my-4 d-lg-none"></div>
                             <div className="redes d-flex order-4 order-lg-2 justify-content-around align-items-center col-lg-3">
+<<<<<<< HEAD
                                 <Link to="/*" className="fb"><BsFacebook/></Link>
                                 <Link to="/*" className="inst"><BsInstagram/></Link>
                                 <Link to="/*" className="gl"><BsGoogle/></Link> 
+=======
+                            <Link to="/*" className="fb"><BsFacebook className="stylemedia" /></Link>
+                            <Link to="/*" className="inst"><BsInstagram className="stylemedia" /></Link>
+                            <Link to="/*" className="gl"><BsGoogle className="stylemedia" /></Link> 
+>>>>>>> bb42b82742f077b60a5efb7ed33bc3823327575a
                             </div>
                             <div className=" w-100 order-5 bg-page-persianRed mt-4 mb-2 d-lg-none"></div>
                             <div className="text01 col-md-5 col-lg-3 order-2 order-lg-3 flex-column">
-                                <p className="text-general-page fs-5 text-center text-lg-end"><Link to="/*">CONTÀCTANOS</Link></p>
+                                <p className="text-general-page fs-5 text-center text-lg-end"><Link to="/*">CONTÁCTANOS</Link></p>
                             </div>
                         </div>
                         <div className="container-copyright">
-                                <p>Copyright 2022 - Todos los derechos reservados ADMINLINK.</p>
+                                <p>Copyright 2022 - Todos los derechos reservados ADMINCLICK.</p>
                     </div>
                 </footer>
                     </FooterContainer> 

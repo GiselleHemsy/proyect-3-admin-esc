@@ -9,7 +9,8 @@ import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import "../src/index.css"
 import { UserContext } from "../src/context/UserContext";
-
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import { FaPlus, FaTrash, FaUserEdit } from "react-icons/fa";
 
 
 
@@ -48,56 +49,55 @@ const StudentsPage = () => {
     try {
       await axiosBack.delete(`/students/${selected}`);
       getStudents();
+      toast.error("Se ha eliminado un usuario")
     } catch (error) {
-      if(!selected){
-      toast.error("Para continuar selecciona un usuario")}
-      else{
       toast.error("Error, intente nuevamente mas tarde")
-    }}
+    }
     } 
 
 return(
   <>
-    <Container className=" styleContainer pb-4 mb-4">
+    <Container className=" styleContainer pb-4 mb-4 d-flex flex-column align-content-center justify-content-center">
+      <h4 className="text-center mt-3" >ADMINISTRACIÓN DE ESTUDIANTES</h4>
       {
         user.admin?
         <Row>
-        <Col className="d-flex justify-content-end py-2">
-            <GeneralModal buttonText="Agregar" modalTitle="Agregar un usuario"  modalBody={<AddStudentForm  getStudents={getStudents} courses={courses} />} variant="primary" />
-            <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditStudentForm getStudents={getStudents} selected={selected} courses={courses}  />} variant="warning" selected={selected}/>
-            <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<DeleteConfirmation deleteUser={deleteUser}/>} variant="danger" selected={selected} />
+        <Col className=" stylebloquebuttons d-flex justify-content-center py-2">
+            <GeneralModal buttonText={<FaPlus />} modalTitle="Agregar un usuario"  modalBody={<AddStudentForm  getStudents={getStudents} courses={courses} />} variant="success" />
+            <GeneralModal buttonText={<FaUserEdit className="styleicon" />} modalTitle="Editar un usuario"  modalBody={<EditStudentForm getStudents={getStudents} selected={selected} courses={courses}  />} variant="warning" selected={selected}/>
+            <GeneralModal buttonText={<FaTrash/>} modalTitle="Eliminar un usuario"  modalBody={<DeleteConfirmation deleteUser={deleteUser}/>} variant="danger" selected={selected} />
         </Col>
       </Row>
       : null
       }
       <Row>
-        <Col className="styleContainer">
+        <Col className="styleContainer mt-3 d-flex justify-content-center align-items-center">
         {state.length!==0?
-          <Table striped bordered hover className="styleContainer">
-          <thead>
+          <MDBTable  responsive className="styleTabla">
+          <MDBTableHead>
             <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Curso</th>
-              <th>Estado de Cuota</th>
-              <th>Email</th>
+              <th className="stylecelda text-center">ID</th>
+              <th className="stylecelda text-center">Nombre</th>
+              <th className="stylecelda text-center">Apellido</th>
+              <th className="stylecelda text-center">Curso</th>
+              <th className="stylecelda text-center">Cuota</th>
+              <th className="stylecelda text-center">Email</th>
             </tr>
-          </thead>
-          <tbody>
+          </MDBTableHead>
+          <MDBTableBody >
             {state?.map((student, index) => 
               <tr key={index} onClick={()=>setSelected(student.email)} className={selected==student.email? "rowSelected" :""}> 
-                <td>{student.expediente}</td>
-                <td>{student.name}</td>
-                <td>{student.lastname}</td>
-                <td>{student.course.name}</td>
-                <td>{student.cuota?"Al dia":"Debe"}</td>
-                <td>{student.email}</td>
+                <td className="stylecelda text-center">{student.expediente}</td>
+                <td className="stylecelda text-center">{student.name}</td>
+                <td className="stylecelda text-center">{student.lastname}</td>
+                <td className="stylecelda text-center">{student.course.name}</td>
+                <td className="stylecelda text-center">{student.cuota?"Al dia":"Debe"}</td>
+                <td className="stylecelda text-center">{student.email}</td>
               </tr>
             )
             }
-          </tbody>
-          </Table>
+          </MDBTableBody>
+          </MDBTable>
         :
           <div>
             <Spinner animation="border"/>

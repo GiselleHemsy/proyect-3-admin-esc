@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { Button, Form} from "react-bootstrap";
+import {  Button, Form} from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify'
 import axiosBack  from "../../config/axios";
+import { validationAddForm } from "../../helpers/validations";
+import { FaExclamationTriangle } from "react-icons/fa";
+import "../../index.css"
 
 const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
   console.log(selected)    //!Recibe correctamente
-
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
   const [values, setValues] = useState(
     {
       name:"",
@@ -31,7 +35,7 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
 
   const getUserInfo=async()=>{
     try {
-      const {data} = await axiosBack.get(`/students/${selected}`); 
+      const {data} = await axiosBack.get(`/students/email/${selected}`); 
       console.log(data)
       setValues(data.student);
     } catch (error) {
@@ -39,24 +43,48 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
     }
   }
   
-  //query "/students?course=7"
-  //PARAMS /students/7
-        // "/users/"+selected, values
-
-  
-  const handleSubmit =async(e)=>{
-    e.preventDefault();
+  const editStudent =async()=>{
     try {
-      // '/coins/' + selected ,{update:values}
-      console.log(selected);
       await axiosBack.put('/students/',{email: selected, fields:values});
       getStudents();
-      //Uso los datos que devuelve el back para mostrar una confirmacion
+      toast.success(`Los datos del estudiante se actualizaron de forma correcta`);
     } catch (error) {
       {
       toast.error("Error al intentar actualizar los datos, reintente mas tarde")
     }}
   }
+  const handleSubmit =(e) =>{
+    e.preventDefault();
+    setErrors(validationAddForm(values));
+    setSubmitting(true)
+  }
+  useEffect(()=>{
+    if (submitting){
+      if (Object.keys(errors).length === 0) {
+        editStudent();
+        handleClose();
+    }
+    setSubmitting(false);
+    setTimeout(()=>{
+      setErrors({});
+    },3000)
+    }
+  }, [errors])
+
+  // const handleSubmit =async(e)=>{
+  //   e.preventDefault();
+  //   try {
+  //     // '/coins/' + selected ,{update:values}
+  //     console.log(selected);
+  //     await axiosBack.put('/students/',{email: selected, fields:values});
+  //     getStudents();
+  //     toast.success(`Los datos del estudiante se actualizaron de forma correcta`);
+  //     //Uso los datos que devuelve el back para mostrar una confirmacion
+  //   } catch (error) {
+  //     {
+  //     toast.error("Error al intentar actualizar los datos, reintente mas tarde")
+  //   }}
+  // }
 
 
 
@@ -79,10 +107,7 @@ const handleChangeSelected =(e)=>{
     ...values,
     course: selectedCourse
   })};
-// handleChangeSelected
 
-console.log("values:",values);
-// console.log(courses);
   return (
     <>
     <Form onSubmit={handleSubmit}>
@@ -122,16 +147,19 @@ console.log("values:",values);
         )
       }
     </Form.Select>
-      {/* <Form.Group className="mb-3" controlId="userCuota">
-        <Form.Label>Estado de Cuota</Form.Label>
-        <Form.Control type="boolean" name="cuota" value={values.cuota} onChange={handleChange}/>
-      </Form.Group> */}
       <Form.Group className="mb-3" controlId="formCuota">
         <Form.Check name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} type="checkbox" label="Cuota al dia" />
       </Form.Group>
-      <Button variant="success" type="submit" onClick={handleClose}>
+      <Button variant="success" type="submit" >
         Confirmar
       </Button>
+      {
+                  Object.keys(errors).length!==0 && (
+                    Object.values(errors).map(error=>
+                      <p className="errorStyle mx-1 px-1 "><FaExclamationTriangle /> {error}</p>
+                      )
+                  )
+                }
     </Form>
     <ToastContainer/>
     </>

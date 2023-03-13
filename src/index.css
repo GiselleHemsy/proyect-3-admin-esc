@@ -15,17 +15,62 @@
     cursor: pointer;
     }
 
+*{
+    box-sizing: border-box; 
+}
 body{
     height: 100vh;
-    box-sizing: border-box;
+    width: 100vw;
+    box-sizing: border-box !important;
 }
 
-/* .styleStudentPage{
-    padding-bottom: 200px !important;
-    margin-bottom: 200px !important;
+.styleTabla{
+    width: 70vw !important;
 }
 .styleContainer{
-    margin-bottom:  200px;
-    
-} */
+    width: 100vw !important;
+    box-sizing: border-box !important; 
+    margin: 0;
+    padding: 0;
 
+}
+
+@media screen and (max-width: 992px){
+    .styleTabla{
+        max-width: 60% !important;
+        /* overflow-x: scroll;
+        white-space: nowrap;
+        text-overflow: clip; */
+    }
+    }
+    @media screen and (max-width: 992px){
+        .stylebloquebuttons{
+            width: 50vw !important;
+        }
+        }
+        .errorStyle{
+            font-size: 0.8rem;
+            color: red;
+            margin-left: 0.5rem;
+            padding-top: 5px !important;
+            padding-bottom: 0px !important;
+            margin-top: 5px !important;
+            margin-bottom: 0px !important;
+        }
+        .styleicon{
+            color: white !important;
+            font-size: 1.2rem !important;
+        }
+        .stylecelda{
+            padding:0.1 rem !important;
+        }
+        .autorizcontainer{
+            margin-bottom: 1rem;
+            
+        }
+    @media screen and (max-width: 900px){
+            .autorizcontainer{
+                margin-bottom: 7rem !important;
+                margin-top: 2rem !important;
+            }
+            } 

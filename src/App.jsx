@@ -14,6 +14,9 @@ import AuthorizPage from "../Pages/AuthorizPage";
 import CoursesDetail from '../Pages/CoursesDetail';
 import CoursePage from '/pages/CoursePage'
 import UserProvider from './context/UserContext';
+import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaExclamationTriangle } from "react-icons/fa";
 
 
 
@@ -23,9 +26,10 @@ function App() {
           <UserProvider>
           <NavBar/>
             <Routes>
+            <Route path="/habilitacion" element={<PrivateRoute><AuthorizationPage/></PrivateRoute>}/>
+            <Route path='/ErrorPage' element={<ErrorPage/>}/>
             <Route path="/AuthorizPage" element={<PrivateRoute><AuthorizPage/></PrivateRoute>}/>
             <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
-            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
