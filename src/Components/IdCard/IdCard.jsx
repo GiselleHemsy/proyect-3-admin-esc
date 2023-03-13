@@ -10,8 +10,16 @@ import axiosBack from "../../config/axios"
 
 
 function IdCard({name,lastname,cel,dni,adress,courses,state,id,getUsers}){
+    const [cursos, setCursos] = useState([])
     
-    
+    const getCourses = async()=>{
+        try {
+            const {data }= await axiosBack.get("/course");
+            setCursos(data.courses); 
+        } catch (error) {
+            toast.error("error al traer los cursos")
+        }
+    }
 
     const deleteUser = async(id)=>{
         try {
@@ -21,29 +29,36 @@ function IdCard({name,lastname,cel,dni,adress,courses,state,id,getUsers}){
             toast.error('no se pudo borrar al usuario')
         }
     }
+    useEffect(()=>{
+        
+    getCourses();
+    },[])
     return (
-        <div className="card ">
+    
+            <div className="card">
                 <div className="image-content">
                     <span className="overlay"></span>
-                    <div className="card-image">
-                        <img src={image01} alt="" className="card-img"/>
-                    </div>
+                        <div className="card-image">
+                            <img src={image01} alt="" className="card-img"/>
+                        </div>
+                </div>
+                <div className="name">
+                    <h4 className="lastname">{lastname}</h4>
+                    <h4 className="name">{name}</h4>
                 </div>
                 <div className="card-content">
-                    <h2 className="lastname">{lastname}</h2>
-                    <h3 className="name">{name}</h3>
-                    <h3 className="cel">{cel}</h3>
-                    <h3 className="dni">{dni}</h3>
-                    <h3 className="adress">{adress}</h3>
-                    <h3 className="courses">{courses}</h3>
-                    <h3 className="state">{state}</h3>
+                    <p className="cel"> Cel: {cel}</p>
+                    <p className="dni"> ID: {dni}</p>
+                    <p className="adress"> Dir.: {adress}</p>
+                    <p className="courses"> Curso a Cargo: {courses}</p>
+                    <p className="state"> Estado: {state}</p>
                     <div className="button">
-                    <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditTeachersForm getUsers={getUsers} id={id}/>} variant="primary"/>
+                    <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditTeachersForm getUsers={getUsers} id={id} cursos={cursos}/>} variant="primary"/>
                     <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<TeacherDeleteConfirmation deleteUser={()=>deleteUser(id)}/>} variant="primary"/>
                     </div>
                 </div>  
             </div>
-)
+            )
 }
 
 export default IdCard
