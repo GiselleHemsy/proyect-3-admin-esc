@@ -18,7 +18,7 @@ const CoursesDetail = () => {
   const [editCourse, setEditCourse] = useState(false);
   const [deleteCourse, setDeleteCourse] = useState(false);
   const [isDeleted,setIsDeleted] = useState(false);
-  // const {user} = useContext(UserContext);
+  const {user} = useContext(UserContext);
 
 
   const getCourses =async()=>{
@@ -82,8 +82,8 @@ const CoursesDetail = () => {
   return (
     <Container>
     <Container>
-    {/* {
-        user.admin? */}
+    {
+        user.admin? 
       <Row>
         <Col>
             <h1>CURSOS</h1>
@@ -94,8 +94,8 @@ const CoursesDetail = () => {
             <Button variant="outline-danger" onClick={handleDeleteCourse}>Eliminar</Button>
         </Col>
       </Row>
-       {/* : null
-      } */}
+        : null
+      } 
       <Row>
         <Col>
           {courses?.map((course, index)=> 
