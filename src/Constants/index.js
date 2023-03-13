@@ -1,3 +1,15 @@
+export const EDIT_TEACH_USER_VALUES = {
+        name:"",
+        lastname:"",
+        dni:"",
+        email:"",
+        cel:"",
+        admin:"",
+        password:"",
+}
+
+// name, lastname, dni, email, cel, admin, password
+
 export const ADD_TEACH_USER_VALUES = {
         name:"",
         lastname:"",
@@ -5,7 +17,9 @@ export const ADD_TEACH_USER_VALUES = {
         email:"",
         password:"",
         cel:"",
-        admin:"",
-        // course:"",
-        // income:"",
+        course:"",
+        state:true,
+        adress:"",
+        admin:false,
+        income:"",
 }
