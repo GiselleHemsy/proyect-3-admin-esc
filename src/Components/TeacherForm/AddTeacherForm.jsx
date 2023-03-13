@@ -18,7 +18,8 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
       const handleChangeCheckBox =(e)=>{
         setValues({
           ...values,
-          admin: e.target.checked
+          admin: e.target.checked,
+          state: e.target.checked
         });
       }
       const handleSubmit =async(e)=>{
@@ -61,10 +62,10 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
             <Form.Label>direccion</Form.Label>
             <Form.Control type="text" name="adress" value={values.adress} onChange={handleChange}/>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formState">
+          {/* <Form.Group className="mb-3" controlId="formState">
             <Form.Label>estado</Form.Label>
             <Form.Control type="text" name="state" value={values.state} onChange={handleChange}/>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formIcome">
             <Form.Label>fecha de ingreso</Form.Label>
             <Form.Control type="date" name="income" value={values.income} onChange={handleChange}/>
@@ -81,6 +82,9 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
             <Form.Label>password</Form.Label>
             <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
           </Form.Group>
+          <Form.Group className="mb-3" controlId="formState">
+        <Form.Check name="Habilitado" checked={values.state} onChange={handleChangeCheckBox} type="checkbox" label="habilitado" />
+      </Form.Group>
           <Form.Group className="mb-3" controlId="formAdmin">
         <Form.Check name="admin" checked={values.admin} onChange={handleChangeCheckBox} type="checkbox" label="admin" />
       </Form.Group>

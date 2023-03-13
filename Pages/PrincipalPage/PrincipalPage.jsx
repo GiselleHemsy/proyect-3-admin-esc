@@ -48,7 +48,7 @@ return(
                     <Row className='row'>
                         {state.map((per,index) => (
                         <Col className='col d-flex justify-content-center align-intems-center g-3'>
-                        <IdCard getUsers={getUsers} cursos={cursos} className="idcard" key={index} name={per.name} lastname={per.lastname} dni={per.dni} cel={per.cel} adress={per.adress} courses={per.courses} state={per.state} id={per._id}/>
+                        <IdCard getUsers={getUsers} cursos={cursos} className="idcard" key={index} name={per.name} lastname={per.lastname} dni={per.dni} cel={per.cel} adress={per.adress} courses={per.courses} state={per.state?"habilitado":"desabilitado"} id={per._id}/>
                         </Col>
                         ))}
                     </Row>
