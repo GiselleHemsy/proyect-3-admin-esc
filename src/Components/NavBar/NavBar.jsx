@@ -21,19 +21,11 @@ function NavBar () {
 
 return ( 
 
-<<<<<<< HEAD
-        <NavContainer>
-            <Navbar className="navbar" expand="lg">
-                <Container>
-                    {pathname === '/LoginPage' ?
-            (
-=======
 <NavContainer>
         <Navbar className="navbar text-light styleNuevonav" expand="lg">
             <Container>
                 {pathname === '/LoginPage' ?
 (
->>>>>>> bb42b82742f077b60a5efb7ed33bc3823327575a
             <Navbar.Brand>
                 <div className="logo d-flex text-light">
                     <img src={image02} className="image02"/>
@@ -73,22 +65,14 @@ return (
 
 
 const NavContainer = styled.nav`
-<<<<<<< HEAD
-
-=======
 width: 100vw;
->>>>>>> bb42b82742f077b60a5efb7ed33bc3823327575a
 .font{
     color: #f8f8f8;
 }
 .navbar{
     
     background-color: #4897b1;
-<<<<<<< HEAD
-    
-=======
     width: 100vw;
->>>>>>> bb42b82742f077b60a5efb7ed33bc3823327575a
 }
 .logo{
     margin-right: 5rem;

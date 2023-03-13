@@ -10,13 +10,13 @@ import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
-import AuthorizPage from "../Pages/AuthorizPage";
+// import AuthorizPage from "../Pages/AuthorizPage";
 import CoursesDetail from '../Pages/CoursesDetail';
 import CoursePage from '/pages/CoursePage'
 import UserProvider from './context/UserContext';
 import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FaExclamationTriangle } from "react-icons/fa";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { FaExclamationTriangle } from "react-icons/fa";
 
 
 
@@ -28,7 +28,7 @@ function App() {
             <Routes>
             <Route path="/habilitacion" element={<PrivateRoute><AuthorizationPage/></PrivateRoute>}/>
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
-            <Route path="/AuthorizPage" element={<PrivateRoute><AuthorizPage/></PrivateRoute>}/>
+            {/* <Route path="/AuthorizPage" element={<PrivateRoute><AuthorizPage/></PrivateRoute>}/> */}
             <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
