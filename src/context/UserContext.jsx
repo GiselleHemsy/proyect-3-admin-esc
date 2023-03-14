@@ -9,14 +9,11 @@ const UserProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated]=useState(false);
   const [loading, setLoading] = useState(true);
-
-  
   const navigate = useNavigate();
-  
+
   const login= async(values)=>{
     try {
-      // e.preventDefault();
-      // if(values.habilitado){ //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
+      // if(user.state){ //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
 
         const {data}= await axiosBack.post("/users/login", values);
         setAuthenticated(!!data.user);
@@ -26,8 +23,10 @@ const UserProvider = ({children}) => {
       // } //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
    
     } catch (error) {
-      toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");
-      // setBackErrors(true)
+      console.log(error);
+      if (error.response.status===401) {toast.error("Ups! No tenes permisos")}
+      else{
+      toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");}
     }
   }
 

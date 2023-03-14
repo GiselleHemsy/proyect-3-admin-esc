@@ -64,13 +64,12 @@ body{
         .stylecelda{
             padding:0.1 rem !important;
         }
-        .autorizcontainer{
-            margin-bottom: 1rem;
+        /* .autorizcontainer{
             
-        }
+        } */
     @media screen and (max-width: 900px){
             .autorizcontainer{
-                margin-bottom: 7rem !important;
+                margin-bottom: 6rem !important;
                 margin-top: 2rem !important;
             }
             } 

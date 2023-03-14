@@ -9,8 +9,6 @@ import './index.css'
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
-import Home from '../Pages/Home';
-// import AuthorizPage from "../Pages/AuthorizPage";
 import CoursesDetail from '../Pages/CoursesDetail/CoursesDetail';
 import UserProvider from './context/UserContext';
 import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
@@ -27,13 +25,11 @@ function App() {
             <Routes>
             <Route path="/habilitacion" element={<PrivateRoute><AuthorizationPage/></PrivateRoute>}/>
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
-            {/* <Route path="/AuthorizPage" element={<PrivateRoute><AuthorizPage/></PrivateRoute>}/> */}
             <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
             <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>git 
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
-            <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>
             <Footer/>
           </UserProvider>
