@@ -23,8 +23,10 @@ const UserProvider = ({children}) => {
       // } //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
    
     } catch (error) {
-      toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");
-      // setBackErrors(true)
+      console.log(error);
+      if (error.response.status===401) {toast.error("Ups! No tenes permisos")}
+      else{
+      toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");}
     }
   }
 

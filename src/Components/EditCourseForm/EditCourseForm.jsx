@@ -6,7 +6,7 @@ import axiosBack  from "../../config/axios";
 
 
 
-const EditCourseForm = ({getCourses, courses}) => {
+const EditCourseForm = ({getCourses, courses,handleEditCourse}) => {
     const [values, setValues] = useState(
         {
           name:"",
@@ -27,6 +27,7 @@ const EditCourseForm = ({getCourses, courses}) => {
         try {
           await axiosBack.put("/course/",{courseId: values.course, fields:{name: values.name}} );
           getCourses();
+          handleEditCourse()
         } catch (error) {
           toast.error("Error, intente nuevamente mas tarde")
         }}
@@ -50,7 +51,7 @@ const EditCourseForm = ({getCourses, courses}) => {
         <Form.Label>Ingrese el nuevo nombre</Form.Label>
         <Form.Control type="text"  name="name" value={values.name} onChange={handleChange}/>
       </Form.Group>
-      <Button  variant="success" type="submit" >
+      <Button  variant="warning" type="submit" >
         Editar curso
       </Button>
     {/* <ToastContainer/> */}

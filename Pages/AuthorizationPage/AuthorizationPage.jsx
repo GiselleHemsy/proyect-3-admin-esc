@@ -9,21 +9,7 @@ import { UserContext } from "../../src/context/UserContext";
 
 const AuthorizationPage = () => {
   const {user} = useContext(UserContext)
-  const [values, setValues] = useState(
-    {
-      name:"",
-      lastname:"",
-      dni:"",
-      email:"",
-      password:"",
-      cel:"",
-      course:"",
-      state:"",
-      adress:"",
-      admin:false,
-      income:"",
-}
-    );
+  
   const [users, setUsers] = useState([]);
   const [selected, setSelected] = useState("");
   const navigate = useNavigate();
@@ -45,26 +31,16 @@ const AuthorizationPage = () => {
 
 
   //*funcion para manipular el checkbok
-  const handleChangeCheckBox =(e)=>{
-    setValues({
-      ...values,
-      state: e.target.checked
-    });
+  const handleChangeCheckBox =async(id, state)=>{
+    try {
+          await axiosBack.put("/users",{id,fields:{state:!state}} );
+              getUsers();
+          } catch (error) {
+              toast.error("Error en la deshabilitación, reintente")
+          }
   }
 
-  //*funcion para enviar modificaciones
-//   const handleSubmit =async(e)=>{
-//     e.preventDefault();
-//     try {
-//         await axiosBack.put("/users",{id,fields:values} );
-//         getUsers();
-//     } catch (error) {
-//         if(!id){
-//         toast.error("Para continuar selecciona un usuario")}
-//         else{
-//         toast.error("Error en la deshabilitación, reintente")
-//     }}
-// }
+
   
 
   return (
@@ -87,15 +63,13 @@ const AuthorizationPage = () => {
                 {users?.map((x, index) => (
                   <tr
                     key={index}
-                    onClick={()=>setSelected(x._id)}
-                    className={selected==x._id? "rowSelected" :""}
                   >
                     <td className="stylecelda text-center p-1">{x.name}</td>
                     <td className="stylecelda text-center p-1">{x.lastname}</td>
                     <td className="stylecelda text-center p-1">{x.dni}</td>
                     <td className="stylecelda text-center p-1">
                       <Form.Group className=" d-flex justify-content-center" controlId="habilitadocheck">
-                        <Form.Check name="state" checked={x.state}  type="checkbox" onChange={handleChangeCheckBox}/>
+                        <Form.Check name="state" checked={x.state}  type="checkbox" onChange={()=>{handleChangeCheckBox(x._id, x.state)}}/>
                       </Form.Group></td>
                     {/* <td className="stylecelda text-center">{x.state?
                     <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
