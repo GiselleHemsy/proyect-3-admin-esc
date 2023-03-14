@@ -9,7 +9,7 @@ import axiosBack from "../../config/axios"
 
 
 
-function IdCard({name,lastname,cel,dni,adress,courses,state,id,getUsers}){
+function IdCard({name,lastname,cel,dni,adress,course,state,id,getUsers}){
     const [cursos, setCursos] = useState([])
     
     const getCourses = async()=>{
@@ -50,14 +50,18 @@ function IdCard({name,lastname,cel,dni,adress,courses,state,id,getUsers}){
                     <p className="cel"> Cel: {cel}</p>
                     <p className="dni"> ID: {dni}</p>
                     <p className="adress"> Dir.: {adress}</p>
-                    <p className="courses"> Curso a Cargo: {courses}</p>
+                    <p className="courses"> Curso a Cargo: {course}</p>
                     <p className="state"> Estado: {state}</p>
+                    {/* {
+                        user.admin? */}
                     <div className="button">
                     <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditTeachersForm getUsers={getUsers} id={id} cursos={cursos}/>} variant="primary"/>
                     <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<TeacherDeleteConfirmation deleteUser={()=>deleteUser(id)}/>} variant="primary"/>
                     </div>
+                    {/* : null
+                } */}
                 </div>  
-            </div>
+                </div>
             )
 }
 
