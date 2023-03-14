@@ -114,7 +114,7 @@ height: 2px;
                             <div className="redes d-flex order-4 order-lg-2 justify-content-around align-items-center col-lg-3">
                             <Link to="/*" className="fb"><BsFacebook className="stylemedia" /></Link>
                             <Link to="/*" className="inst"><BsInstagram className="stylemedia" /></Link>
-                            {/* <Link to="/*" className="gl"><BsGoogle className="stylemedia" /></Link>  */}
+                            <Link to="/*" className="gl"><BsGoogle className="stylemedia" /></Link> 
                             </div>
                             <div className=" w-100 order-5 bg-page-persianRed mt-4 mb-2 d-lg-none"></div>
                             <div className="text01 col-md-5 col-lg-3 order-2 order-lg-3 flex-column">
