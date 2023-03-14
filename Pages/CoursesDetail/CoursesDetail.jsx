@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState} from 'react';
 import {Container,Row,Col, Table, Button} from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import AddCourseForm from '../src/components/AddCourseForm/AddCourseForm';
-import DeleteCourseForm from '../src/components/DeleteCourseForm/DeleteCoursesForm';
-import EditCourseForm from '../src/components/EditCourseForm/EditCourseForm';
-import axiosBack from "../src/config/axios";
-import { UserContext } from "../src/context/UserContext";
+import AddCourseForm from '../../src/components/AddCourseForm/AddCourseForm';
+import DeleteCourseForm from '../../src/components/DeleteCourseForm/DeleteCoursesForm';
+import EditCourseForm from '../../src/components/EditCourseForm/EditCourseForm';
+import axiosBack from "../../src/config/axios";
+import { UserContext } from "../../src/context/UserContext";
+import { FaPlus, FaTrash, FaUserEdit } from "react-icons/fa";
+import Buttonmu from '@mui/material/Button';
+import "../CoursesDetail/CoursesDetail.css"
 
 
 const CoursesDetail = () => {
@@ -72,26 +75,25 @@ const CoursesDetail = () => {
   },[isDeleted])
   
   useEffect(()=>{
+    if (selected){
     getStudentsForCourse();
     getSubjectsByCourse();
     getTeacherByCourse();
-    
+    }
   },[selected])
 
    
   return (
     <Container>
     <Container>
+      <h4 className="text-center mt-3">CURSOS</h4>
     {
         user.admin? 
       <Row>
-        <Col>
-            <h1>CURSOS</h1>
-        </Col>
-        <Col>
-            <Button variant="outline-success" onClick={handleAddCourse}>Agregar</Button>
-            <Button variant="outline-warning" onClick={handleEditCourse}>Editar</Button>
-            <Button variant="outline-danger" onClick={handleDeleteCourse}>Eliminar</Button>
+        <Col className=" stylebloquebuttons d-flex justify-content-center py-2 ">
+            <Button className="mx-1" variant="success" onClick={handleAddCourse}>{<FaPlus />}</Button>
+            <Button className="mx-1" variant="warning" onClick={handleEditCourse}>{<FaUserEdit className="styleicon" />}</Button>
+            <Button className="mx-1" variant="danger" onClick={handleDeleteCourse}>{<FaTrash/>}</Button>
         </Col>
       </Row>
         : null
@@ -99,7 +101,7 @@ const CoursesDetail = () => {
       <Row>
         <Col>
           {courses?.map((course, index)=> 
-              <button key={index} onClick={()=>{setSelected(course._id)}}> {course.name}</button>
+              <Buttonmu className="buttoncourse mx-1 my-1 p-0" variant="contained" key={index} onClick={()=>{setSelected(course._id)}}> {course.name}</Buttonmu>
               )}
         </Col>
       </Row>
@@ -134,10 +136,9 @@ const CoursesDetail = () => {
       
     <Table striped bordered hover>
       <thead>
-        <tr>
-          <th>
-          ALUMNOS
-          </th>
+        <tr className="title" >
+          <td colSpan="2">ALUMNOS</td>
+          
         </tr>
         <tr>
           <th>Nombre</th>
@@ -156,8 +157,8 @@ const CoursesDetail = () => {
        
   <Table striped bordered hover>
   <thead>
-    <tr>
-      MATERIAS
+    <tr className="title">
+     <td colSpan="2">MATERIAS</td> 
     </tr>
     <tr>
       <th>Nombre</th>
@@ -172,8 +173,8 @@ const CoursesDetail = () => {
 </Table> 
 <Table striped bordered hover>
   <thead>
-    <tr>
-      PROFESOR A CARGO
+    <tr className="title">
+    <td colSpan="2"> PROFESOR A CARGO</td> 
     </tr>
     <tr>
       <th>Nombre</th>

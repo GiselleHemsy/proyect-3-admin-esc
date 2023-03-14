@@ -11,7 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
 // import AuthorizPage from "../Pages/AuthorizPage";
-import CoursesDetail from '../Pages/CoursesDetail';
+import CoursesDetail from '../Pages/CoursesDetail/CoursesDetail';
 import UserProvider from './context/UserContext';
 import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
