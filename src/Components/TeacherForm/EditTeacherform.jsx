@@ -14,6 +14,11 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
       setValues({
         ...values,
         admin: e.target.checked,
+      });
+    }
+    const handleChangeCheckBox02 =(e)=>{
+      setValues({
+        ...values,
         state: e.target.checked
       });
     }
@@ -42,13 +47,13 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
 }
 const handleChangeSelected =(e)=>{
   // console.log("cambiando el selected")
-}
-//   const selectedCourse = cursos.find(x=>x._id===e.target.value)
-//   console.log("e.target.value::::::::", e.target.value);
-//   setValues({
-//     ...values,
-//     course: selectedCourse
-  // })};
+// }
+  const selectedCourse = cursos.find(x=>x._id===e.target.value)
+  console.log("e.target.value::::::::", e.target.value);
+  setValues({
+    ...values,
+    course: selectedCourse
+  })};
 
     const handleSubmit =async(e)=>{
     e.preventDefault();
@@ -100,8 +105,8 @@ useEffect(()=>{
             <Form.Label>fecha de ingreso</Form.Label>
             <Form.Control type="date" name="income" value={values.income} onChange={handleChange}/>
           </Form.Group>
-          <Form.Select className="my-2" aria-label="Default select example"  value={"1"} onChange={handleChangeSelected} name="course"  >
-      <option>Seleccione el Año de Cursado</option>
+          <Form.Select className="my-2" aria-label="Default select example" id={id} cursos={cursos} value={values.course} onChange={handleChangeSelected} name="course"  >
+      
       {
         cursos.map((course)=>
         
@@ -116,7 +121,7 @@ useEffect(()=>{
             <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formState">
-        <Form.Check name="state" checked={values.state} onChange={handleChangeCheckBox} type="checkbox" label="habilitado" />
+        <Form.Check name="state" checked={values.state} onChange={handleChangeCheckBox02} type="checkbox" label="habilitado" />
       </Form.Group>
           <Form.Group className="mb-3" controlId="formAdmin">
         <Form.Check name="admin" checked={values.admin} onChange={handleChangeCheckBox} type="checkbox" label="admin" />

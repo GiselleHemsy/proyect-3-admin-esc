@@ -8,6 +8,8 @@ import { ADD_TEACH_USER_VALUES } from '../../Constants';
 
 const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
     
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
         const [values, setValues] = useState(ADD_TEACH_USER_VALUES);
       const handleChange =(e)=>{
         setValues({
@@ -19,20 +21,33 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
         setValues({
           ...values,
           admin: e.target.checked,
+        });
+        
+      }
+      const handleChangeCheckBox02 =(e)=>{
+        setValues({
+          ...values,
           state: e.target.checked
         });
+        
       }
-      const handleSubmit =async(e)=>{
+      const addUser =async()=>{
         console.log("funcion agregando usuario")
         e.preventDefault();
         try {
           const userCreated = await axiosBack.post("/users", values);
+          console.log(userCreated)
           getUsers();
-          toast.done("Usuario Creado")
+          toast.succes("Usuario Creado")
           
         } catch (error) {
           toast.error("Error en el agregado de un usuario")
         }
+      }
+      const handleSubmit =(e) =>{
+        e.preventDefault();
+        setErrors(validationAddUserForm(values));
+        setSubmitting(true)
       }
     console.log(cursos)
     
@@ -62,10 +77,6 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
             <Form.Label>direccion</Form.Label>
             <Form.Control type="text" name="adress" value={values.adress} onChange={handleChange}/>
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="formState">
-            <Form.Label>estado</Form.Label>
-            <Form.Control type="text" name="state" value={values.state} onChange={handleChange}/>
-          </Form.Group> */}
           <Form.Group className="mb-3" controlId="formIcome">
             <Form.Label>fecha de ingreso</Form.Label>
             <Form.Control type="date" name="income" value={values.income} onChange={handleChange}/>
@@ -83,7 +94,7 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
             <Form.Control type="password" name="password" value={values.password} onChange={handleChange}/>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formState">
-        <Form.Check name="Habilitado" checked={values.state} onChange={handleChangeCheckBox} type="checkbox" label="habilitado" />
+        <Form.Check name="Habilitado" checked={values.state} onChange={handleChangeCheckBox02} type="checkbox" label="habilitado" />
       </Form.Group>
           <Form.Group className="mb-3" controlId="formAdmin">
         <Form.Check name="admin" checked={values.admin} onChange={handleChangeCheckBox} type="checkbox" label="admin" />

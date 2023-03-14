@@ -40,15 +40,19 @@ const getCourses = async()=>{
 
 return(  
     <>
-        <div className='contenedor'>
+        <div className='contenedor'>    
+        {/* {
+        user.admin? */}
             <div className='buttonCreate col-12 d-flex justify-content-center align-items-center'>
                     <GeneralModal buttonText="AGREGAR USUARIO" modalTitle="Agregar un usuario" modalBody={<AddTeacherForm getUsers={getUsers} cursos={cursos}/>} variant="primary"/>
             </div>
+            {/* : null
+        } */}
             <div className="cards">
                     <Row className='row'>
                         {state.map((per,index) => (
                         <Col className='col d-flex justify-content-center align-intems-center g-3'>
-                        <IdCard getUsers={getUsers} cursos={cursos} className="idcard" key={index} name={per.name} lastname={per.lastname} dni={per.dni} cel={per.cel} adress={per.adress} courses={per.courses} state={per.state?"habilitado":"desabilitado"} id={per._id}/>
+                        <IdCard getUsers={getUsers} className="idcard" key={index} name={per.name} lastname={per.lastname} dni={per.dni} cel={per.cel} adress={per.adress} course={per?.course?.name} state={per.state?"habilitado":"desabilitado"} id={per._id}/>
                         </Col>
                         ))}
                     </Row>
