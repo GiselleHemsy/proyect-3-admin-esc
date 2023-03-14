@@ -9,14 +9,11 @@ const UserProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [authenticated, setAuthenticated]=useState(false);
   const [loading, setLoading] = useState(true);
-
-  
   const navigate = useNavigate();
-  
+
   const login= async(values)=>{
     try {
-      // e.preventDefault();
-      // if(values.habilitado){ //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
+      // if(user.state){ //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
 
         const {data}= await axiosBack.post("/users/login", values);
         setAuthenticated(!!data.user);

@@ -3,28 +3,48 @@ import { Col, Container, Form, Row, Spinner, Table } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosBack from "../../src/config/axios";
-import { UserContext } from "../../src/context/UserContext";
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import "../../src/index.css"
+import { UserContext } from "../../src/context/UserContext";
 
 const AuthorizationPage = () => {
-  const [state, setState] = useState([]);
+  const {user} = useContext(UserContext)
+  const [values, setValues] = useState(
+    {
+      name:"",
+      lastname:"",
+      dni:"",
+      email:"",
+      password:"",
+      cel:"",
+      course:"",
+      state:"",
+      adress:"",
+      admin:false,
+      income:"",
+}
+    );
+  const [users, setUsers] = useState([]);
   const [selected, setSelected] = useState("");
-  const {user} = useContext(UserContext);
   const navigate = useNavigate();
+
+  //* funcion para traer los usuarios
   const getUsers = async () => {
     try {
       const { data } = await axiosBack.get("/users");
-      setState(data.users);
+      setUsers(data.users);
     } catch (error) {
       toast.error(error.message);
     }
   };
+  //*Cuando cargo el componente traigo los users
   useEffect(() => {
     getUsers();
   }, []);
-  console.log(selected);
 
+
+
+  //*funcion para manipular el checkbok
   const handleChangeCheckBox =(e)=>{
     setValues({
       ...values,
@@ -32,18 +52,28 @@ const AuthorizationPage = () => {
     });
   }
 
-
-  const handleCheck =()=>{
-    console.log("funcion para habilitar o deshabilitar");
-  }
+  //*funcion para enviar modificaciones
+//   const handleSubmit =async(e)=>{
+//     e.preventDefault();
+//     try {
+//         await axiosBack.put("/users",{id,fields:values} );
+//         getUsers();
+//     } catch (error) {
+//         if(!id){
+//         toast.error("Para continuar selecciona un usuario")}
+//         else{
+//         toast.error("Error en la deshabilitación, reintente")
+//     }}
+// }
+  
 
   return (
     <>
-
+    {user?.admin?
     <Container className=" autorizcontainer ">
       <Row>
         <Col className="styleContainer">
-          {state.length !== 0 ? (
+          {users.length !== 0 ? (
             <MDBTable  responsive className="">
               <MDBTableHead>
                 <tr>
@@ -54,24 +84,30 @@ const AuthorizationPage = () => {
                 </tr>
               </MDBTableHead>
               <MDBTableBody>
-                {state?.map((x, index) => (
+                {users?.map((x, index) => (
                   <tr
                     key={index}
-                    onClick={()=>setSelected(x.dni)}
-                    className={selected==x.dni? "rowSelected" :""}
+                    onClick={()=>setSelected(x._id)}
+                    className={selected==x._id? "rowSelected" :""}
                   >
                     <td className="stylecelda text-center p-1">{x.name}</td>
                     <td className="stylecelda text-center p-1">{x.lastname}</td>
                     <td className="stylecelda text-center p-1">{x.dni}</td>
-                    <td className="stylecelda text-center">{x.state?
+                    <td className="stylecelda text-center p-1">
+                      <Form.Group className=" d-flex justify-content-center" controlId="habilitadocheck">
+                        <Form.Check name="state" checked={x.state}  type="checkbox" onChange={handleChangeCheckBox}/>
+                      </Form.Group></td>
+                    {/* <td className="stylecelda text-center">{x.state?
                     <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
-                      <Form.Check name="state" checked={x.state}  type="checkbox"  />
+                      <Form.Check name="state" checked={x.state}  type="checkbox" onChange={handleChangeCheckBox}/>
                     </Form.Group>
                     :
+                    // checked={values.cuota} onChange={handleChangeCheckBox} 
                     <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
-                      <Form.Check name="state" checked={x.state}  type="checkbox"  />
+                      <Form.Check name="state" checked={x.state} type="checkbox"  onChange={handleChangeCheckBox} />
                     </Form.Group>}
-                    </td>
+                    </td> */}
+                    {/* name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} */}
                   </tr>
                 ))}
               </MDBTableBody>
@@ -84,7 +120,9 @@ const AuthorizationPage = () => {
         </Col>
       </Row>
     </Container>
-                      </>
+    :
+    navigate("/PrincipalPage")}
+  </>
   );
 };
 
