@@ -13,15 +13,11 @@ const UserProvider = ({children}) => {
 
   const login= async(values)=>{
     try {
-      // if(user.state){ //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
-
         const {data}= await axiosBack.post("/users/login", values);
         setAuthenticated(!!data.user);
         setUser(data.user);
         localStorage.setItem("token", data.token);
         toast.success("Ingreso correcto");  
-      // } //! HABILITAR CUANDO TENGA FUNCIONALIDAD EL HABILITADO
-   
     } catch (error) {
       console.log(error);
       if (error.response.status===401) {toast.error("Ups! No tenes permisos")}
