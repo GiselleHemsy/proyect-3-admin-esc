@@ -45,9 +45,12 @@ return(
         <div className='contenedor'>    
         {
         user?.admin?
+        <>
+        <h4 className="text-center mt-3" >PERSONAL ADMINISTRATIVO Y PROFESORES</h4>
             <div className='buttonCreate col-12 d-flex justify-content-center align-items-center'>
                 <GeneralModal buttonText="AGREGAR USUARIO" modalTitle="Agregar un usuario" modalBody={<AddTeacherForm getUsers={getUsers} cursos={cursos}/>} variant="primary"/>
             </div>
+        </>
             : null
         } 
             <div className="cards">

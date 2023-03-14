@@ -1,5 +1,4 @@
 
-
 .h1Container{
     justify-content: center;
     align-items: center;
@@ -30,9 +29,12 @@ body{
 .styleContainer{
     width: 100vw !important;
     box-sizing: border-box !important; 
-    margin: 0;
+    margin-top: 0;
     padding: 0;
 
+}
+table{
+    margin-top: 75px;
 }
 
 @media screen and (max-width: 992px){

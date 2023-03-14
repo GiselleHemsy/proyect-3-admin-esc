@@ -52,7 +52,7 @@ return (
                 <Nav.Link href="/StudentsPage" className="text-light" >ALUMNOS</Nav.Link>
                 <Nav.Link href="/CoursesDetail" className="text-light" >CURSOS</Nav.Link>
                 
-                <Buttonmu onClick={logout} className="text-light" variant="text"  >LOGOUT</Buttonmu>
+                <Buttonmu onClick={logout} className="text-light" variant="text">CERRAR SESION</Buttonmu>
             </Nav>
             </Navbar.Collapse>
         </>
@@ -65,6 +65,7 @@ return (
 
 
 const NavContainer = styled.nav`
+
 width: 100vw;
 .font{
     color: #f8f8f8;

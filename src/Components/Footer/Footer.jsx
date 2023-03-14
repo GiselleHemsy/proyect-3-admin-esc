@@ -9,6 +9,9 @@ import image02 from "../img/click.png";
 
 const Footer = () => {
     const FooterContainer = styled.div`
+    footer{
+    margin-top: 150px;
+    }
     .stylemedia{
         font-size: 1.6rem;
     }
