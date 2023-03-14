@@ -3,26 +3,38 @@ import { Button, Form} from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import axiosBack  from "../../config/axios";
 import { EDIT_TEACH_USER_VALUES } from "../../Constants";
+import { validationAddForm } from "../../helpers/validations";
+import { FaExclamationTriangle } from "react-icons/fa";
+import "../../index.css"
 
 const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
   console.log(cursos)
-
-    const [values, setValues] = useState(EDIT_TEACH_USER_VALUES);
-    // const [cursos, setCursos] = useState([])
-    
-    const handleChangeCheckBox =(e)=>{
-      setValues({
-        ...values,
-        admin: e.target.checked,
-      });
-    }
-    const handleChangeCheckBox02 =(e)=>{
+  const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [values, setValues] = useState(EDIT_TEACH_USER_VALUES);
+  
+  const handleChange =(e)=>{
+  setValues({
+      ...values,
+      [e.target.name]: e.target.value
+  });
+  }
+  
+  const handleChangeCheckBox =(e)=>{
+    setValues({
+      ...values,
+      admin: e.target.checked,
+    });
+  }
+  
+  const handleChangeCheckBox02 =(e)=>{
       setValues({
         ...values,
         state: e.target.checked
       });
     }
-    const getUserInfo=async()=>{
+  
+  const getUserInfo=async()=>{
       try {
         const {data} = await axiosBack.get(`/users?single=true&id=${id}`);
         console.log(data)
@@ -31,34 +43,19 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
         toast.error("Error intente nuevamente mas tarde")
       }
     }
-  //   const getCourses = async()=>{
-  //     try {
-  //         const {data }= await axiosBack.get("/course");
-  //         setCursos(data.courses); 
-  //     } catch (error) {
-  //         toast.error("error al traer los cursos")
-  //     }
-  // }
-    const handleChange =(e)=>{
+    
+    const handleChangeSelected =(e)=>{
+    const selectedCourse = cursos.find(x=>x._id===e.target.value)
+    console.log("e.target.value::::::::", e.target.value);
     setValues({
-        ...values,
-        [e.target.name]: e.target.value
-    });
-}
-const handleChangeSelected =(e)=>{
-  // console.log("cambiando el selected")
-// }
-  const selectedCourse = cursos.find(x=>x._id===e.target.value)
-  console.log("e.target.value::::::::", e.target.value);
-  setValues({
     ...values,
     course: selectedCourse
   })};
 
-    const handleSubmit =async(e)=>{
+    const editUsers =async(e)=>{
     e.preventDefault();
     try {
-        // console.log(values)
+        
         await axiosBack.put("/users",{id,fields:values} );
         getUsers();
     } catch (error) {
@@ -68,12 +65,29 @@ const handleChangeSelected =(e)=>{
         toast.error("Error, intente nuevamente mas tarde")
     }}
 }
+const handleSubmit =(e) =>{
+  e.preventDefault();
+  setErrors(validationAddForm(values));
+  setSubmitting(true)
+}
+useEffect(()=>{
+  if (submitting){
+    if (Object.keys(errors).length === 0) {
+      editUsers();
+      handleClose();
+  }
+  setSubmitting(false);
+  setTimeout(()=>{
+    setErrors({});
+  },3000)
+  }
+}, [errors])
 
 useEffect(()=>{
   getUserInfo();
-  // getCourses();
+  
 },[])
-// console.log(cursos)
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -126,9 +140,16 @@ useEffect(()=>{
           <Form.Group className="mb-3" controlId="formAdmin">
         <Form.Check name="admin" checked={values.admin} onChange={handleChangeCheckBox} type="checkbox" label="admin" />
       </Form.Group>
-          <Button variant="success" type="submit" onClick={handleClose}>
+          <Button variant="success" type="submit">
             Crear usuario
           </Button>
+          {
+                  Object.keys(errors).length!==0 && (
+                    Object.values(errors).map(error=>
+                      <p className="errorStyle mx-1 px-1 "><FaExclamationTriangle /> {error}</p>
+                      )
+                  )
+                }
         </Form>
     <ToastContainer/>
     </>

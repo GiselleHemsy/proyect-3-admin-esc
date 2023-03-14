@@ -161,12 +161,12 @@ export const validationAddUserForm= (values) => {
   //adress
   if (!values.adress) {
     errors.adress = "coloca un domicilio valido";
-  } else if (!/^[a-z0-9_-]{3,16}$/i.test(values.adress)) {
+  } else if (!/[A-Za-z0-9]+/g.test(values.adress)) {
     errors.name = "coloca un domicilio valido";
   } else if (values.adress.length > 30) {
     errors.name = "los datos no deben sobrepasar los 30 caracteres";
   }
-
+  // (/[A-Za-z0-9]+/g)
 
    //course
   if (!values.course) {

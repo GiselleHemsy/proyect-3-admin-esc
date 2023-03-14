@@ -27,7 +27,7 @@ function App() {
             <Route path='/ErrorPage' element={<ErrorPage/>}/>
             <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
-            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>git 
+            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             </Routes>

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState,useContext } from "react"
 import image01 from '../img/image01.png'
 import "./IdCard.css"
 import GeneralModal from "../GeneralModal/GeneralModal"
 import TeacherDeleteConfirmation from "../TeacherForm/TeachaerDeleteConfirmation"
 import EditTeachersForm from "../TeacherForm/EditTeacherform"
 import axiosBack from "../../config/axios"
+import { UserContext } from "../../context/UserContext"
 
 
 
 
 function IdCard({name,lastname,cel,dni,adress,course,state,id,getUsers}){
     const [cursos, setCursos] = useState([])
+    const {user} = useContext(UserContext);
     
     const getCourses = async()=>{
         try {
@@ -52,16 +54,16 @@ function IdCard({name,lastname,cel,dni,adress,course,state,id,getUsers}){
                     <p className="adress"> Dir.: {adress}</p>
                     <p className="courses"> Curso a Cargo: {course}</p>
                     <p className="state"> Estado: {state}</p>
-                    {/* {
-                        user.admin? */}
+                    {
+                        user?.admin? 
                     <div className="button">
                     <GeneralModal buttonText="Editar" modalTitle="Editar un usuario"  modalBody={<EditTeachersForm getUsers={getUsers} id={id} cursos={cursos}/>} variant="primary"/>
                     <GeneralModal buttonText="Eliminar" modalTitle="Eliminar un usuario"  modalBody={<TeacherDeleteConfirmation deleteUser={()=>deleteUser(id)}/>} variant="primary"/>
                     </div>
-                    {/* : null
-                } */}
+                    : null
+                    } 
                 </div>  
-                </div>
+            </div>
             )
 }
 

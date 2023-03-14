@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import GeneralModal from '../../src/Components/GeneralModal/GeneralModal';
@@ -7,9 +7,11 @@ import IdCard from '../../src/Components/IdCard/IdCard';
 import AddTeacherForm from '../../src/Components/TeacherForm/AddTeacherForm';
 import axiosBack from "../../src/config/axios";
 import "./PrincipalPage.css"
+import { UserContext } from '../../src/context/UserContext';
 
 
 const PrincipalPage = ({}) => {
+    const {user} = useContext(UserContext);
     const [state, setState] = useState([]);
     const [cursos, setCursos] = useState([])
 const getUsers = async()=>{
@@ -41,13 +43,16 @@ const getCourses = async()=>{
 return(  
     <>
         <div className='contenedor'>    
-        {/* {
-        user.admin? */}
+        {
+        user?.admin?
+        <>
+        <h4 className="text-center mt-3" >PERSONAL ADMINISTRATIVO Y PROFESORES</h4>
             <div className='buttonCreate col-12 d-flex justify-content-center align-items-center'>
-                    <GeneralModal buttonText="AGREGAR USUARIO" modalTitle="Agregar un usuario" modalBody={<AddTeacherForm getUsers={getUsers} cursos={cursos}/>} variant="primary"/>
+                <GeneralModal buttonText="AGREGAR USUARIO" modalTitle="Agregar un usuario" modalBody={<AddTeacherForm getUsers={getUsers} cursos={cursos}/>} variant="primary"/>
             </div>
-            {/* : null
-        } */}
+        </>
+            : null
+        } 
             <div className="cards">
                     <Row className='row'>
                         {state.map((per,index) => (
