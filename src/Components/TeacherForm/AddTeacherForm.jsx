@@ -1,55 +1,70 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
 import axiosBack from '../../config/axios';
 import { ADD_TEACH_USER_VALUES } from '../../Constants';
+import { validationAddUserForm } from '../../helpers/validations';
+import { FaExclamationTriangle } from "react-icons/fa";
+import "../../index.css"
 
 
 const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
-    
-  const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
         const [values, setValues] = useState(ADD_TEACH_USER_VALUES);
-      const handleChange =(e)=>{
+      
+        const handleChange =(e)=>{
         setValues({
           ...values,
           [e.target.name]: e.target.value
         });
       }
-      const handleChangeCheckBox =(e)=>{
+      
+        const handleChangeCheckBox =(e)=>{
         setValues({
           ...values,
           admin: e.target.checked,
         });
         
       }
-      const handleChangeCheckBox02 =(e)=>{
+        const handleChangeCheckBox02 =(e)=>{
         setValues({
           ...values,
           state: e.target.checked
         });
         
       }
-      const addUser =async()=>{
+        const addUser =async()=>{
         console.log("funcion agregando usuario")
-        e.preventDefault();
+        // e.preventDefault();
         try {
           const userCreated = await axiosBack.post("/users", values);
           console.log(userCreated)
           getUsers();
-          toast.succes("Usuario Creado")
+          toast.success("Usuario Creado")
           
         } catch (error) {
           toast.error("Error en el agregado de un usuario")
         }
       }
-      const handleSubmit =(e) =>{
+        const handleSubmit =(e) =>{
         e.preventDefault();
         setErrors(validationAddUserForm(values));
         setSubmitting(true)
       }
-    console.log(cursos)
+        useEffect(()=>{
+        if (submitting){
+          if (Object.keys(errors).length === 0) {
+            addUser();
+            handleClose();
+        }
+        setSubmitting(false);
+        setTimeout(()=>{
+          setErrors({});
+        },3000)
+        }
+      }, [errors])
     
       return (
         <Form onSubmit={handleSubmit}>
@@ -99,9 +114,16 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
           <Form.Group className="mb-3" controlId="formAdmin">
         <Form.Check name="admin" checked={values.admin} onChange={handleChangeCheckBox} type="checkbox" label="admin" />
       </Form.Group>
-          <Button variant="success" type="submit" onClick={handleClose}>
+          <Button variant="success" type="submit">
             Crear usuario
           </Button>
+          {
+                  Object.keys(errors).length!==0 && (
+                    Object.values(errors).map(error=>
+                      <p className="errorStyle mx-1 px-1 "><FaExclamationTriangle /> {error}</p>
+                      )
+                  )
+                }
         </Form>
       );
     }
