@@ -11,8 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
 import Home from '../Pages/Home';
 // import AuthorizPage from "../Pages/AuthorizPage";
-import CoursesDetail from '../Pages/CoursesDetail';
-import CoursePage from '/pages/CoursePage'
+import CoursesDetail from '../Pages/CoursesDetail/CoursesDetail';
 import UserProvider from './context/UserContext';
 import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,8 +31,7 @@ function App() {
             <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
             <Route path='/*' element={<ErrorPage/>}/>
             <Route path='/LoginPage' element={<LoginPage/>}/>
-            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
-            <Route path='/CoursePage' element={<PrivateRoute><CoursePage/></PrivateRoute>}/>
+            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>git 
             <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
             <Route path='/home' element={<PrivateRoute><Home/></PrivateRoute>}/>
             </Routes>

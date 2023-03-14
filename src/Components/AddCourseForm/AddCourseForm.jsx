@@ -32,15 +32,13 @@ const handleSubmit =async(e)=>{
   }
 }
 
-
-
     return (
     <Form onSubmit={handleSubmit}>   
        <Form.Group className="mb-3" controlId="courseName">
         <Form.Label>Nombre del curso</Form.Label>
         <Form.Control type="text" name="name" value={values.name} onChange={handleChange}></Form.Control>
       </Form.Group>
-      <Button variant="primary" type="submit" >
+      <Button variant="success" type="submit" >
        Agregar curso
       </Button>
     </Form>
