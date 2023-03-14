@@ -50,7 +50,7 @@ return (
                 }
                 <Nav.Link href="/PrincipalPage" className="text-light" >PAGINA PRINCIPAL</Nav.Link>
                 <Nav.Link href="/StudentsPage" className="text-light" >ALUMNOS</Nav.Link>
-                <Nav.Link href="/CoursePage" className="text-light" >CURSOS</Nav.Link>
+                <Nav.Link href="/CoursesDetail" className="text-light" >CURSOS</Nav.Link>
                 
                 <Buttonmu onClick={logout} className="text-light" variant="text"  >LOGOUT</Buttonmu>
             </Nav>

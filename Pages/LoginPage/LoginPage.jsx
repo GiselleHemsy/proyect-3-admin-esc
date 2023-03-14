@@ -50,7 +50,7 @@ const LoginPage = () => {
 
   useEffect(()=>{
     if(authenticated){
-      navigate("/home");
+      navigate("/PrincipalPage");
         }
   }, [authenticated])
   return (
