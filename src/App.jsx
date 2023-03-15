@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import ErrorPage from '../Pages/ErrorPage';
+import LoginPage from '../Pages/LoginPage/LoginPage';
+import PrincipalPage from '../Pages/PrincipalPage/PrincipalPage'
+import StudentsPage from '../Pages/StudentsPage';
+import NavBar from './Components/NavBar/NavBar';
+import './index.css'
+import Footer from './Components/Footer/Footer';
+import { ToastContainer } from 'react-toastify';
+import PrivateRoute from './routes/PrivateRoutes';
+import CoursesDetail from '../Pages/CoursesDetail/CoursesDetail';
+import UserProvider from './context/UserContext';
+import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  return(
+        <Router>
+          <UserProvider>
+          <NavBar/>
+            <Routes>
+            <Route path="/" element={<LoginPage/>}/>
+            <Route path="/habilitacion" element={<PrivateRoute><AuthorizationPage/></PrivateRoute>}/>
+            <Route path='/ErrorPage' element={<ErrorPage/>}/>
+            <Route path='/CoursesDetail' element={<PrivateRoute><CoursesDetail/></PrivateRoute>}/>
+            <Route path='/LoginPage' element={<LoginPage/>}/>
+            <Route path='/PrincipalPage' element={<PrivateRoute><PrincipalPage/></PrivateRoute>}/>
+            <Route path='/StudentsPage' element={<PrivateRoute><StudentsPage/></PrivateRoute>}/>
+            <Route path='/*' element={<ErrorPage/>}/>
+            </Routes>
+            <Footer/>
+          </UserProvider>
+            <ToastContainer/>
+        </Router>
+      )
+    }
+    
+    export default App
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
 
-export default App
