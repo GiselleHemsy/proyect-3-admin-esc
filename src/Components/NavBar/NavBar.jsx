@@ -10,10 +10,6 @@ import { UserContext } from "../../context/UserContext";
 
 
 function NavBar () {
-    // const [clicked, setClicked] = useState(false)
-    // const handleClick = ()=>{
-    // setClicked(!clicked)
-    // }
     const { user} = useContext(UserContext)
     const {logout} = useContext(UserContext)
     const { pathname } = useLocation();
