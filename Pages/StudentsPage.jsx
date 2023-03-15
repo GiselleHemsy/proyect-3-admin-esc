@@ -57,12 +57,12 @@ const StudentsPage = () => {
 
 return(
   <>
-    <Container className=" styleContainer pb-4 mb-4 d-flex flex-column align-content-center justify-content-center">
-      <h4 className="text-center mt-3" >ADMINISTRACIÓN DE ESTUDIANTES</h4>
+    <Container className=" styleContainer pb-1 mb-1 d-flex flex-column align-content-center justify-content-center">
+      <h4 className="text-center mt-2" >ADMINISTRACIÓN DE ESTUDIANTES</h4>
       {
         user.admin?
         <Row>
-        <Col className=" stylebloquebuttons d-flex justify-content-center py-2">
+        <Col className=" stylebloquebuttons d-flex justify-content-center py-1">
             <GeneralModal buttonText={<FaPlus />} modalTitle="Agregar un usuario"  modalBody={<AddStudentForm  getStudents={getStudents} courses={courses} />} variant="success" />
             <GeneralModal buttonText={<FaUserEdit className="styleicon" />} modalTitle="Editar un usuario"  modalBody={<EditStudentForm getStudents={getStudents} selected={selected} courses={courses}  />} variant="warning" selected={selected}/>
             <GeneralModal buttonText={<FaTrash/>} modalTitle="Eliminar un usuario"  modalBody={<DeleteConfirmation deleteUser={deleteUser}/>} variant="danger" selected={selected} />
@@ -71,7 +71,7 @@ return(
       : null
       }
       <Row>
-        <Col className="styleContainer mt-3 d-flex justify-content-center align-items-center">
+        <Col className="styleContainer mt-1 d-flex justify-content-center align-items-center">
         {state.length!==0?
           <MDBTable  responsive className="styleTabla">
           <MDBTableHead>
