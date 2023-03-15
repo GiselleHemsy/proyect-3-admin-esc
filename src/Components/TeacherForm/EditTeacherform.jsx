@@ -3,7 +3,7 @@ import { Button, Form} from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import axiosBack  from "../../config/axios";
 import { EDIT_TEACH_USER_VALUES } from "../../Constants";
-import { validationAddForm } from "../../helpers/validations";
+import { validationAddUserForm } from "../../helpers/validations";
 import { FaExclamationTriangle } from "react-icons/fa";
 import "../../index.css"
 
@@ -44,7 +44,7 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
       }
     }
     
-    const handleChangeSelected =(e)=>{
+  const handleChangeSelected =(e)=>{
     const selectedCourse = cursos.find(x=>x._id===e.target.value)
     console.log("e.target.value::::::::", e.target.value);
     setValues({
@@ -52,8 +52,8 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
     course: selectedCourse
   })};
 
-    const editUsers =async(e)=>{
-    e.preventDefault();
+  const editUsers =async()=>{
+    
     try {
         
         await axiosBack.put("/users",{id,fields:values} );
@@ -67,10 +67,10 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
 }
 const handleSubmit =(e) =>{
   e.preventDefault();
-  setErrors(validationAddForm(values));
+  setErrors(validationAddUserForm(values));
   setSubmitting(true)
 }
-useEffect(()=>{
+  useEffect(()=>{
   if (submitting){
     if (Object.keys(errors).length === 0) {
       editUsers();
@@ -83,7 +83,7 @@ useEffect(()=>{
   }
 }, [errors])
 
-useEffect(()=>{
+  useEffect(()=>{
   getUserInfo();
   
 },[])
@@ -159,4 +159,3 @@ useEffect(()=>{
 export default EditTeachersForm;
 
 
-// name, lastname, dni, email, cel, admin, password

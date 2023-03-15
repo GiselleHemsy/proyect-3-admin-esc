@@ -75,7 +75,7 @@ export const validationAddForm = (values) => {
   } else if (values.email.length > 30) {
     errors.email = "El email no debe poseer más de 30 caracteres";
   }
- 
+
  //cel
   if (!values.cel) {
     errors.cel = "El celular es obligatorio";
@@ -142,12 +142,10 @@ export const validationAddUserForm= (values) => {
     errors.email = "El email no debe poseer más de 30 caracteres";
   }
   // password
-  if (!values.password) {
+  if (!values.password) 
+  {
     errors.password = "La contraseña es obligatoria";
-  } else if (values.password.length < 8) {
-    errors.password = "La contraseña debe tener como mínimo 8 caracteres";
-  } else if (values.password.length > 30) {
-    errors.password = "La contraseña no debe poseer más de 30 caracteres";
+  
   }
 
   //cel
@@ -166,7 +164,7 @@ export const validationAddUserForm= (values) => {
   } else if (values.adress.length > 30) {
     errors.name = "los datos no deben sobrepasar los 30 caracteres";
   }
-  // (/[A-Za-z0-9]+/g)
+  
 
    //course
   if (!values.course) {
