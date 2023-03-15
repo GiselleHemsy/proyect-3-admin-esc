@@ -20,7 +20,7 @@ return (
 <NavContainer>
         <Navbar className="navbar text-light styleNuevonav" expand="lg">
             <Container>
-                {pathname === '/LoginPage' ?
+                {pathname === '/LoginPage' || pathname === '/' ?
 (
             <Navbar.Brand>
                 <div className="logo d-flex text-light">
