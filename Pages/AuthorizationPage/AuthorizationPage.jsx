@@ -47,6 +47,7 @@ const AuthorizationPage = () => {
     <>
     {user?.admin?
     <Container className=" autorizcontainer ">
+      <h4 className="text-center mt-2" >HABILITACIÓN DE USUARIOS</h4>
       <Row>
         <Col className="styleContainer">
           {users.length !== 0 ? (
@@ -71,17 +72,6 @@ const AuthorizationPage = () => {
                       <Form.Group className=" d-flex justify-content-center" controlId="habilitadocheck">
                         <Form.Check name="state" checked={x.state}  type="checkbox" onChange={()=>{handleChangeCheckBox(x._id, x.state)}}/>
                       </Form.Group></td>
-                    {/* <td className="stylecelda text-center">{x.state?
-                    <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
-                      <Form.Check name="state" checked={x.state}  type="checkbox" onChange={handleChangeCheckBox}/>
-                    </Form.Group>
-                    :
-                    // checked={values.cuota} onChange={handleChangeCheckBox} 
-                    <Form.Group className=" d-flex justify-content-center mb-3" controlId="habilitadocheck">
-                      <Form.Check name="state" checked={x.state} type="checkbox"  onChange={handleChangeCheckBox} />
-                    </Form.Group>}
-                    </td> */}
-                    {/* name="cuota" checked={values.cuota} onChange={handleChangeCheckBox} */}
                   </tr>
                 ))}
               </MDBTableBody>
