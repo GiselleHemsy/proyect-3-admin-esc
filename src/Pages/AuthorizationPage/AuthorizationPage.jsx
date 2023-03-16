@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Col, Container, Form, Row, Spinner, Table } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axiosBack from "../../src/config/axios";
+import axiosBack from "../../config/axios";
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
-import "../../src/index.css"
-import { UserContext } from "../../src/context/UserContext";
+import "../../index.css"
+import { UserContext } from "../../context/UserContext";
 
 const AuthorizationPage = () => {
   const {user} = useContext(UserContext)

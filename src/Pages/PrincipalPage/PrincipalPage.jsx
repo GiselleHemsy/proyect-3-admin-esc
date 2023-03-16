@@ -2,12 +2,12 @@
 import { useEffect, useState,useContext } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import GeneralModal from '../../src/Components/GeneralModal/GeneralModal';
-import IdCard from '../../src/Components/IdCard/IdCard';
-import AddTeacherForm from '../../src/Components/TeacherForm/AddTeacherForm';
-import axiosBack from "../../src/config/axios";
+import GeneralModal from '../../Components/GeneralModal/GeneralModal';
+import IdCard from '../../Components/IdCard/IdCard';
+import AddTeacherForm from '../../Components/TeacherForm/AddTeacherForm';
+import axiosBack from "../../config/axios";
 import "./PrincipalPage.css"
-import { UserContext } from '../../src/context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 
 const PrincipalPage = ({}) => {

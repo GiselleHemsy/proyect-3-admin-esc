@@ -1,17 +1,17 @@
 
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-import ErrorPage from '../Pages/ErrorPage';
-import LoginPage from '../Pages/LoginPage/LoginPage';
-import PrincipalPage from '../Pages/PrincipalPage/PrincipalPage'
-import StudentsPage from '../Pages/StudentsPage';
+import ErrorPage from './Pages/ErrorPage';
+import LoginPage from './Pages/LoginPage/LoginPage';
+import PrincipalPage from './Pages/PrincipalPage/PrincipalPage'
+import StudentsPage from './Pages/StudentsPage';
 import NavBar from './Components/NavBar/NavBar';
 import './index.css'
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from './routes/PrivateRoutes';
-import CoursesDetail from '../Pages/CoursesDetail/CoursesDetail';
+import CoursesDetail from './Pages/CoursesDetail/CoursesDetail';
 import UserProvider from './context/UserContext';
-import AuthorizationPage from '../Pages/AuthorizationPage/AuthorizationPage';
+import AuthorizationPage from './Pages/AuthorizationPage/AuthorizationPage';
 
 
 

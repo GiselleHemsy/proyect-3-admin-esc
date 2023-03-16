@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { InputGroup, Table } from "react-bootstrap";
-import axiosBack from "../src/config/axios";
-import "../src/index.css"
+import axiosBack from "../config/axios";
+import "../index.css"
 
 const AuthorizPage = () => {
   const [state, setState] = useState([]);
