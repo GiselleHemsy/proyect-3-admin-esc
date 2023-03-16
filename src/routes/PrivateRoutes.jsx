@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "./../context/UserContext";
 
 const PrivateRoute = ({children}) => {
   const {getAuth, authenticated, loading} = useContext(UserContext)

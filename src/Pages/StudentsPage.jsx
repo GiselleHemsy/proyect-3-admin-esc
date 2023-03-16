@@ -1,14 +1,14 @@
 import { Col, Container, Row,Table, Spinner} from "react-bootstrap";
-import AddStudentForm from "../Components/AddStudentForm/AddStudentForm";
-import EditStudentForm from "../Components/EditStudentForm/EditStudentForm";
-import DeleteConfirmation from "../Components/DeleteConfirmation/DeleteConfirmation";
-import GeneralModal from "../Components/GeneralModal/GeneralModal";
-import axiosBack from "../config/axios";
+import AddStudentForm from "./../Components/AddStudentForm/AddStudentForm";
+import EditStudentForm from "./../Components/EditStudentForm/EditStudentForm";
+import DeleteConfirmation from "./../Components/DeleteConfirmation/DeleteConfirmation";
+import GeneralModal from "./../Components/GeneralModal/GeneralModal";
+import axiosBack from "./../config/axios";
 import { useContext, useEffect, useState } from "react"
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
-import "../index.css"
-import { UserContext } from "../context/UserContext";
+import "./../index.css"
+import { UserContext } from "./../context/UserContext";
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import { FaPlus, FaTrash, FaUserEdit } from "react-icons/fa";
 
