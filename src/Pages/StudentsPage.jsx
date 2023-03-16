@@ -1,8 +1,8 @@
 import { Col, Container, Row,Table, Spinner} from "react-bootstrap";
-import AddStudentForm from "./../Components/AddStudentForm/AddStudentForm";
-import EditStudentForm from "./../Components/EditStudentForm/EditStudentForm";
-import DeleteConfirmation from "./../Components/DeleteConfirmation/DeleteConfirmation";
-import GeneralModal from "./../Components/GeneralModal/GeneralModal";
+import AddStudentForm from "./../components/AddStudentForm/AddStudentForm";
+import EditStudentForm from "./../components/EditStudentForm/EditStudentForm";
+import DeleteConfirmation from "./../components/DeleteConfirmation/DeleteConfirmation";
+import GeneralModal from "./../components/GeneralModal/GeneralModal";
 import axiosBack from "./../config/axios";
 import { useContext, useEffect, useState } from "react"
 import { toast, ToastContainer } from "react-toastify";

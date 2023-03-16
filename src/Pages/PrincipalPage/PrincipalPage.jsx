@@ -2,9 +2,9 @@
 import { useEffect, useState,useContext } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import GeneralModal from './../../Components/GeneralModal/GeneralModal';
-import IdCard from './../../Components/IdCard/IdCard';
-import AddTeacherForm from './../../Components/TeacherForm/AddTeacherForm';
+import GeneralModal from './../../components/GeneralModal/GeneralModal';
+import IdCard from './../../components/IdCard/IdCard';
+import AddTeacherForm from './../../components/TeacherForm/AddTeacherForm';
 import axiosBack from "./../../config/axios";
 import "./PrincipalPage.css"
 import { UserContext } from './../../context/UserContext';
