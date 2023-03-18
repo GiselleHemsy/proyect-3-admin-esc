@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState} from 'react';
 import {Container,Row,Col, Table, Button} from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import DeleteCourseForm from './../../components/DeleteCourseForm/DeleteCoursesForm';
-import EditCourseForm from './../../components/EditCourseForm/EditCourseForm';
-import AddCourseForm from './../../components/AddCourseForm/AddCourseForm';
+import AddCourseForm from '../../components/AddCourseForm/AddCourseForm';
+import DeleteCourseForm from '../../components/DeleteCourseForm/DeleteCoursesForm';
+import EditCourseForm from '../../components/EditCourseForm/EditCourseForm';
 import axiosBack from "./../../config/axios";
 import { UserContext } from "./../../context/UserContext";
 import { FaPlus, FaTrash, FaUserEdit } from "react-icons/fa";
