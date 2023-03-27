@@ -90,7 +90,7 @@ return(
                 <td className="stylecelda text-center">{student.expediente}</td>
                 <td className="stylecelda text-center">{student.name}</td>
                 <td className="stylecelda text-center">{student.lastname}</td>
-                <td className="stylecelda text-center">{student.course.name}</td>
+                <td className="stylecelda text-center">{student.course?.name}</td>
                 <td className="stylecelda text-center">{student.cuota?"Al dia":"Debe"}</td>
                 <td className="stylecelda text-center">{student.email}</td>
               </tr>

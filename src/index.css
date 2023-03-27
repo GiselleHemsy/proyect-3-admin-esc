@@ -19,8 +19,9 @@
 }
 body{
     height: 100vh;
-    width: 100vw;
+    max-width: 100%;
     box-sizing: border-box !important;
+    overflow-x: hidden;
 }
 
 .styleTabla{
