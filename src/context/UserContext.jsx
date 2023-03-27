@@ -19,7 +19,6 @@ const UserProvider = ({children}) => {
         localStorage.setItem("token", data.token);
         toast.success("Ingreso correcto");  
     } catch (error) {
-      console.log(error);
       if (error.response.status===401) {toast.error("Ups! No tenes permisos")}
       else{
       toast.error("Ups! Hubo un error, intenta nuevamente mas tarde");}
@@ -34,7 +33,6 @@ const UserProvider = ({children}) => {
         return setAuthenticated(false);
       } 
       axiosBack.defaults.headers.common["authorization"]= token;
-      // axiosInstance.defaults.headers.common['authorization'] = token;
       const {data}=await axiosBack.get("/users/authStatus")
       setUser(data.user)
       setAuthenticated(true)

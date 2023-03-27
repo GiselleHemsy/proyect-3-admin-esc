@@ -25,7 +25,7 @@ const handleSubmit =async(e)=>{
     getCourses();
     handleAddCourse();
     if(courseCreated){
-      toast.done("Curso creado")
+      toast.success("Curso creado")
     }
   } catch (error) {
     toast.error("Error, intente nuevamente mas tarde")
@@ -34,12 +34,12 @@ const handleSubmit =async(e)=>{
 
     return (
     <Form onSubmit={handleSubmit}>   
-       <Form.Group className="mb-3" controlId="courseName">
+        <Form.Group className="mb-3" controlId="courseName">
         <Form.Label>Nombre del curso</Form.Label>
         <Form.Control type="text" name="name" value={values.name} onChange={handleChange}></Form.Control>
       </Form.Group>
       <Button variant="success" type="submit" >
-       Agregar curso
+        Agregar curso
       </Button>
     </Form>
     );

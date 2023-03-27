@@ -13,8 +13,6 @@ function NavBar () {
     const { user} = useContext(UserContext)
     const {logout} = useContext(UserContext)
     const { pathname } = useLocation();
-    console.log(pathname)
-
 return ( 
 
 <NavContainer>

@@ -22,10 +22,8 @@ const [values, setValues] = useState(
         [e.target.name]: e.target.value
     });
 }
-const handleSubmit =async(e)=>{
-    console.log("funcion agregando usuario")
-    
-  }
+const handleSubmit =async(e)=>{    
+    }
 return (
     <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="userName">

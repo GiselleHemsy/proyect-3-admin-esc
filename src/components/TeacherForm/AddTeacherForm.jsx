@@ -36,11 +36,8 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
         
       }
         const addUser =async()=>{
-        console.log("funcion agregando usuario")
-        // e.preventDefault();
         try {
           const userCreated = await axiosBack.post("/users", values);
-          console.log(userCreated)
           getUsers();
           toast.success("Usuario Creado")
           
@@ -131,4 +128,3 @@ const AddTeacherForm = ({handleClose, getUsers, cursos}) => {
 export default AddTeacherForm;
 
 
-// name, lastname, dni, email, cel, admin, password

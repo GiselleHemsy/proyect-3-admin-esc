@@ -7,7 +7,6 @@ import { FaExclamationTriangle } from "react-icons/fa";
 import "../../index.css"
 
 const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
-  console.log(selected)    //!Recibe correctamente
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [values, setValues] = useState(
@@ -36,7 +35,6 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
   const getUserInfo=async()=>{
     try {
       const {data} = await axiosBack.get(`/students/email/${selected}`); 
-      console.log(data)
       setValues(data.student);
     } catch (error) {
       toast.error("Error intente nuevamente mas tarde")
@@ -71,24 +69,6 @@ const EditStudentForm = ({selected, handleClose, getStudents, courses}) => {
     }
   }, [errors])
 
-  // const handleSubmit =async(e)=>{
-  //   e.preventDefault();
-  //   try {
-  //     // '/coins/' + selected ,{update:values}
-  //     console.log(selected);
-  //     await axiosBack.put('/students/',{email: selected, fields:values});
-  //     getStudents();
-  //     toast.success(`Los datos del estudiante se actualizaron de forma correcta`);
-  //     //Uso los datos que devuelve el back para mostrar una confirmacion
-  //   } catch (error) {
-  //     {
-  //     toast.error("Error al intentar actualizar los datos, reintente mas tarde")
-  //   }}
-  // }
-
-
-
-
 
 useEffect(()=>{
   getUserInfo();
@@ -102,7 +82,6 @@ const handleChangeCheckBox =(e)=>{
 
 const handleChangeSelected =(e)=>{
   const selectedCourse = courses.find(x=>x._id===e.target.value)
-  console.log("e.target.value::::::::", e.target.value);
   setValues({
     ...values,
     course: selectedCourse

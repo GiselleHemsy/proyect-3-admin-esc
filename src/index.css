@@ -41,9 +41,7 @@ table{
 @media screen and (max-width: 992px){
     .styleTabla{
         max-width: 60% !important;
-        /* overflow-x: scroll;
-        white-space: nowrap;
-        text-overflow: clip; */
+
     }
     }
     @media screen and (max-width: 992px){
@@ -67,9 +65,6 @@ table{
         .stylecelda{
             padding:0.1 rem !important;
         }
-        /* .autorizcontainer{
-            
-        } */
     @media screen and (max-width: 900px){
             .autorizcontainer{
                 margin-bottom: 6rem !important;

@@ -41,7 +41,6 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     
     try {
       const userCreated = await axiosBack.post("/students", values);
-      console.log(userCreated);
       getStudents();
       toast.success(`Estudiante agregado con éxito. Bievenido ${values.name}`);
     } catch (error) {
@@ -66,7 +65,6 @@ const AddStudentForm = ({handleClose, getStudents, courses}) => {
     },3000)
     }
   }, [errors])
-console.log(errors);
   return (
     <>
     <Form onSubmit={handleSubmit}>

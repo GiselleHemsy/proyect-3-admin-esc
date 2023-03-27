@@ -57,7 +57,7 @@ const StudentsPage = () => {
 
 return(
   <>
-    <Container className=" styleContainer pb-1 mb-1 d-flex flex-column align-content-center justify-content-center">
+    <Container className=" styleContainer  d-flex flex-column align-content-center justify-content-center">
       <h4 className="text-center mt-2" >ADMINISTRACIÓN DE ESTUDIANTES</h4>
       {
         user.admin?

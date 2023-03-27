@@ -14,7 +14,6 @@ const AuthorizationPage = () => {
   const [selected, setSelected] = useState("");
   const navigate = useNavigate();
 
-  //* funcion para traer los usuarios
   const getUsers = async () => {
     try {
       const { data } = await axiosBack.get("/users");
@@ -23,14 +22,12 @@ const AuthorizationPage = () => {
       toast.error(error.message);
     }
   };
-  //*Cuando cargo el componente traigo los users
   useEffect(() => {
     getUsers();
   }, []);
 
 
 
-  //*funcion para manipular el checkbok
   const handleChangeCheckBox =async(id, state)=>{
     try {
           await axiosBack.put("/users",{id,fields:{state:!state}} );

@@ -7,7 +7,7 @@ const ButtonDetail = ({title}) => {
       <div className="mb-2">
         <Button  variant="primary" size="lg">{title}</Button>
       </div>  
-     );
+      );
 }
- 
+  
 export default ButtonDetail;

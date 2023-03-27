@@ -35,7 +35,6 @@ const EditCourseForm = ({getCourses, courses,handleEditCourse}) => {
     useEffect(()=>{
       getCourses();
     },[])
-    console.log(values)
     return ( 
         <>
     <Form onSubmit={handleSubmit}>
@@ -57,7 +56,7 @@ const EditCourseForm = ({getCourses, courses,handleEditCourse}) => {
     {/* <ToastContainer/> */}
     </Form>
     </>
-     );
+      );
 }
- 
+  
 export default EditCourseForm;

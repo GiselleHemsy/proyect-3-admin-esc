@@ -16,10 +16,8 @@ const FormRegister = () => {
     }
     )
   }
-  console.log(valuesUser);
   const loginUser =(e)=>{
     e.preventDefault();
-    console.log("Usuario creado cielo");
   }
   return ( 
     <Form onSubmit={loginUser} >
