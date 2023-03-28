@@ -7,7 +7,7 @@ const GeneralModal = ({buttonText, modalTitle, modalBody, variant, selected=true
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
- 
+
   return (
     <>
       <Button disabled={!!!selected} className="mx-1" variant={variant} onClick={handleShow}>
@@ -21,7 +21,6 @@ const GeneralModal = ({buttonText, modalTitle, modalBody, variant, selected=true
         <Modal.Header closeButton>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
-        {/* Para pasar props del modal al formulario uso clonar elemento */}
         <Modal.Body>{cloneElement(modalBody, {handleClose:handleClose})}</Modal.Body>
       </Modal>
     </>

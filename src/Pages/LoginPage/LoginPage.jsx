@@ -2,13 +2,9 @@ import "./../../index.css"
 import "./../LoginPage/LoginPage.css"
 import {Container, Row, Col, Form, Button, FloatingLabel} from "react-bootstrap";
 import {  useContext, useEffect, useState } from "react";
-// import GeneralModal from "../../src/Components/GeneralModal/GeneralModal";
-// import FormRegister from "../../src/Components/FormRegister/FormRegister";
-// import axiosBack from "../../src/config/axios";
 import { UserContext } from "./../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import { validationLogin } from "./../../helpers/validations";
-// import Buttonmu from '@mui/material/Button';
 import { toast, ToastContainer} from "react-toastify";
 import { FaExclamationTriangle, FaUserAlt } from "react-icons/fa";
 
@@ -25,7 +21,7 @@ const LoginPage = () => {
   })
   const handleChanges =(e)=>{
     setValues({
-      ...values,   //Uso spread operator para modificar solo el campo seleccionado y conservar los valores en los otros
+      ...values,   
       [e.target.name]:e.target.value
     }
       )

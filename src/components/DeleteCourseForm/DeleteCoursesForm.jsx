@@ -22,7 +22,6 @@ const DeleteCourseForm = ({getCourses, courses, isDeleted, setIsDeleted, handleD
   const handleSubmit =async(e)=>{
     e.preventDefault();
     try {
-      console.log(values.course)
       await axiosBack.delete("/course/",{data:{courseId: values.course}
       } );
       setIsDeleted(!isDeleted)
@@ -50,7 +49,6 @@ const DeleteCourseForm = ({getCourses, courses, isDeleted, setIsDeleted, handleD
       <Button  variant="danger" type="submit" >
         Eliminar curso
       </Button>
-    {/* <ToastContainer/> */}
     </Form>
     </>
   );

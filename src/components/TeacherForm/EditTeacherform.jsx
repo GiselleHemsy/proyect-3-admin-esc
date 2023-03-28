@@ -8,7 +8,6 @@ import { FaExclamationTriangle } from "react-icons/fa";
 import "../../index.css"
 
 const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
-  console.log(cursos)
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [values, setValues] = useState(EDIT_TEACH_USER_VALUES);
@@ -37,7 +36,6 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
   const getUserInfo=async()=>{
       try {
         const {data} = await axiosBack.get(`/users?single=true&id=${id}`);
-        console.log(data)
         setValues(data.user);
       } catch (error) {
         toast.error("Error intente nuevamente mas tarde")
@@ -46,7 +44,6 @@ const EditTeachersForm = ({handleClose, getUsers,id,cursos}) => {
     
   const handleChangeSelected =(e)=>{
     const selectedCourse = cursos.find(x=>x._id===e.target.value)
-    console.log("e.target.value::::::::", e.target.value);
     setValues({
     ...values,
     course: selectedCourse

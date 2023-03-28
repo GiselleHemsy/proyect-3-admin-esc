@@ -8,7 +8,6 @@ export const EDIT_TEACH_USER_VALUES = {
         password:"",
 }
 
-// name, lastname, dni, email, cel, admin, password
 
 export const ADD_TEACH_USER_VALUES = {
         name:"",

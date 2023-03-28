@@ -82,7 +82,7 @@ const CoursesDetail = () => {
     }
   },[selected])
 
-   
+    
   return (
     <Container>
     <Container>
@@ -106,20 +106,20 @@ const CoursesDetail = () => {
         </Col>
       </Row>
     </Container> 
-           {
+            {
               addCourse && <Container>
               <Row>
                 <Col>
-                 <AddCourseForm handleAddCourse={handleAddCourse} getCourses={getCourses}/> 
+                  <AddCourseForm handleAddCourse={handleAddCourse} getCourses={getCourses}/> 
                 </Col>
               </Row>
             </Container>
           }
-           {
+            {
               editCourse && <Container>
               <Row>
                 <Col>
-                 <EditCourseForm handleEditCourse={handleEditCourse} getCourses={getCourses} courses={courses}/>
+                  <EditCourseForm handleEditCourse={handleEditCourse} getCourses={getCourses} courses={courses}/>
                 </Col>
               </Row>
             </Container>
@@ -128,7 +128,7 @@ const CoursesDetail = () => {
               deleteCourse && <Container>
               <Row>
                 <Col>
-                 <DeleteCourseForm handleDeleteCourse={handleDeleteCourse} isDeleted={isDeleted} setIsDeleted={setIsDeleted} getCourses={getCourses} courses={courses}/>
+                  <DeleteCourseForm handleDeleteCourse={handleDeleteCourse} isDeleted={isDeleted} setIsDeleted={setIsDeleted} getCourses={getCourses} courses={courses}/>
                 </Col>
               </Row>
             </Container>
@@ -154,11 +154,11 @@ const CoursesDetail = () => {
         )}
       </tbody>
     </Table>
-       
+          
   <Table striped bordered hover>
   <thead>
     <tr className="title">
-     <td colSpan="2">MATERIAS</td> 
+      <td colSpan="2">MATERIAS</td> 
     </tr>
     <tr>
       <th>Nombre</th>
@@ -189,7 +189,7 @@ const CoursesDetail = () => {
     </tr>)} 
   </tbody>
 </Table> 
- </Container>
+  </Container>
   );        
       }
     

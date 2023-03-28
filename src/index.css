@@ -19,8 +19,9 @@
 }
 body{
     height: 100vh;
-    width: 100vw;
+    max-width: 100%;
     box-sizing: border-box !important;
+    overflow-x: hidden;
 }
 
 .styleTabla{
@@ -40,9 +41,7 @@ table{
 @media screen and (max-width: 992px){
     .styleTabla{
         max-width: 60% !important;
-        /* overflow-x: scroll;
-        white-space: nowrap;
-        text-overflow: clip; */
+
     }
     }
     @media screen and (max-width: 992px){
@@ -66,9 +65,6 @@ table{
         .stylecelda{
             padding:0.1 rem !important;
         }
-        /* .autorizcontainer{
-            
-        } */
     @media screen and (max-width: 900px){
             .autorizcontainer{
                 margin-bottom: 6rem !important;

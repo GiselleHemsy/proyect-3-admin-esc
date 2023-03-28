@@ -7,7 +7,6 @@ const PrivateRoute = ({children}) => {
   const {getAuth, authenticated, loading} = useContext(UserContext)
 
   
-  // Authorization
   useEffect(()=>{
     getAuth();
   }, [])
