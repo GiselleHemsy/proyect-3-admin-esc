@@ -118,7 +118,7 @@ const handleChangeSelected =(e)=>{
         <Form.Label>Ingrese el celular</Form.Label>
         <Form.Control type="number"  name="cel" value={values.cel} onChange={handleChange}/>
       </Form.Group>
-      <Form.Select value={values.course._id} aria-label="Default select example" name="course" onChange={handleChangeSelected}  >
+      <Form.Select value={values.course?._id} aria-label="Default select example" name="course" onChange={handleChangeSelected}  >
       <Form.Label>Seleccione el Año de Cursado</Form.Label> 
       {
         courses.map((course)=>
